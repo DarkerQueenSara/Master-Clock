@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 602897783}
   - component: {fileID: 602897784}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: SpinAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,8 @@ GameObject:
   m_Component:
   - component: {fileID: 746340311}
   - component: {fileID: 746340312}
-  m_Layer: 6
+  - component: {fileID: 5580580510509507970}
+  m_Layer: 7
   m_Name: Slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +96,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2, y: 2}
   m_Direction: 0
+--- !u!114 &5580580510509507970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746340310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef79436c5276ccf4cafaa7bcfea9c436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 1
 --- !u!1 &1914297995
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +235,7 @@ GameObject:
   - component: {fileID: 2103198019}
   m_Layer: 6
   m_Name: Spinning
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -386,7 +400,7 @@ GameObject:
   - component: {fileID: 743481762573770565}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -542,7 +556,7 @@ GameObject:
   - component: {fileID: 743481762875714947}
   m_Layer: 6
   m_Name: Checks
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -648,7 +662,7 @@ GameObject:
   - component: {fileID: 743481763082496701}
   m_Layer: 6
   m_Name: GroundCheck
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -678,7 +692,7 @@ GameObject:
   - component: {fileID: 743481763236519224}
   m_Layer: 6
   m_Name: CeilingCheck
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
