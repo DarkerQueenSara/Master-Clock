@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _facingRight = true;
     private bool _grounded = true;
 
-    private Animator _animator;
+    //private Animator _animator;
     private Camera _camera;
     private Rigidbody2D _body;
 

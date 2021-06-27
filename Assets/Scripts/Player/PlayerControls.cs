@@ -6,12 +6,14 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour
 {
     private bool _jump = false;
+    private bool _attack = false;
     
     private InputMaster _inputMaster;
     private Vector2 _velocity;
 
     private PlayerMovement _playerMovement;
-
+    private PlayerCombat _playerCombat;
+    
     private void Awake()
     {
         _inputMaster = new InputMaster();
@@ -19,7 +21,8 @@ public class PlayerControls : MonoBehaviour
         _inputMaster.Player.Move.canceled += _ => { _velocity = Vector2.zero; };
         _inputMaster.Player.Jump.performed += ctx => { _jump = true; };
         _inputMaster.Player.Jump.canceled += _ => { _jump = false; };
-    }
+        _inputMaster.Player.Attack.performed += ctx => { _attack = true; };
+        _inputMaster.Player.Attack.canceled += _ => { _attack = false; };    }
 
     private void OnEnable()
     {
@@ -34,8 +37,17 @@ public class PlayerControls : MonoBehaviour
     private void Start()
     {
         _playerMovement = GetComponent<PlayerMovement>();
+        _playerCombat = GetComponent<PlayerCombat>();
     }
-    
+
+    private void Update()
+    {
+        if (_attack)
+        {
+            _playerCombat.SlashAttack();
+        }
+    }
+
     private void FixedUpdate()
     {
         _playerMovement.Move(_velocity.x, _jump);

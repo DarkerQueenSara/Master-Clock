@@ -7,12 +7,12 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public GameObject virtualCam;
-    private Collider2D _confiner;
+    //private Collider2D _confiner;
     public List<GameObject> enemies;
 
     private void Start()
     {
-        _confiner = virtualCam.GetComponent<CinemachineConfiner>().m_BoundingShape2D;
+        //_confiner = virtualCam.GetComponent<CinemachineConfiner>().m_BoundingShape2D;
     }
 
     // Start is called before the first frame update
@@ -20,8 +20,8 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player") && !other.isTrigger)
         {
-            _confiner = this.GetComponent<PolygonCollider2D>();
-            //_camera.m_Lens.OrthographicSize = transform.localScale.x / Camera.main.aspect;
+            //nao meter isto numa variavel, quebra o jogo
+            virtualCam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = GetComponent<PolygonCollider2D>();
             foreach (var e in enemies)
             {
                 e.SetActive(true);
