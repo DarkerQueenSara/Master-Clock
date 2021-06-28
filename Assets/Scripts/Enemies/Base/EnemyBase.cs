@@ -22,6 +22,8 @@ public abstract class EnemyBase : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
 
+    public int contactDamage;
+    
     public float randomDropChance = 0.5f;
     public List<GameObject> pickUps;
 

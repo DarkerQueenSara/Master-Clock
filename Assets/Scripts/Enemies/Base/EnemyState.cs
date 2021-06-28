@@ -9,10 +9,17 @@ public abstract class EnemyState : MonoBehaviour
         Initialized = true;
     }
 
-    public abstract void StateUpdate();
+    public virtual void StateUpdate()
+    {
+    }
 
-    public abstract void StateFixedUpdate();
-    public abstract void OnGetHit();
+    public virtual void StateFixedUpdate()
+    {
+    }
+
+    public virtual void OnGetHit()
+    {
+    }
 }
 
 public abstract class EnemyState<EnemyType> : EnemyState where EnemyType : EnemyBase<EnemyType>
