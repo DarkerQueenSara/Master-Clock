@@ -36,7 +36,6 @@ public class CrawlerCrawling : CrawlerState
                 moveVector = target.head.right * target.moveSpeed * Time.deltaTime;
             }
             transform.localPosition += moveVector;
-            bool horizontal = _direction.x != 0;
 
             RaycastHit2D down = Physics2D.Raycast(target.head.position, -target.head.up, target.rayDistance, target.groundMask);
             Debug.DrawRay(target.head.position, -target.head.up * target.rayDistance, Color.red);

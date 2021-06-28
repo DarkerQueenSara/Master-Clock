@@ -19,5 +19,7 @@ public class Crawler : EnemyBase<Crawler>
         state = CrawlerCrawling.Create(this);
         boxCollider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+        started = true;
     }
+
 }

@@ -23,7 +23,12 @@ public abstract class EnemyBase : MonoBehaviour
     public int maxHealth;
 
     public int contactDamage;
-    
+
+    protected bool started = false;
+
+    [HideInInspector] public Vector2 startPosition;
+    [HideInInspector] public Quaternion startRotation;
+
     public float randomDropChance = 0.5f;
     public List<GameObject> pickUps;
 
@@ -31,13 +36,24 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        currentHealth = maxHealth;
+        startPosition = transform.position;
+        startRotation = transform.rotation;
     }
 
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         currentHealth = maxHealth;
+        if (started)
+        {
+            transform.position = startPosition;
+            transform.rotation = startRotation;
+        }
     }
+
+    /*protected virtual void OnDisable()
+    {
+        transform.position = startPosition;
+    }*/
 
     public void Call(string messageName)
     {
@@ -59,6 +75,7 @@ public abstract class EnemyBase : MonoBehaviour
         {
             Instantiate(pickUps[Random.Range(0, pickUps.Count)], spawnPos, Quaternion.identity);
         }
+
         gameObject.SetActive(false);
     }
 
@@ -66,9 +83,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (!playerAttacks.HasLayer(other.gameObject.layer)) return;
         Hit(other.gameObject.GetComponent<PlayerAttack>().attackDamage);
-        
     }
-
 }
 
 public abstract class EnemyBase<EnemyType> : EnemyBase where EnemyType : EnemyBase<EnemyType>

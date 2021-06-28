@@ -22,15 +22,11 @@ public class DiverRecovering : EnemyState<Diver>
 
     public override void StateFixedUpdate()
     {
-        /*if ((Vector2) transform.position == target.startPosition)
-        {
-            _hit = true;
-        }*/
-
         if (!_hit)
         {
             var currentPos = target.rb.position;
-            target.rb.MovePosition((target.startPosition - currentPos).normalized * target.returnSpeed *
+            target.rb.MovePosition(((Vector2) target.startPosition - currentPos).normalized *
+                target.returnSpeed *
                 Time.fixedDeltaTime + currentPos);
         }
         else
