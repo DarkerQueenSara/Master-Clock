@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DiverHanging : EnemyState<Diver>
+{
+    public static DiverHanging Create(Diver target)
+    {
+        DiverHanging state = DiverState.Create<DiverHanging>(target);
+        return state;
+    }
+
+    public override void StateStart()
+    {
+        base.StateStart();
+    }
+
+    public override void StateUpdate()
+    {
+        PlayerEntity player = PlayerEntity.instance;
+        if (Mathf.Abs(transform.position.x - player.transform.position.x) < target.diveRange &&
+            transform.position.y > player.transform.position.y)
+        {
+            SetState(DiverDiving.Create(target));
+        }
+    }
+}
