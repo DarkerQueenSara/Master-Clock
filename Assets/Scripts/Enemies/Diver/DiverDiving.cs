@@ -1,7 +1,8 @@
+using System;
 using Extensions;
 using UnityEngine;
 
-public class DiverDiving : EnemyState<Diver>
+public class DiverDiving : DiverState
 {
     private bool _hit = false;
     private float _diveCoordinates;
@@ -24,9 +25,9 @@ public class DiverDiving : EnemyState<Diver>
     {
         if (!_hit)
         {
-            var currentPos = target.rb.position;
-            target.rb.MovePosition(new Vector2(_diveCoordinates - currentPos.x, -1).normalized * target.diveSpeed *
-                Time.fixedDeltaTime + currentPos);
+            Vector3 currentPos = target.rb.position;
+            transform.position += new Vector3(_diveCoordinates - currentPos.x, -1, 0).normalized * target.diveSpeed *
+                                  Time.fixedDeltaTime;
         }
         else
         {
@@ -34,9 +35,9 @@ public class DiverDiving : EnemyState<Diver>
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D col)
+    public void OnCollisionEnter2D(Collision2D other)
     {
-        if (target.hittables.HasLayer(col.gameObject.layer))
+        if (target.hittables.HasLayer(other.gameObject.layer))
         {
             _hit = true;
         }

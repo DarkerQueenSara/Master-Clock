@@ -59,6 +59,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!IsAlive) return;
         currentHealth = Mathf.Max(currentHealth - damage, 0);
+        //meter aqui que o player tem stun e inviciblity frames depois de um hit
         if (!IsAlive) ResetCycle();
     }
 }

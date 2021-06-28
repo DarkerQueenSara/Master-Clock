@@ -61,8 +61,8 @@ public class PlayerMovement : MonoBehaviour
     public void Move(float move, bool jump, bool crouch)
     {
         move *= runSpeed * Time.deltaTime;
-
-
+        
+        
         if (!crouch && _grounded)
         {
             if (Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround))
@@ -121,9 +121,16 @@ public class PlayerMovement : MonoBehaviour
         // If the player should jump...
         if (_grounded && jump)
         {
-            // Add a vertical force to the player.
-            _grounded = false;
-            _body.AddForce(new Vector2(0f, jumpForce));
+            if (!crouch)
+            {
+                // Add a vertical force to the player.
+                _grounded = false;
+                _body.AddForce(new Vector2(0f, jumpForce));
+            }
+            else
+            {
+                Debug.Log("Slide ability coming soon!");
+            }
         }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using Extensions;
 using UnityEngine;
 
@@ -41,9 +42,7 @@ public class CrawlerCrawling : CrawlerState
             Debug.DrawRay(target.head.position, -target.head.up * target.rayDistance, Color.red);
             RaycastHit2D forward = Physics2D.Raycast(target.head.position, target.head.right, target.rayDistance, target.groundMask);
             Debug.DrawRay(target.head.position, target.head.right * target.rayDistance, Color.blue);
-            //RaycastHit2D wallHit = Physics2D.Raycast(target.wallFinder.position, -target.wallFinder.right, target.rayDistance, target.groundMask);
-            //Debug.DrawRay(target.wallFinder.position, -target.wallFinder.right * target.rayDistance, Color.black);
-            
+
             //escolher direção do down
             if (down.collider == null && forward.collider == null)
             {
@@ -63,7 +62,38 @@ public class CrawlerCrawling : CrawlerState
             }
         }
     }
-   protected void OnTriggerEnter2D(Collider2D collider)
+
+   protected void OnCollisionEnter2D(Collision2D other)
+   {
+       if (!_hitFloor && target.groundMask.HasLayer(other.gameObject.layer))
+       {
+           _hitFloor = true;
+           Vector2 closestPoint = other.collider.ClosestPoint(target.rb.position);
+           Vector2 rbPos = new Vector2(target.rb.position.x, target.rb.position.y);
+           Vector2 normal = (rbPos - closestPoint).normalized;
+           RaycastHit2D hit;
+           bool wall = Vector2.Angle(normal, Vector2.up) > 80;
+
+           //se for parede
+           if (wall)
+           {
+               if (_direction.x > 0)
+               {
+                   transform.Rotate(Vector3.forward, 90);
+               }
+               else
+               {
+                   transform.Rotate(Vector3.forward, -90);
+               }
+           }
+           _direction = new Vector2(Mathf.Sign(_direction.x), 0);
+           hit = Physics2D.Raycast(target.head.position, -transform.up, target.rayDistance, target.groundMask);
+           Vector3 newPos = hit.point + hit.normal * _colliderSize;
+           transform.position = newPos;
+       }
+   }
+
+   /*protected void OnTriggerEnter2D(Collider2D collider)
     {
         if (!_hitFloor && target.groundMask.HasLayer(collider.gameObject.layer))
         {
@@ -91,5 +121,5 @@ public class CrawlerCrawling : CrawlerState
             Vector3 newPos = hit.point + hit.normal * _colliderSize;
             transform.position = newPos;
         }
-    }
+    }*/
 }

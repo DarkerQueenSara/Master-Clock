@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5722337068044117836}
   - component: {fileID: 5722337068044117843}
   - component: {fileID: 5722337068044117837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crawler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,6 +135,8 @@ MonoBehaviour:
   currentHealth: 3
   maxHealth: 3
   contactDamage: 0
+  startPosition: {x: 0, y: 0}
+  startRotation: {x: 0, y: 0, z: 0, w: 0}
   randomDropChance: 0.5
   pickUps: []
   explosionPrefab: {fileID: 0}
@@ -157,7 +159,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -181,19 +183,19 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5722337068044117840}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!1 &5722337068646533424
 GameObject:
   m_ObjectHideFlags: 0

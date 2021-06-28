@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Extensions;
 using UnityEngine;
 
-public class DiverRecovering : EnemyState<Diver>
+public class DiverRecovering : DiverState
 {
     private bool _hit = false;
 
@@ -24,20 +24,20 @@ public class DiverRecovering : EnemyState<Diver>
     {
         if (!_hit)
         {
-            var currentPos = target.rb.position;
-            target.rb.MovePosition(((Vector2) target.startPosition - currentPos).normalized *
-                target.returnSpeed *
-                Time.fixedDeltaTime + currentPos);
+            Vector3 currentPos = target.rb.position;
+            transform.position += ((Vector3) target.startPosition - currentPos).normalized *
+                                  target.returnSpeed *
+                                  Time.fixedDeltaTime;
         }
         else
         {
             SetState(DiverHanging.Create(target));
         }
     }
-
-    public void OnTriggerEnter2D(Collider2D col)
+    
+    public void OnCollisionEnter2D(Collision2D other)
     {
-        if (target.hittables.HasLayer(col.gameObject.layer))
+        if (target.hittables.HasLayer(other.gameObject.layer))
         {
             _hit = true;
         }
