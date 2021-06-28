@@ -11174,6 +11174,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1962671950 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 743481762921728092, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+  m_PrefabInstance: {fileID: 743481762925014079}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &743481762925014079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11181,6 +11186,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 743481762573770566, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: crouchCollider
+      value: 
+      objectReference: {fileID: 1962671950}
     - target: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: m_RootOrder
       value: 4

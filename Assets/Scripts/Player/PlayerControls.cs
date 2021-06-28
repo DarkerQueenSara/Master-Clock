@@ -9,7 +9,7 @@ public class PlayerControls : MonoBehaviour
     private bool _attack = false;
     
     private InputMaster _inputMaster;
-    private Vector2 _velocity;
+    private Vector2 _directionInput;
 
     private PlayerMovement _playerMovement;
     private PlayerCombat _playerCombat;
@@ -17,8 +17,8 @@ public class PlayerControls : MonoBehaviour
     private void Awake()
     {
         _inputMaster = new InputMaster();
-        _inputMaster.Player.Move.performed += ctx => { _velocity = ctx.ReadValue<Vector2>(); };
-        _inputMaster.Player.Move.canceled += _ => { _velocity = Vector2.zero; };
+        _inputMaster.Player.Move.performed += ctx => { _directionInput = ctx.ReadValue<Vector2>(); };
+        _inputMaster.Player.Move.canceled += _ => { _directionInput = Vector2.zero; };
         _inputMaster.Player.Jump.performed += ctx => { _jump = true; };
         _inputMaster.Player.Jump.canceled += _ => { _jump = false; };
         _inputMaster.Player.Attack.performed += ctx => { _attack = true; };
@@ -50,6 +50,6 @@ public class PlayerControls : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _playerMovement.Move(_velocity.x, _jump);
+        _playerMovement.Move(_directionInput.x, _jump, _directionInput.y < 0);
     }
 }

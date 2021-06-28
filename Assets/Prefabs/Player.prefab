@@ -537,12 +537,16 @@ MonoBehaviour:
   movementSmoothing: 0.05
   groundedRadius: 0.2
   ceilingRadius: 0.2
+  crouchCollider: {fileID: 743481762921728092}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 51
   groundCheck: {fileID: 743481763082496701}
   ceilingCheck: {fileID: 743481763236519224}
   OnLandEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &7219773221651807945

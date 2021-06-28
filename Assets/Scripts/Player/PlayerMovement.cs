@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSmoothing = 0.05f;
     public float groundedRadius = .2f;
     public float ceilingRadius = .2f;
+    public Collider2D crouchCollider;
 
     public LayerMask whatIsGround;
     public Transform groundCheck;
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _facingRight = true;
     private bool _grounded = true;
+    private bool _crouching = false;
 
     //private Animator _animator;
     private Rigidbody2D _body;
@@ -23,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _velocity;
 
     [Header("Events")] [Space] public UnityEvent OnLandEvent;
+    public BoolEvent OnCrouchEvent;
 
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool>
@@ -55,26 +58,64 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Move(float move, bool jump)
+    public void Move(float move, bool jump, bool crouch)
     {
         move *= runSpeed * Time.deltaTime;
 
-        // Move the character by finding the target _velocity
-        Vector3 targetVelocity = new Vector2(move * 10f, _body.velocity.y);
-        // And then smoothing it out and applying it to the character
-        _body.velocity = Vector2.SmoothDamp(_body.velocity, targetVelocity, ref _velocity, movementSmoothing);
 
-        // If the input is moving the player right and the player is facing left...
-        if (move > 0 && !_facingRight)
+        if (!crouch && _grounded)
         {
-            // ... flip the player.
-            Flip();
+            if (Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround))
+            {
+                crouch = true;
+            }
         }
-        // Otherwise if the input is moving the player left and the player is facing right...
-        else if (move < 0 && _facingRight)
+
+        if (crouch && _grounded)
         {
-            // ... flip the player.
-            Flip();
+            if (!_crouching)
+            {
+                _crouching = true;
+                _body.velocity = Vector2.zero;
+                OnCrouchEvent.Invoke(true);
+            }
+
+            // Disable one of the colliders when crouching
+            if (crouchCollider != null)
+                crouchCollider.enabled = false;
+        }
+        else
+        {
+            // Enable the collider when not crouching
+            if (crouchCollider != null)
+                crouchCollider.enabled = true;
+
+            if (_crouching)
+            {
+                _crouching = false;
+                OnCrouchEvent.Invoke(false);
+            }
+        }
+
+        if (!crouch)
+        {
+            // Move the character by finding the target _velocity
+            Vector3 targetVelocity = new Vector2(move * 10f, _body.velocity.y);
+            // And then smoothing it out and applying it to the character
+            _body.velocity = Vector2.SmoothDamp(_body.velocity, targetVelocity, ref _velocity, movementSmoothing);
+
+            // If the input is moving the player right and the player is facing left...
+            if (move > 0 && !_facingRight)
+            {
+                // ... flip the player.
+                Flip();
+            }
+            // Otherwise if the input is moving the player left and the player is facing right...
+            else if (move < 0 && _facingRight)
+            {
+                // ... flip the player.
+                Flip();
+            }
         }
 
         // If the player should jump...
