@@ -20,7 +20,8 @@ public class PlayerHealth : MonoBehaviour
     public LayerMask damagers;
 
     public int maxHealth;
-    [HideInInspector] public int currentHealth;
+    //[HideInInspector]
+    public int currentHealth;
 
     //in seconds
     public float maxTime;

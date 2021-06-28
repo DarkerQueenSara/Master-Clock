@@ -516,7 +516,7 @@ MonoBehaviour:
   timeRunning: 1
   damagers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   maxHealth: 3
   currentHealth: 0
   maxTime: 300
@@ -553,7 +553,7 @@ MonoBehaviour:
   crouchCollider: {fileID: 743481762921728092}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 51
+    m_Bits: 1024
   groundCheck: {fileID: 743481763082496701}
   ceilingCheck: {fileID: 743481763236519224}
   OnLandEvent:
@@ -592,7 +592,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 5
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
