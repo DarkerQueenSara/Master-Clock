@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     private bool _grounded = true;
 
     //private Animator _animator;
-    private Camera _camera;
     private Rigidbody2D _body;
 
     private Vector2 _velocity;
@@ -35,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //_animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody2D>();
-        _camera = Camera.main;
     }
 
     private void FixedUpdate()
