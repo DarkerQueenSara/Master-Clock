@@ -23,6 +23,8 @@ public class Swordfighter : EnemyBase<Swordfighter>
     public Transform wallCheck;
     public Transform groundCheck;
 
+    public SpriteRenderer capsuleSprite;
+    
     public CapsuleCollider2D attackBox;
     [HideInInspector] public Rigidbody2D rb;
 
@@ -35,6 +37,7 @@ public class Swordfighter : EnemyBase<Swordfighter>
         if (!started)
         {
             rb = GetComponent<Rigidbody2D>();
+            capsuleSprite = GetComponent<SpriteRenderer>();
             state = SwordfighterIdle.Create(this);
             currentPatrolAnchor = transform.position;
             started = true;

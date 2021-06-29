@@ -15,6 +15,7 @@ public class SwordfighterChasing : SwordfighterState
     // Update is called once per frame
     public override void StateUpdate()
     {
+        if (CheckIfFlip()) Flip();
         //o player escapou
         if (HitHole() || HitWall())
         {
@@ -26,11 +27,9 @@ public class SwordfighterChasing : SwordfighterState
         {
             GameObject player = PlayerEntity.instance.gameObject;
             //o player está em range de ataque
-            if (Math.Abs(player.transform.position.x - transform.position.x) <= target.attackRange)
+            if (InAttackRange())
             {
-                if ((target.facingRight && player.transform.position.x > transform.position.x) ||
-                    !target.facingRight && player.transform.position.x < transform.position.x)
-                    SetState(SwordfighterAttacking.Create(target));
+                SetState(SwordfighterAttacking.Create(target));
             }
             else
             {
@@ -44,5 +43,22 @@ public class SwordfighterChasing : SwordfighterState
                 }
             }
         }
+    }
+
+    private bool CheckIfFlip()
+    {
+        GameObject player = PlayerEntity.instance.gameObject;
+        if (target.facingRight && player.transform.position.x < transform.position.x) return true;
+        if (!target.facingRight && player.transform.position.x > transform.position.x) return true;
+        return false;
+    }
+
+    private bool InAttackRange()
+    {
+        GameObject player = PlayerEntity.instance.gameObject;
+        return Math.Abs(player.transform.position.x - transform.position.x) <= target.attackRange &&
+               ((target.facingRight && player.transform.position.x > transform.position.x) ||
+                (!target.facingRight && player.transform.position.x < transform.position.x)) &&
+               Math.Abs(player.transform.position.y - transform.position.y) <= 1;
     }
 }

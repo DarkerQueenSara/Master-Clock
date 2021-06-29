@@ -21,6 +21,7 @@ public class SwordfighterState : EnemyState<Swordfighter>
         //primeiro ve se está em range horizontal
         float distance = PlayerEntity.instance.transform.position.x - transform.position.x;
 
+
         if (target.facingRight && distance < 0)
         {
             return false;

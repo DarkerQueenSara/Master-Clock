@@ -17,6 +17,7 @@ public class SwordfighterAttacking : SwordfighterState
         //dar tie da hitbox à animação
         target.rb.velocity = Vector2.zero;
         Debug.Log("Swordfighter attack");
+        target.capsuleSprite.color = Color.magenta;
         Invoke(nameof(GoToNewState), target.attackCooldown);
     }
 
@@ -24,10 +25,12 @@ public class SwordfighterAttacking : SwordfighterState
     {
         if (CheckForPlayer())
         {
+            target.capsuleSprite.color = Color.yellow;
             SetState(SwordfighterChasing.Create(target));
         }
         else
         {
+            target.capsuleSprite.color = Color.yellow;
             target.currentPatrolAnchor = transform.position;
             SetState(SwordfighterPatrol.Create(target));
         }
