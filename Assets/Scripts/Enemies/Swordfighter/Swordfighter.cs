@@ -18,11 +18,13 @@ public class Swordfighter : EnemyBase<Swordfighter>
 
     public LayerMask groundMask;
     public LayerMask playerMask;
+
+    public Transform wallChecker;
     
     public CapsuleCollider2D attackBox;
     [HideInInspector] public Rigidbody2D rb;
 
-    [HideInInspector] public float currentPatrolAnchor;
+    [HideInInspector] public Vector2 currentPatrolAnchor;
     [HideInInspector] public Vector2 velocity;
 
     protected override void Start()
@@ -32,7 +34,7 @@ public class Swordfighter : EnemyBase<Swordfighter>
         {
             rb = GetComponent<Rigidbody2D>();
             state = SwordfighterIdle.Create(this);
-            currentPatrolAnchor = transform.position.x;
+            currentPatrolAnchor = transform.position;
             started = true;
         }
     }
@@ -40,7 +42,11 @@ public class Swordfighter : EnemyBase<Swordfighter>
     protected override void OnEnable()
     {
         base.OnEnable();
-        if (started) state = SwordfighterIdle.Create(this);
+        if (started)
+        {
+            state = SwordfighterIdle.Create(this);
+            currentPatrolAnchor = transform.position;
+        }
     }
     
 }

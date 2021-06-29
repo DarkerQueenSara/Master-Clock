@@ -28,7 +28,9 @@ public class SwordfighterState : EnemyState<Swordfighter>
             //e ignore os outros inimigos)
             RaycastHit2D forward =
                 Physics2D.Raycast(transform.position, direction, target.sightDistance,
-                    target.playerMask + target.groundMask);
+                    target.groundMask + target.playerMask);
+            Debug.DrawRay(transform.position, direction * target.sightDistance, Color.blue);
+
             //se bater no player persegue-o
             return target.playerMask.HasLayer(forward.collider.gameObject.layer);
         }
@@ -52,7 +54,6 @@ public class SwordfighterState : EnemyState<Swordfighter>
         // And then smoothing it out and applying it to the character
         target.rb.velocity = Vector2.SmoothDamp(target.rb.velocity, targetVelocity, ref target.velocity,
             target.movementSmoothing);
-        
     }
 
     protected void Flip()
@@ -68,16 +69,18 @@ public class SwordfighterState : EnemyState<Swordfighter>
 
     protected bool HitWall()
     {
+        Vector3 direction = target.facingRight ? Vector3.right : Vector3.left;
         RaycastHit2D forward =
-            Physics2D.Raycast(transform.position, Vector2.right, 0.1f);
-        if (target.groundMask.HasLayer(forward.collider.gameObject.layer))
+            Physics2D.Raycast(target.wallChecker.position, direction, 0.1f, target.groundMask);
+        Debug.DrawRay(target.wallChecker.position, direction * 0.1f, Color.red);
+        if (forward.collider != null && target.groundMask.HasLayer(forward.collider.gameObject.layer))
         {
             Vector2 closestPoint = forward.collider.ClosestPoint(target.rb.position);
             Vector2 rbPos = new Vector2(target.rb.position.x, target.rb.position.y);
             Vector2 normal = (rbPos - closestPoint).normalized;
             return Vector2.Angle(normal, Vector2.up) > 80;
         }
-
+        
         return false;
     }
 }

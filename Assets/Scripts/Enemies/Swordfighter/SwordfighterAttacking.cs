@@ -22,7 +22,7 @@ public class SwordfighterAttacking : SwordfighterState
         }
         else
         {
-            target.currentPatrolAnchor = transform.position.x;
+            target.currentPatrolAnchor = transform.position;
             SetState(SwordfighterPatrol.Create(target));
         }
     }

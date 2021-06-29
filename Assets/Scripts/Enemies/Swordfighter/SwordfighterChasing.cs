@@ -17,7 +17,7 @@ public class SwordfighterChasing : SwordfighterState
     {
         if (!CheckForPlayer())
         {
-            target.currentPatrolAnchor = transform.position.x;
+            target.currentPatrolAnchor = transform.position;
             SetState(SwordfighterPatrol.Create(target));
         }
         else

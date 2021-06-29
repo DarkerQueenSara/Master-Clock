@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class SwordfighterPatrol : SwordfighterState
 {
-    
-    private Vector3 _patrolStartPosition;
-    
+    private Vector2 _patrolLeftPoint;
+    private Vector2 _patrolRightPoint;
+
     public static SwordfighterPatrol Create(Swordfighter target)
     {
         SwordfighterPatrol state = SwordfighterState.Create<SwordfighterPatrol>(target);
@@ -17,7 +17,8 @@ public class SwordfighterPatrol : SwordfighterState
     public override void StateStart()
     {
         base.StateStart();
-        _patrolStartPosition = transform.position;
+        _patrolLeftPoint = (Vector2) target.currentPatrolAnchor + Vector2.left * target.horizontalRange;
+        _patrolRightPoint = (Vector2) target.currentPatrolAnchor + Vector2.right * target.horizontalRange;
         Flip();
     }
 
@@ -26,21 +27,28 @@ public class SwordfighterPatrol : SwordfighterState
         base.StateFixedUpdate();
         if (target.facingRight)
         {
-            MoveTowards(_patrolStartPosition + Vector3.right * target.horizontalRange);
+            MoveTowards(_patrolRightPoint);
         }
         else
         {
-            MoveTowards(_patrolStartPosition + Vector3.left * target.horizontalRange);
+            MoveTowards(_patrolLeftPoint);
         }
 
         if (CheckForPlayer())
         {
             SetState(SwordfighterChasing.Create(target));
         }
-        if (HitWall() || Math.Abs(transform.position.x - _patrolStartPosition.x) >= target.horizontalRange)
+
+        if (HitWall() || TimeToChange())
         {
             SetState(SwordfighterIdle.Create(target));
         }
-        
+    }
+
+    private bool TimeToChange()
+    {
+        if (!target.facingRight && Math.Abs(transform.position.x - _patrolLeftPoint.x) <= 0.05f) return true;
+        if (target.facingRight && Math.Abs(transform.position.x - _patrolRightPoint.x) <= 0.05f) return true;
+        return false;
     }
 }

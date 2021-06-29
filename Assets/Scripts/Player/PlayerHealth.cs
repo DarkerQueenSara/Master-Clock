@@ -65,7 +65,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentTime <= 0 || currentHealth <= 0 || rewinding)
         {
-            Debug.Log(clock.time);
+            //Debug.Log(clock.time);
             if (clock.time > 0)
             {
                 if (!rewinding)
