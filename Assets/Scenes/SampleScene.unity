@@ -11852,6 +11852,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 101099603077645317, guid: adc886117a8dbf6449d98d26df944f89, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 101099603715285042, guid: adc886117a8dbf6449d98d26df944f89, type: 3}
       propertyPath: m_Name
       value: UI
@@ -11940,6 +11944,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 101099604089094796, guid: adc886117a8dbf6449d98d26df944f89, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101099604089094796, guid: adc886117a8dbf6449d98d26df944f89, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adc886117a8dbf6449d98d26df944f89, type: 3}
 --- !u!1001 &743481762925014079
@@ -12001,6 +12013,10 @@ PrefabInstance:
       propertyPath: lifeBar
       value: 
       objectReference: {fileID: 490468911}
+    - target: {fileID: 2221770179136373508, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: maxTime
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 2221770179136373508, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: timeText
       value: 
