@@ -20,8 +20,9 @@ public class Swordfighter : EnemyBase<Swordfighter>
     public LayerMask groundMask;
     public LayerMask playerMask;
 
-    public Transform wallChecker;
-    
+    public Transform wallCheck;
+    public Transform groundCheck;
+
     public CapsuleCollider2D attackBox;
     [HideInInspector] public Rigidbody2D rb;
 

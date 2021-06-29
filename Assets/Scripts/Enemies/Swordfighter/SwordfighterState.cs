@@ -20,6 +20,18 @@ public class SwordfighterState : EnemyState<Swordfighter>
         //se deteta o player persegue-o
         //primeiro ve se está em range horizontal
         float distance = PlayerEntity.instance.transform.position.x - transform.position.x;
+
+        if (target.facingRight && distance < 0)
+        {
+            return false;
+        }
+
+        if (!target.facingRight && distance > 0)
+        {
+            return false;
+        }
+
+
         if (Math.Abs(distance) <= target.horizontalRange)
         {
             //depois ve a posiçao do player e manda raycast (nao queremos um raycast horizontal por causa de slopes
@@ -31,6 +43,7 @@ public class SwordfighterState : EnemyState<Swordfighter>
                     target.groundMask + target.playerMask);
             Debug.DrawRay(transform.position, direction * target.sightDistance, Color.blue);
 
+            if (forward.collider == null) return false;
             //se bater no player persegue-o
             return target.playerMask.HasLayer(forward.collider.gameObject.layer);
         }
@@ -71,8 +84,8 @@ public class SwordfighterState : EnemyState<Swordfighter>
     {
         Vector3 direction = target.facingRight ? Vector3.right : Vector3.left;
         RaycastHit2D forward =
-            Physics2D.Raycast(target.wallChecker.position, direction, 0.1f, target.groundMask);
-        Debug.DrawRay(target.wallChecker.position, direction * 0.1f, Color.red);
+            Physics2D.Raycast(target.wallCheck.position, direction, 0.1f, target.groundMask);
+        Debug.DrawRay(target.wallCheck.position, direction * 0.1f, Color.red);
         if (forward.collider != null && target.groundMask.HasLayer(forward.collider.gameObject.layer))
         {
             Vector2 closestPoint = forward.collider.ClosestPoint(target.rb.position);
@@ -80,7 +93,21 @@ public class SwordfighterState : EnemyState<Swordfighter>
             Vector2 normal = (rbPos - closestPoint).normalized;
             return Vector2.Angle(normal, Vector2.up) > 80;
         }
-        
+
+        return false;
+    }
+
+    protected bool HitHole()
+    {
+        RaycastHit2D down = Physics2D.Raycast(target.groundCheck.position, Vector2.down, 1f, target.groundMask);
+        Debug.DrawRay(target.groundCheck.position, Vector3.down, Color.red);
+
+        if (down.collider == null)
+        {
+            target.rb.velocity = Vector2.zero;
+            return true;
+        }
+
         return false;
     }
 }

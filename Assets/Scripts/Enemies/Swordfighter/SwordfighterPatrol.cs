@@ -39,7 +39,7 @@ public class SwordfighterPatrol : SwordfighterState
             SetState(SwordfighterChasing.Create(target));
         }
 
-        if (HitWall() || TimeToChange())
+        if (HitWall() || HitHole() || TimeToChange())
         {
             SetState(SwordfighterIdle.Create(target));
         }

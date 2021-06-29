@@ -15,10 +15,11 @@ public class SwordfighterChasing : SwordfighterState
     // Update is called once per frame
     public override void StateUpdate()
     {
-        //o player está em range
-        if (!CheckForPlayer())
+        //o player escapou
+        if (HitHole() || HitWall())
         {
             target.currentPatrolAnchor = transform.position;
+            target.rb.velocity = Vector2.zero;
             SetState(SwordfighterPatrol.Create(target));
         }
         else

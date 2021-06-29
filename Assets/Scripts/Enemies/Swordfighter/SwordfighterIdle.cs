@@ -15,6 +15,7 @@ public class SwordfighterIdle : SwordfighterState
     {
         base.StateStart();
         _cooldownLeft = target.holdPositionTime;
+        target.rb.velocity = Vector2.zero;
     }
 
     public override void StateUpdate()

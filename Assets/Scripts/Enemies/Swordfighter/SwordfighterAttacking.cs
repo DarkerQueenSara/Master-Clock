@@ -15,6 +15,7 @@ public class SwordfighterAttacking : SwordfighterState
         base.StateStart();
         //dar trigger da aniamção de ataque que devemos fazer como o player e 
         //dar tie da hitbox à animação
+        target.rb.velocity = Vector2.zero;
         Debug.Log("Swordfighter attack");
         Invoke(nameof(GoToNewState), target.attackCooldown);
     }
