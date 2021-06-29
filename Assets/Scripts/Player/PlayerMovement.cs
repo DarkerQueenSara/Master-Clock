@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using Chronos;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,9 +21,13 @@ public class PlayerMovement : MonoBehaviour
     private bool _crouching = false;
 
     //private Animator _animator;
-    private Rigidbody2D _body;
+    //private Rigidbody2D _body;
+    private RigidbodyTimeline2D _body;
 
     private Vector2 _velocity;
+
+    // Time Stuff
+    private Timeline _time;
 
     [Header("Events")] [Space] public UnityEvent OnLandEvent;
     public BoolEvent OnCrouchEvent;
@@ -36,7 +41,9 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         //_animator = GetComponent<Animator>();
-        _body = GetComponent<Rigidbody2D>();
+        //_body = GetComponent<Rigidbody2D>();
+        _time = GetComponent<Timeline>();
+        _body = _time.rigidbody2D;
     }
 
     private void FixedUpdate()
@@ -61,8 +68,8 @@ public class PlayerMovement : MonoBehaviour
     public void Move(float move, bool jump, bool crouch)
     {
         move *= runSpeed * Time.deltaTime;
-        
-        
+
+
         if (!crouch && _grounded)
         {
             if (Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround))
@@ -97,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!crouch)
+        if (!crouch && _time.timeScale > 0) // Move only when time is going forward and not crouching
         {
             // Move the character by finding the target _velocity
             Vector3 targetVelocity = new Vector2(move * 10f, _body.velocity.y);
