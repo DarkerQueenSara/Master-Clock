@@ -16,6 +16,11 @@ public class SwordfighterAttacking : SwordfighterState
         //dar trigger da aniamção de ataque que devemos fazer como o player e 
         //dar tie da hitbox à animação
         Debug.Log("Swordfighter attack");
+        Invoke(nameof(GoToNewState), target.attackCooldown);
+    }
+
+    private void GoToNewState()
+    {
         if (CheckForPlayer())
         {
             SetState(SwordfighterChasing.Create(target));

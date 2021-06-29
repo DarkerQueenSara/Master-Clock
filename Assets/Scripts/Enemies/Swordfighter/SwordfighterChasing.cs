@@ -15,6 +15,7 @@ public class SwordfighterChasing : SwordfighterState
     // Update is called once per frame
     public override void StateUpdate()
     {
+        //o player está em range
         if (!CheckForPlayer())
         {
             target.currentPatrolAnchor = transform.position;
@@ -22,10 +23,24 @@ public class SwordfighterChasing : SwordfighterState
         }
         else
         {
-            float targetRange = target.attackBox.size.x;
-            if (Math.Abs(PlayerEntity.instance.gameObject.transform.position.x - transform.position.x) <= target.attackRange)
+            GameObject player = PlayerEntity.instance.gameObject;
+            //o player está em range de ataque
+            if (Math.Abs(player.transform.position.x - transform.position.x) <= target.attackRange)
             {
-                SetState(SwordfighterAttacking.Create(target));
+                if ((target.facingRight && player.transform.position.x > transform.position.x) ||
+                    !target.facingRight && player.transform.position.x < transform.position.x)
+                    SetState(SwordfighterAttacking.Create(target));
+            }
+            else
+            {
+                if (target.facingRight)
+                {
+                    MoveTowards(player.transform.position + Vector3.left * target.attackRange);
+                }
+                else
+                {
+                    MoveTowards(player.transform.position + Vector3.right * target.attackRange);
+                }
             }
         }
     }

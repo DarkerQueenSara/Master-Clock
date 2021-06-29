@@ -13,6 +13,7 @@ public class Swordfighter : EnemyBase<Swordfighter>
     public float holdPositionTime;
     public float horizontalRange;
     public float attackRange;
+    public float attackCooldown;
     
     public bool facingRight = true;
 
