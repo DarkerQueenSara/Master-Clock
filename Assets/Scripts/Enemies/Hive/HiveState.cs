@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HiveState : EnemyState<Hive>
 {
-    new protected SpriteRenderer renderer;
+    protected SpriteRenderer renderer;
     protected Animator animator;
 
     protected static new T Create<T>(Hive target) where T : HiveState

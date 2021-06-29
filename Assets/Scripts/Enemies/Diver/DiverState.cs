@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DiverState : EnemyState<Diver>
 {
-    new protected SpriteRenderer _renderer;
+    protected SpriteRenderer _renderer;
     protected Animator _animator;
 
     protected static new T Create<T>(Diver target) where T : DiverState

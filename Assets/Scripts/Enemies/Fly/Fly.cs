@@ -7,17 +7,27 @@ public class Fly : EnemyBase<Fly>
     [HideInInspector] public Rigidbody2D rb;
 
     public LayerMask playerMask;
-    
+
     protected override void Start()
     {
         base.Start();
-        state = FlyHoming.Create(this);
-        rb = GetComponent<Rigidbody2D>();
-        started = true;
+        if (!started)
+        {
+            state = FlyHoming.Create(this);
+            rb = GetComponent<Rigidbody2D>();
+            started = true;
+        }
     }
 
-    protected void OnDisable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+        if (started) state = FlyHoming.Create(this);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
         Destroy(gameObject);
     }
 }

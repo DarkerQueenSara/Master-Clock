@@ -84,6 +84,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (!playerAttacks.HasLayer(other.gameObject.layer)) return;
         Hit(other.gameObject.GetComponent<PlayerAttack>().attackDamage);
     }
+    
 }
 
 public abstract class EnemyBase<EnemyType> : EnemyBase where EnemyType : EnemyBase<EnemyType>
@@ -131,4 +132,10 @@ public abstract class EnemyBase<EnemyType> : EnemyBase where EnemyType : EnemyBa
             state.StateFixedUpdate();
         }
     }
+
+    protected virtual void OnDisable()
+    {
+        Destroy(state);
+    }
+    
 }

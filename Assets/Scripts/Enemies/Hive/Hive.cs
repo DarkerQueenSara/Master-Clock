@@ -12,12 +12,17 @@ public class Hive : EnemyBase<Hive>
     protected override void Start()
     {
         base.Start();
-        if (state == null) state = HiveIdle.Create(this);
+        if (!started)
+        {
+            state = HiveIdle.Create(this);
+            started = true;
+        }
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        Start();
+        if (started) state = HiveIdle.Create(this);
     }
+
 }

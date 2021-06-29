@@ -12,14 +12,22 @@ public class Crawler : EnemyBase<Crawler>
     public LayerMask groundMask;
     [HideInInspector] public BoxCollider2D boxCollider;
     [HideInInspector] public Rigidbody2D rb;
-    
+
     protected override void Start()
     {
         base.Start();
-        state = CrawlerCrawling.Create(this);
-        boxCollider = GetComponent<BoxCollider2D>();
-        rb = GetComponent<Rigidbody2D>();
-        started = true;
+        if (!started)
+        {
+            state = CrawlerCrawling.Create(this);
+            boxCollider = GetComponent<BoxCollider2D>();
+            rb = GetComponent<Rigidbody2D>();
+            started = true;
+        }            
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if (started) state = CrawlerCrawling.Create(this);
+    }
 }
