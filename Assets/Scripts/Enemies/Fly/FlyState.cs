@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FlyState : EnemyState<Fly>
 {
-    new protected SpriteRenderer _renderer;
+    protected SpriteRenderer _renderer;
     protected Animator _animator;
 
     protected static new T Create<T>(Fly target) where T : FlyState

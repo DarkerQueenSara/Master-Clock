@@ -20,6 +20,7 @@ public abstract class EnemyState : MonoBehaviour
     public virtual void OnGetHit()
     {
     }
+    
 }
 
 public abstract class EnemyState<EnemyType> : EnemyState where EnemyType : EnemyBase<EnemyType>
