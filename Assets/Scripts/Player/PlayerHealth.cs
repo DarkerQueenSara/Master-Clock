@@ -87,7 +87,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (rewinding)
         {
-            clock.localTimeScale = Mathf.Max(-1f, clock.localTimeScale - 0.005f);
+            clock.localTimeScale = Mathf.Max(-3f, clock.localTimeScale - 0.01f);
         }
         else
         {

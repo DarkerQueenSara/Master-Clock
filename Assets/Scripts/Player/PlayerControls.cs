@@ -22,7 +22,8 @@ public class PlayerControls : MonoBehaviour
         _inputMaster.Player.Jump.performed += ctx => { _jump = true; };
         _inputMaster.Player.Jump.canceled += _ => { _jump = false; };
         _inputMaster.Player.Attack.performed += ctx => { _attack = true; };
-        _inputMaster.Player.Attack.canceled += _ => { _attack = false; };    }
+        _inputMaster.Player.Attack.canceled += _ => { _attack = false; };       
+    }
 
     private void OnEnable()
     {

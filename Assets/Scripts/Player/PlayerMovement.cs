@@ -20,7 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private bool _grounded = true;
     private bool _crouching = false;
 
-    //private Animator _animator;
+    private Animator _animator;
+    
     //private Rigidbody2D _body;
     private RigidbodyTimeline2D _body;
 
@@ -40,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        //_animator = GetComponent<Animator>();
+        _animator = transform.GetChild(0).GetComponent<Animator>();
         //_body = GetComponent<Rigidbody2D>();
         _time = GetComponent<Timeline>();
         _body = _time.rigidbody2D;
@@ -106,6 +107,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (!crouch && _time.timeScale > 0) // Move only when time is going forward and not crouching
         {
+            // Set animation to move
+            _animator.SetFloat("Speed", Mathf.Abs(move));
+
             // Move the character by finding the target _velocity
             Vector3 targetVelocity = new Vector2(move * 10f, _body.velocity.y);
             // And then smoothing it out and applying it to the character
