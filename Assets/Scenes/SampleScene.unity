@@ -11870,6 +11870,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Swordfighter
       objectReference: {fileID: 0}
+    - target: {fileID: 1504650928059610235, guid: efeb92d980abf96498f792c90b26bc4c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efeb92d980abf96498f792c90b26bc4c, type: 3}
 --- !u!1001 &5028678434220570798
@@ -12012,13 +12016,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5722337068044117836, guid: 1780b1cd093014143a12bce9f3cef0d0, type: 3}
+      propertyPath: moveSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5722337068044117836, guid: 1780b1cd093014143a12bce9f3cef0d0, type: 3}
+      propertyPath: randomDropChance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5722337068044117840, guid: 1780b1cd093014143a12bce9f3cef0d0, type: 3}
       propertyPath: m_Name
       value: Crawler
       objectReference: {fileID: 0}
     - target: {fileID: 5722337068044117840, guid: 1780b1cd093014143a12bce9f3cef0d0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5722337068044117842, guid: 1780b1cd093014143a12bce9f3cef0d0, type: 3}
       propertyPath: m_RootOrder

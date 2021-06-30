@@ -64,7 +64,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &746340311
 Transform:
   m_ObjectHideFlags: 0
@@ -107,7 +107,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef79436c5276ccf4cafaa7bcfea9c436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
   attackDamage: 1
+--- !u!1 &951783763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 951783764}
+  m_Layer: 6
+  m_Name: SlashAttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &951783764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951783763}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1946038608}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1946038607
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,6 +170,7 @@ Transform:
   m_Children:
   - {fileID: 746340311}
   - {fileID: 602897783}
+  - {fileID: 951783764}
   m_Father: {fileID: 743481762573770567}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -496,8 +530,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efc5c1e0d2d3df4f8731eb26b5a6220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitboxes: []
-  _animator: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  slashAttackDamage: 1
+  slashAttackPoint: {fileID: 951783764}
+  slashAttackRange: 1
+  slashAttackDuration: 2
 --- !u!50 &743481762573770565
 Rigidbody2D:
   serializedVersion: 4
