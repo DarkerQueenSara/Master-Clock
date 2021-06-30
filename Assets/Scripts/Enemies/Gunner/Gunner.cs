@@ -1,31 +1,36 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Extensions;
 using UnityEngine;
 
-public class Swordfighter : EnemyBase<Swordfighter>
+public class Gunner : EnemyBase<Gunner>
 {
+    public int numberOfShots;
+    public float fireRate;
+    public float armRotateSpeed;
+
     public float moveSpeed;
-    
     public float sightDistance;
     public float movementSmoothing = 0.05f;
     public float holdPositionTime;
     public float horizontalRange;
-    public float attackRange;
+    public float horizontalAttackRange;
+    public float verticalAttackRange;
     public float attackCooldown;
-    
+
     public bool facingRight = true;
 
     public LayerMask groundMask;
     public LayerMask playerMask;
 
+    public GameObject bulletPrefab;
+
+    [HideInInspector] public SpriteRenderer capsuleSprite;
+
+    public Transform armJoint;
+    public Transform bulletSpawn;
     public Transform wallCheck;
     public Transform groundCheck;
 
-    [HideInInspector] public SpriteRenderer capsuleSprite;
-    
-    public CapsuleCollider2D attackBox;
     [HideInInspector] public Rigidbody2D rb;
 
     [HideInInspector] public Vector2 currentPatrolAnchor;
@@ -37,8 +42,8 @@ public class Swordfighter : EnemyBase<Swordfighter>
         if (!started)
         {
             rb = GetComponent<Rigidbody2D>();
+            state = GunnerIdle.Create(this);
             capsuleSprite = GetComponent<SpriteRenderer>();
-            state = SwordfighterIdle.Create(this);
             currentPatrolAnchor = transform.position;
             started = true;
         }
@@ -49,9 +54,8 @@ public class Swordfighter : EnemyBase<Swordfighter>
         base.OnEnable();
         if (started)
         {
-            state = SwordfighterIdle.Create(this);
+            state = GunnerIdle.Create(this);
             currentPatrolAnchor = transform.position;
         }
     }
-    
 }

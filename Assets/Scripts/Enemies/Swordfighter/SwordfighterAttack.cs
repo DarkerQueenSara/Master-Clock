@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordfighterAttacking : SwordfighterState
+public class SwordfighterAttack : SwordfighterState
 {
-    public static SwordfighterAttacking Create(Swordfighter target)
+    public static SwordfighterAttack Create(Swordfighter target)
     {
-        SwordfighterAttacking state = SwordfighterState.Create<SwordfighterAttacking>(target);
+        SwordfighterAttack state = SwordfighterState.Create<SwordfighterAttack>(target);
         return state;
     }
 
@@ -26,7 +26,7 @@ public class SwordfighterAttacking : SwordfighterState
         if (CheckForPlayer())
         {
             target.capsuleSprite.color = Color.yellow;
-            SetState(SwordfighterChasing.Create(target));
+            SetState(SwordfighterChase.Create(target));
         }
         else
         {

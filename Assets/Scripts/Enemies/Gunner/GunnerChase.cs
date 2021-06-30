@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordfighterChasing : SwordfighterState
+public class GunnerChase : GunnerState
 {
     // Start is called before the first frame update
-    public static SwordfighterChasing Create(Swordfighter target)
+    public static GunnerChase Create(Gunner target)
     {
-        SwordfighterChasing state = SwordfighterState.Create<SwordfighterChasing>(target);
+        GunnerChase state = GunnerState.Create<GunnerChase>(target);
         return state;
     }
 
@@ -19,27 +19,34 @@ public class SwordfighterChasing : SwordfighterState
         //o player escapou
         if (HitHole() || HitWall())
         {
-            target.currentPatrolAnchor = transform.position;
             target.rb.velocity = Vector2.zero;
-            SetState(SwordfighterPatrol.Create(target));
-        }
-        else
-        {
-            GameObject player = PlayerEntity.instance.gameObject;
-            //o player está em range de ataque
             if (InAttackRange())
             {
-                SetState(SwordfighterAttacking.Create(target));
+                SetState(GunnerAttack.Create(target));
             }
             else
             {
+                target.currentPatrolAnchor = transform.position;
+                SetState(GunnerPatrol.Create(target));
+            }
+        }
+        else
+        {
+            //o player está em range de ataque
+            if (InAttackRange())
+            {
+                SetState(GunnerAttack.Create(target));
+            }
+            else
+            {
+                //nao preciso de calculos complicados com o player, só tenho de ir para o patrol point mais perto
                 if (target.facingRight)
                 {
-                    MoveTowards(player.transform.position + Vector3.left * target.attackRange);
+                    MoveInDirection(Vector2.right);
                 }
                 else
                 {
-                    MoveTowards(player.transform.position + Vector3.right * target.attackRange);
+                    MoveInDirection(Vector2.left);
                 }
             }
         }
@@ -55,10 +62,11 @@ public class SwordfighterChasing : SwordfighterState
 
     private bool InAttackRange()
     {
-        GameObject player = PlayerEntity.instance.gameObject;
-        return Math.Abs(player.transform.position.x - transform.position.x) <= target.attackRange &&
-               ((target.facingRight && player.transform.position.x > transform.position.x) ||
-                (!target.facingRight && player.transform.position.x < transform.position.x)) &&
-               Math.Abs(player.transform.position.y - transform.position.y) <= 1;
+        Vector3 player = PlayerEntity.instance.gameObject.transform.position;
+        Vector3 pos = transform.position;
+        return Math.Abs(player.x - pos.x) <= target.horizontalAttackRange &&
+               ((target.facingRight && player.x > pos.x) ||
+                (!target.facingRight && player.x < pos.x)) &&
+               Math.Abs(player.y - pos.y) <= target.verticalAttackRange;
     }
 }

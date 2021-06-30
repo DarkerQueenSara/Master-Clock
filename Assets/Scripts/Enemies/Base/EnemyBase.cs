@@ -50,11 +50,6 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
-    /*protected virtual void OnDisable()
-    {
-        transform.position = startPosition;
-    }*/
-
     public void Call(string messageName)
     {
         SendMessage(messageName);

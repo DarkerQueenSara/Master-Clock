@@ -1,16 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordfighterPatrol : SwordfighterState
+public class GunnerPatrol: GunnerState
 {
     private Vector2 _patrolLeftPoint;
     private Vector2 _patrolRightPoint;
 
-    public static SwordfighterPatrol Create(Swordfighter target)
+    public static GunnerPatrol Create(Gunner target)
     {
-        SwordfighterPatrol state = SwordfighterState.Create<SwordfighterPatrol>(target);
+        GunnerPatrol state = GunnerState.Create<GunnerPatrol>(target);
         return state;
     }
 
@@ -36,12 +34,12 @@ public class SwordfighterPatrol : SwordfighterState
 
         if (CheckForPlayer())
         {
-            SetState(SwordfighterChase.Create(target));
+            SetState(GunnerChase.Create(target));
         }
 
         if (HitWall() || HitHole() || TimeToChange())
         {
-            SetState(SwordfighterIdle.Create(target));
+            SetState(GunnerIdle.Create(target));
         }
     }
 

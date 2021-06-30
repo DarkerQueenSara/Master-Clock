@@ -1,15 +1,17 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Extensions;
 using UnityEngine;
 
-public class SwordfighterState : EnemyState<Swordfighter>
+public class GunnerState : EnemyState<Gunner>
 {
     protected SpriteRenderer _renderer;
     protected Animator _animator;
 
-    protected static new T Create<T>(Swordfighter target) where T : SwordfighterState
+    protected static new T Create<T>(Gunner target) where T : GunnerState
     {
-        var state = EnemyState<Swordfighter>.Create<T>(target);
+        var state = EnemyState<Gunner>.Create<T>(target);
         state._renderer = target.GetComponent<SpriteRenderer>();
         state._animator = target.GetComponent<Animator>();
         return state;

@@ -1,13 +1,14 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordfighterIdle : SwordfighterState
+public class GunnerIdle : GunnerState
 {
     private float _cooldownLeft;
 
-    public static SwordfighterIdle Create(Swordfighter target)
+    public static GunnerIdle Create(Gunner target)
     {
-        SwordfighterIdle state = SwordfighterState.Create<SwordfighterIdle>(target);
+        GunnerIdle state = GunnerState.Create<GunnerIdle>(target);
         return state;
     }
 
@@ -22,10 +23,10 @@ public class SwordfighterIdle : SwordfighterState
     {
         if (CheckForPlayer())
         {
-            SetState(SwordfighterChase.Create(target));
+            SetState(GunnerChase.Create(target));
         }
 
         _cooldownLeft -= Time.deltaTime;
-        if (_cooldownLeft <= 0) SetState(SwordfighterPatrol.Create(target));
+        if (_cooldownLeft <= 0) SetState(GunnerPatrol.Create(target));
     }
 }
