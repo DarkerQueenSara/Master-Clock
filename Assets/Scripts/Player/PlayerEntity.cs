@@ -8,6 +8,9 @@ public class PlayerEntity : MonoBehaviour
     [HideInInspector] public PlayerMovement movement { get; private set; }
     [HideInInspector]public PlayerHealth health { get; private set; }
     [HideInInspector]public PlayerControls controller { get; private set; }
+
+    //vou emter aqui os colliders porque vou precisar de fazer um trigger e não é o player em si com colliders
+    public List<GameObject> colliders;
     
     void Awake()
     {
