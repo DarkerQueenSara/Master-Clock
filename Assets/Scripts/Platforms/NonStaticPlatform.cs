@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class NonStaticPlatform : MonoBehaviour
 {
     private GameObject _player;
     private List<GameObject> _playerColliders;
