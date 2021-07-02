@@ -26,7 +26,8 @@ public class HorizontalMovingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Math.Abs(transform.position.x - _startX) >= range)
+        float currentX = transform.position.x;
+        if (currentX >= _startX +  range || currentX <= _startX - range)
         {
             _goingRight = !_goingRight;
         }
