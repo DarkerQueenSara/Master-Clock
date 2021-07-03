@@ -18,7 +18,9 @@ public class ExtendAttackProjectile : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+        //transform.position = new Vector3(transform.position.x, originPoint.transform.position.y, transform.position.z); // Make sure bullet is always in same height as player
+        
         if (!returning)
         {
             transform.position += new Vector3(speed * Time.deltaTime, 0.0f, 0.0f);
@@ -78,7 +80,9 @@ public class ExtendAttackProjectile : MonoBehaviour
     {
         // Set speed so that projectile reaches apex (i.e furthest away point) in half time
         //speed = distance / time
-        speed = (originPoint.position.x + length) / (duration * 0.5f);
+        speed = length / (duration * 0.5f);
+        Debug.Log("Speed:" + speed);
+        //Debug.Log("X: " + originPoint.position.x + length);
 
         if (!_playerMovement._facingRight)
             speed = -speed;

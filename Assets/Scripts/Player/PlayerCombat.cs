@@ -1,3 +1,4 @@
+using Chronos;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,9 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayer;
 
     private float timeUntilNextAttack = 0.0f;
+
+    // Time Stuff
+    private Timeline _time;
 
     [Header("Slash")]
     public int slashAttackDamage;
@@ -42,6 +46,7 @@ public class PlayerCombat : MonoBehaviour
     {
         _animator = transform.GetChild(0).GetComponent<Animator>();
         _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
+        _time = GetComponent<Timeline>();
     }
 
     public void Update()
@@ -55,7 +60,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void SlashAttack()
     {
-        if (timeUntilNextAttack > 0.0f)
+        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0)
         {
             return;
         }
@@ -78,7 +83,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void ExtendAttack()
     {
-        if (timeUntilNextAttack > 0.0f)
+        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0)
         {
             return;
         }
@@ -88,6 +93,8 @@ public class PlayerCombat : MonoBehaviour
 
         // Create the projectile that will act as the yoyo
         GameObject projectile = Instantiate(extendAttackProjectile, extendAttackPoint);
+        //GameObject projectile = Instantiate(extendAttackProjectile, extendAttackPoint.position, Quaternion.identity);
+
 
         ExtendAttackProjectile projectileScript = projectile.GetComponent<ExtendAttackProjectile>();
         projectileScript.enemyLayer = enemyLayer;
@@ -109,7 +116,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void SpinAttack()
     {
-        if (timeUntilNextAttack > 0.0f)
+        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0)
         {
             return;
         }
@@ -139,7 +146,7 @@ public class PlayerCombat : MonoBehaviour
         //Gizmos.DrawWireSphere(extendAttackPoint.position, extendAttackRange);
         //Gizmos.DrawWireSphere(extendAttackPoint.position + Vector3.right * extendAttackLength, extendAttackRange);
 
-        Gizmos.DrawCube(spinAttackPoint.position, spinAttackRange);
+        //Gizmos.DrawCube(spinAttackPoint.position, spinAttackRange);
     }
 
     public void ToggleHitbox(int index, bool state)
