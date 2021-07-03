@@ -10,7 +10,10 @@ public class PlayerMovement : MonoBehaviour
     public float movementSmoothing = 0.05f;
     public float groundedRadius = .2f;
     public float ceilingRadius = .2f;
-    public Collider2D crouchCollider;
+
+    public Collider2D standCollider;
+    public Collider2D slideCollider;
+    public Collider2D jumpCollider;
 
     public LayerMask whatIsGround;
     public Transform groundCheck;
@@ -18,10 +21,10 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _facingRight = true;
     private bool _grounded = true;
-    private bool _crouching = false;
+    private bool _sliding = false;
 
     private Animator _animator;
-    
+
     //private Rigidbody2D _body;
     private RigidbodyTimeline2D _body;
 
@@ -31,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private Timeline _time;
 
     [Header("Events")] [Space] public UnityEvent OnLandEvent;
-    public BoolEvent OnCrouchEvent;
+    public BoolEvent OnSlideEvent;
 
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool>
@@ -66,46 +69,39 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Move(float move, bool jump, bool crouch)
+    public void Move(float move, bool jump, bool slide)
     {
         move *= runSpeed * Time.deltaTime;
 
 
-        if (!crouch && _grounded)
+        /* SLIDE */
+        if (slide) // If clicked to slide and we have some speed (we can't slide if we're standing still)
         {
-            if (Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround))
+            if (_grounded)
             {
-                crouch = true;
+                _sliding = true;
+
+                // Swap Colliders
+                slideCollider.enabled = true;
+
+                standCollider.enabled = false;
             }
         }
-
-        if (crouch && _grounded)
+        else if(!Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround)) // If we stopped wanting to slide and we can stand up
         {
-            if (!_crouching)
-            {
-                _crouching = true;
-                _body.velocity = Vector2.zero;
-                OnCrouchEvent.Invoke(true);
-            }
+            _sliding = false;
 
-            // Disable one of the colliders when crouching
-            if (crouchCollider != null)
-                crouchCollider.enabled = false;
-        }
-        else
-        {
-            // Enable the collider when not crouching
-            if (crouchCollider != null)
-                crouchCollider.enabled = true;
+            // Swap Colliders
+            slideCollider.enabled = false;
 
-            if (_crouching)
-            {
-                _crouching = false;
-                OnCrouchEvent.Invoke(false);
-            }
+            standCollider.enabled = true;
         }
 
-        if (!crouch && _time.timeScale > 0) // Move only when time is going forward and not crouching
+        _animator.SetBool("Sliding", _sliding);
+
+
+        /* MOVE */
+        if (!_sliding && _time.timeScale > 0) // Move only when time is going forward and not sliding
         {
             // Set animation to move
             _animator.SetFloat("Speed", Mathf.Abs(move));
@@ -129,18 +125,16 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        /* JUMP */
+
         // If the player should jump...
         if (_grounded && jump)
         {
-            if (!crouch)
+            if (!_sliding)
             {
                 // Add a vertical force to the player.
                 _grounded = false;
                 _body.AddForce(new Vector2(0f, jumpForce));
-            }
-            else
-            {
-                Debug.Log("Slide ability coming soon!");
             }
         }
     }
