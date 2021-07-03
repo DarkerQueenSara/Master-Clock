@@ -7,7 +7,8 @@ public class PlayerControls : MonoBehaviour
 {
     private bool _jump = false;
     private bool _attack = false;
-    
+    private bool _extendedAttack = false;
+
     private InputMaster _inputMaster;
     private Vector2 _directionInput;
 
@@ -22,7 +23,10 @@ public class PlayerControls : MonoBehaviour
         _inputMaster.Player.Jump.performed += ctx => { _jump = true; };
         _inputMaster.Player.Jump.canceled += _ => { _jump = false; };
         _inputMaster.Player.Attack.performed += ctx => { _attack = true; };
-        _inputMaster.Player.Attack.canceled += _ => { _attack = false; };       
+        _inputMaster.Player.Attack.canceled += _ => { _attack = false; };
+
+        _inputMaster.Player.Extended_Attack.performed += ctx => { _extendedAttack = true; };
+        _inputMaster.Player.Extended_Attack.canceled += _ => { _extendedAttack = false; };
     }
 
     private void OnEnable()
@@ -46,6 +50,9 @@ public class PlayerControls : MonoBehaviour
         if (_attack)
         {
             _playerCombat.SlashAttack();
+        }else if (_extendedAttack)
+        {
+            _playerCombat.ExtendAttack();
         }
     }
 

@@ -19,7 +19,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public Transform ceilingCheck;
 
-    private bool _facingRight = true;
+    [HideInInspector]
+    public bool _facingRight = true;
+
     private bool _grounded = true;
     private bool _sliding = false;
 
@@ -32,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
     // Time Stuff
     private Timeline _time;
+
+    public bool moveBlocked = false;
 
     [Header("Events")] [Space] public UnityEvent OnLandEvent;
     public BoolEvent OnSlideEvent;
@@ -71,6 +75,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(float move, bool jump, bool slide)
     {
+        if (moveBlocked)
+            return;
+
         move *= runSpeed * Time.deltaTime;
 
 
@@ -137,6 +144,12 @@ public class PlayerMovement : MonoBehaviour
                 _body.AddForce(new Vector2(0f, jumpForce));
             }
         }
+    }
+
+    public void StopPlayer()
+    {
+        _body.velocity = Vector3.zero;
+        _animator.SetFloat("Speed", 0.0f);
     }
 
     private void Flip()

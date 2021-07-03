@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Extended_Attack",
+                    "type": "Button",
+                    "id": "b048a396-dd68-481e-acc9-6eff0dfb4cfa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -129,6 +137,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ed3364f2-fa9a-4e82-a675-7e1950af4d0f",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Extended_Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
