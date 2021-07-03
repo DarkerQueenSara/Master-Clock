@@ -36,6 +36,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SpinAttack",
+                    "type": "Button",
+                    "id": "841f0241-8e55-4502-aa52-4dbe3d961697",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -64,7 +72,7 @@
                 {
                     "name": "",
                     "id": "ba30561c-58f5-42bb-96d2-c61991e84590",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -141,11 +149,22 @@
                 {
                     "name": "",
                     "id": "ed3364f2-fa9a-4e82-a675-7e1950af4d0f",
-                    "path": "<Keyboard>/l",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Extended_Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a406650-7a5c-4d42-b64d-02958b237f7b",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "SpinAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

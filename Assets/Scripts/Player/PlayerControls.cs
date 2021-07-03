@@ -8,6 +8,7 @@ public class PlayerControls : MonoBehaviour
     private bool _jump = false;
     private bool _attack = false;
     private bool _extendedAttack = false;
+    private bool _spinAttack = false;
 
     private InputMaster _inputMaster;
     private Vector2 _directionInput;
@@ -27,6 +28,9 @@ public class PlayerControls : MonoBehaviour
 
         _inputMaster.Player.Extended_Attack.performed += ctx => { _extendedAttack = true; };
         _inputMaster.Player.Extended_Attack.canceled += _ => { _extendedAttack = false; };
+
+        _inputMaster.Player.SpinAttack.performed += ctx => { _spinAttack = true; };
+        _inputMaster.Player.SpinAttack.canceled += _ => { _spinAttack = false; };
     }
 
     private void OnEnable()
@@ -53,6 +57,9 @@ public class PlayerControls : MonoBehaviour
         }else if (_extendedAttack)
         {
             _playerCombat.ExtendAttack();
+        }else if (_spinAttack)
+        {
+            _playerCombat.SpinAttack();
         }
     }
 

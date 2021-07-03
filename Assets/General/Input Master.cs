@@ -49,6 +49,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SpinAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""841f0241-8e55-4502-aa52-4dbe3d961697"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -77,7 +85,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ba30561c-58f5-42bb-96d2-c61991e84590"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -154,11 +162,22 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ed3364f2-fa9a-4e82-a675-7e1950af4d0f"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Extended_Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a406650-7a5c-4d42-b64d-02958b237f7b"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SpinAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -201,6 +220,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Extended_Attack = m_Player.FindAction("Extended_Attack", throwIfNotFound: true);
+        m_Player_SpinAttack = m_Player.FindAction("SpinAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -254,6 +274,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Extended_Attack;
+    private readonly InputAction m_Player_SpinAttack;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -262,6 +283,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Extended_Attack => m_Wrapper.m_Player_Extended_Attack;
+        public InputAction @SpinAttack => m_Wrapper.m_Player_SpinAttack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -283,6 +305,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Extended_Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExtended_Attack;
                 @Extended_Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExtended_Attack;
                 @Extended_Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExtended_Attack;
+                @SpinAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinAttack;
+                @SpinAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinAttack;
+                @SpinAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinAttack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -299,6 +324,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Extended_Attack.started += instance.OnExtended_Attack;
                 @Extended_Attack.performed += instance.OnExtended_Attack;
                 @Extended_Attack.canceled += instance.OnExtended_Attack;
+                @SpinAttack.started += instance.OnSpinAttack;
+                @SpinAttack.performed += instance.OnSpinAttack;
+                @SpinAttack.canceled += instance.OnSpinAttack;
             }
         }
     }
@@ -327,5 +355,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnExtended_Attack(InputAction.CallbackContext context);
+        void OnSpinAttack(InputAction.CallbackContext context);
     }
 }

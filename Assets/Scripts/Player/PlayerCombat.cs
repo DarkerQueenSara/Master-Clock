@@ -24,6 +24,12 @@ public class PlayerCombat : MonoBehaviour
     public float slashAttackRange;
     public float slashAttackDuration;
 
+    [Header("Spin")]
+    public int spinAttackDamage;
+    public Transform spinAttackPoint;
+    public Vector2 spinAttackRange;
+    public float spinAttackDuration;
+
     [Header("Extend")]
     public int extendAttackDamage;
     public GameObject extendAttackProjectile;
@@ -54,7 +60,7 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
-        // Play attack animation
+        // TODO: Play attack animation
         _animator.SetTrigger("SlashAttack");
 
         // Detect enemies in range of attack
@@ -81,7 +87,7 @@ public class PlayerCombat : MonoBehaviour
         //_animator.SetTrigger("SlashAttack");
 
         // Create the projectile that will act as the yoyo
-        GameObject projectile = Instantiate(extendAttackProjectile, extendAttackPoint.position, Quaternion.identity);
+        GameObject projectile = Instantiate(extendAttackProjectile, extendAttackPoint);
 
         ExtendAttackProjectile projectileScript = projectile.GetComponent<ExtendAttackProjectile>();
         projectileScript.enemyLayer = enemyLayer;
@@ -101,11 +107,39 @@ public class PlayerCombat : MonoBehaviour
         timeUntilNextAttack = extendAttackDuration;
     }
 
+    public void SpinAttack()
+    {
+        if (timeUntilNextAttack > 0.0f)
+        {
+            return;
+        }
+
+        // TODO: Play attack animation
+        Debug.Log("Spinnin!");
+        //_animator.SetTrigger("SpinAttack");
+
+        // Detect enemies in range of attack
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(spinAttackPoint.position, spinAttackRange, 0.0f, enemyLayer);
+
+        // Damage enemies
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            //Debug.Log("Hit enemy!");
+            enemy.GetComponent<EnemyBase>().Hit(spinAttackDamage);
+            Debug.Log("HIT ENEMY WHILE SPINNIN!");
+        }
+
+        timeUntilNextAttack = spinAttackDuration;
+    }
+
     private void OnDrawGizmosSelected()
     {
         //Gizmos.DrawWireSphere(slashAttackPoint.position, slashAttackRange);
-        Gizmos.DrawWireSphere(extendAttackPoint.position, extendAttackRange);
-        Gizmos.DrawWireSphere(extendAttackPoint.position + Vector3.right * extendAttackLength, extendAttackRange);
+
+        //Gizmos.DrawWireSphere(extendAttackPoint.position, extendAttackRange);
+        //Gizmos.DrawWireSphere(extendAttackPoint.position + Vector3.right * extendAttackLength, extendAttackRange);
+
+        Gizmos.DrawCube(spinAttackPoint.position, spinAttackRange);
     }
 
     public void ToggleHitbox(int index, bool state)
