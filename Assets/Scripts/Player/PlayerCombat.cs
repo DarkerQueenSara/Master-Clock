@@ -42,6 +42,13 @@ public class PlayerCombat : MonoBehaviour
     public float extendAttackLength;
     public float extendAttackDuration;
 
+    [Header("Clone")]
+    public int cloneAttackDamage;
+    public GameObject clone;
+    public Transform cloneAttackPoint;
+    public float cloneAttackRange;
+    public float cloneAttackDuration;
+
     private void Start()
     {
         _animator = transform.GetChild(0).GetComponent<Animator>();
@@ -138,6 +145,34 @@ public class PlayerCombat : MonoBehaviour
 
         timeUntilNextAttack = spinAttackDuration;
     }
+
+    public void CloneAttack()
+    {
+        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0)
+        {
+            return;
+        }
+
+        // Play attack animation
+        //_animator.SetTrigger("SlashAttack");
+
+        // Create the projectile that will act as the yoyo
+        GameObject cloneInstance = Instantiate(clone, cloneAttackPoint.position, this.gameObject.transform.rotation);
+        //GameObject projectile = Instantiate(extendAttackProjectile, extendAttackPoint.position, Quaternion.identity);
+
+
+        CloneAttack cloneScript = cloneInstance.GetComponent<CloneAttack>();
+        cloneScript.enemyLayer = enemyLayer;
+        cloneScript.originPoint = extendAttackPoint;
+        cloneScript.damage = extendAttackDamage;
+        cloneScript.range = extendAttackRange;
+        cloneScript.duration = extendAttackDuration;
+        cloneScript._playerMovement = _playerMovement;
+
+        cloneScript.RigToExplode();
+        timeUntilNextAttack = cloneAttackDuration;
+    }
+
 
     private void OnDrawGizmosSelected()
     {

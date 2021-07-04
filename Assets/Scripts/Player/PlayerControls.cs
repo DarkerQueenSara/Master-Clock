@@ -9,13 +9,14 @@ public class PlayerControls : MonoBehaviour
     private bool _attack = false;
     private bool _extendedAttack = false;
     private bool _spinAttack = false;
+    private bool _cloneAttack = false;
 
     private InputMaster _inputMaster;
     private Vector2 _directionInput;
 
     private PlayerMovement _playerMovement;
     private PlayerCombat _playerCombat;
-    
+
     private void Awake()
     {
         _inputMaster = new InputMaster();
@@ -31,6 +32,9 @@ public class PlayerControls : MonoBehaviour
 
         _inputMaster.Player.SpinAttack.performed += ctx => { _spinAttack = true; };
         _inputMaster.Player.SpinAttack.canceled += _ => { _spinAttack = false; };
+
+        _inputMaster.Player.CloneAttack.performed += ctx => { _cloneAttack = true; };
+        _inputMaster.Player.CloneAttack.canceled += _ => { _cloneAttack = false; };
     }
 
     private void OnEnable()
@@ -54,12 +58,18 @@ public class PlayerControls : MonoBehaviour
         if (_attack)
         {
             _playerCombat.SlashAttack();
-        }else if (_extendedAttack)
+        }
+        else if (_extendedAttack)
         {
             _playerCombat.ExtendAttack();
-        }else if (_spinAttack)
+        }
+        else if (_spinAttack)
         {
             _playerCombat.SpinAttack();
+        }
+        else if (_cloneAttack)
+        {
+            _playerCombat.CloneAttack();
         }
     }
 
