@@ -21,6 +21,10 @@ public class PlayerCombat : MonoBehaviour
 
     // Time Stuff
     private Timeline _time;
+    private Clock playerClock;
+    private Clock globalClock;
+    private Clock enemyClock;
+
 
     [Header("Slash")]
     public int slashAttackDamage;
@@ -48,12 +52,34 @@ public class PlayerCombat : MonoBehaviour
     public Transform cloneAttackPoint;
     public float cloneAttackRange;
     public float cloneAttackDuration;
+    private float currentTime = 0.0f;
+    private float timeUntilNextCloneAttack = 0.0f;
+
+    [Header("Slowdown")]
+    public int slowdownAttackDamage;
+    public GameObject slowdownAttackProjectile;
+    public Transform slowdownAttackPoint;
+    public float slowdownAttackRadius;
+    public float slowdownAttackSlowdownAmount;
+    public float slowdownThrowRange;
+    public float slowdownAttackDuration;
+    public float slowdownForcefieldDuration;
+    public GameObject slowdownForcefield;
+
+    [Header("Accelerate")]
+    public float playerAcceleration;
+    public float globalAcceleration;
+    public float enemyAcceleration;
 
     private void Start()
     {
         _animator = transform.GetChild(0).GetComponent<Animator>();
         _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
         _time = GetComponent<Timeline>();
+
+        playerClock = Timekeeper.instance.Clock("Player");
+        globalClock = Timekeeper.instance.Clock("Global");
+        enemyClock = Timekeeper.instance.Clock("Enemy");
     }
 
     public void Update()
@@ -62,7 +88,26 @@ public class PlayerCombat : MonoBehaviour
         {
             timeUntilNextAttack = Mathf.Max(0.0f, timeUntilNextAttack - Time.deltaTime);
         }
+        if (timeUntilNextCloneAttack > 0.0f)
+        {
+            timeUntilNextCloneAttack = Mathf.Max(0.0f, timeUntilNextAttack - Time.deltaTime);
+        }
+        
+        if (playerClock.localTimeScale < 0.0f)
+        { // Rewinding to clone
+            currentTime += playerClock.deltaTime;
 
+            if (currentTime <= 0.0f)
+            {
+                playerClock.localTimeScale = 1.0f;
+                GameObject cloneInstance = GameObject.FindGameObjectWithTag("Clone");
+                Destroy(cloneInstance, 0.0f);
+            }
+        }
+        else
+        { // Count time since clone was spawned
+            currentTime += playerClock.deltaTime;
+        }
     }
 
     public void SlashAttack()
@@ -79,7 +124,7 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(slashAttackPoint.position, slashAttackRange, enemyLayer);
 
         // Damage enemies
-        foreach(Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemy in hitEnemies)
         {
             //Debug.Log("Hit enemy!");
             enemy.GetComponent<EnemyBase>().Hit(slashAttackDamage);
@@ -121,6 +166,42 @@ public class PlayerCombat : MonoBehaviour
         timeUntilNextAttack = extendAttackDuration;
     }
 
+    public void slowdownAttack()
+    {
+        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0)
+        {
+            return;
+        }
+
+        // Play attack animation
+        //_animator.SetTrigger("SlashAttack");
+
+        // Create the projectile that will act as the yoyo
+        GameObject projectile = Instantiate(slowdownAttackProjectile, slowdownAttackPoint.position, this.gameObject.transform.rotation);
+        //GameObject projectile = Instantiate(extendAttackProjectile, extendAttackPoint.position, Quaternion.identity);
+
+
+        SlowdownAttackProjectile projectileScript = projectile.GetComponent<SlowdownAttackProjectile>();
+        projectileScript.enemyLayer = enemyLayer;
+        projectileScript.originPoint = slowdownAttackPoint;
+        projectileScript.damage = slowdownAttackDamage;
+        projectileScript.radius = slowdownAttackRadius;
+        projectileScript.range = slowdownThrowRange;
+        projectileScript.duration = slowdownAttackDuration;
+        projectileScript.slowdownAmount = slowdownAttackSlowdownAmount;
+        projectileScript._playerMovement = _playerMovement;
+
+        projectileScript.slowdownForcefield = slowdownForcefield;
+        projectileScript.forcefieldDuration = slowdownForcefieldDuration;
+
+
+        projectileScript.SetParabolicVelocity();
+        projectileScript.RigToExplode();
+
+        timeUntilNextAttack = slowdownAttackDuration;
+    }
+
+
     public void SpinAttack()
     {
         if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0)
@@ -146,9 +227,43 @@ public class PlayerCombat : MonoBehaviour
         timeUntilNextAttack = spinAttackDuration;
     }
 
+    public void Accelerate()
+    {
+        Debug.Log("Zoom zoom");
+        if(playerClock.localTimeScale <= 0.0f || globalClock.localTimeScale <= 0.0f)
+        { // If rewinding, accelerate won't do anything
+            return;
+        }
+
+        globalClock.localTimeScale = playerAcceleration;
+        playerClock.localTimeScale = globalAcceleration;
+    }
+
+    public void Deaccelerate()
+    {
+        if (playerClock.localTimeScale <= 0.0f || globalClock.localTimeScale <= 0.0f)
+        { // If rewinding, accelerate won't do anything
+            return;
+        }
+
+        globalClock.localTimeScale = 1.0f;
+        playerClock.localTimeScale = 1.0f;
+    }
+
     public void CloneAttack()
     {
-        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0)
+        // If there is a clone in the map, rewind to it
+        GameObject cloneInstance = GameObject.FindGameObjectWithTag("Clone");
+
+        if (cloneInstance != null)
+        {
+            Debug.Log("Rewind!");
+            playerClock.localTimeScale = -1.0f;
+            cloneInstance.GetComponent<CloneAttack>().playerRewinding = true;
+
+            return;
+        }
+        else if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0 || timeUntilNextCloneAttack > 0.0f)
         {
             return;
         }
@@ -157,7 +272,7 @@ public class PlayerCombat : MonoBehaviour
         //_animator.SetTrigger("SlashAttack");
 
         // Create the projectile that will act as the yoyo
-        GameObject cloneInstance = Instantiate(clone, cloneAttackPoint.position, this.gameObject.transform.rotation);
+        cloneInstance = Instantiate(clone, cloneAttackPoint.position, this.gameObject.transform.rotation);
         //GameObject projectile = Instantiate(extendAttackProjectile, extendAttackPoint.position, Quaternion.identity);
 
 
@@ -170,7 +285,9 @@ public class PlayerCombat : MonoBehaviour
         cloneScript._playerMovement = _playerMovement;
 
         cloneScript.RigToExplode();
-        timeUntilNextAttack = cloneAttackDuration;
+        timeUntilNextCloneAttack = cloneAttackDuration;
+
+        currentTime = 0.0f; // Reset time since clone spawned
     }
 
 

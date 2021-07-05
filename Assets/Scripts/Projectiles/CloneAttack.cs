@@ -6,26 +6,29 @@ public class CloneAttack : MonoBehaviour
 {
     private bool returning = false;
 
-    [HideInInspector]
-    public LayerMask enemyLayer;
-    public Transform originPoint;
-    public float range;
-    public float length;
-    public float duration;
-    public int damage;
-    public PlayerMovement _playerMovement;   
+    [HideInInspector] public LayerMask enemyLayer;
+    [HideInInspector] public Transform originPoint;
+    [HideInInspector] public float range;
+    [HideInInspector] public float length;
+    [HideInInspector] public float duration;
+    [HideInInspector] public int damage;
+    [HideInInspector] public PlayerMovement _playerMovement;
+    [HideInInspector] public bool playerRewinding;
+
 
     public void RigToExplode()
     {
-        Destroy(this.gameObject, this.duration);
+        Invoke("DetonateClone", this.duration);
+        //Destroy(this.gameObject, this.duration);
     }
 
-    public void ReturnToClone()
+    private void DetonateClone()
     {
-    }
+        if (playerRewinding)
+        { // If player is rewinding, don't destroy the clone
+            return;
+        }
 
-    private void OnDestroy()
-    {
         // Play Explosion Animation
         Debug.Log("KABOOM");
 
@@ -38,5 +41,12 @@ public class CloneAttack : MonoBehaviour
             //Debug.Log("Hit enemy!");
             enemy.GetComponent<EnemyBase>().Hit(damage);
         }
+
+        Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 }

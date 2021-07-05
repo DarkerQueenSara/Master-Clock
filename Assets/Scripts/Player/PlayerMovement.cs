@@ -19,8 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public Transform ceilingCheck;
 
-    [HideInInspector]
-    public bool _facingRight = true;
+    [HideInInspector] public bool _facingRight = true;
 
     private bool _grounded = true;
     private bool _sliding = false;

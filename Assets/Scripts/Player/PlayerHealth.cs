@@ -37,6 +37,8 @@ public class PlayerHealth : MonoBehaviour
 
     // Chronos
     private Clock clock;
+    private Clock playerClock;
+
     private bool rewinding;
 
     // Start is called before the first frame update
@@ -44,6 +46,8 @@ public class PlayerHealth : MonoBehaviour
     {
         // Get the global clock
         clock = Timekeeper.instance.Clock("Global");
+        playerClock = Timekeeper.instance.Clock("Player");
+
         ResetCycle();
     }
 
@@ -70,6 +74,10 @@ public class PlayerHealth : MonoBehaviour
             {
                 if (!rewinding)
                 {
+                    playerClock.localTimeScale = 1.0f; // In case player was rewinding or something reset their local time
+                    GameObject cloneInstance = GameObject.FindGameObjectWithTag("Clone");
+                    Destroy(cloneInstance, 0.0f);
+
                     clock.localTimeScale = 0f;
                     rewinding = true;
                 }

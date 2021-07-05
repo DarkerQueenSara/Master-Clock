@@ -177,6 +177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _recordingInterval: 0.25
   _mode: 1
-  _globalClockKey: Global
+  _globalClockKey: Enemy
   _rewindable: 1
   _recordingDuration: 300

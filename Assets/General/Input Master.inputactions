@@ -38,6 +38,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "SlowdownBomb",
+                    "type": "Button",
+                    "id": "fd571df9-a0f4-49ae-b443-805f76f4b45d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "SpinAttack",
                     "type": "Button",
                     "id": "841f0241-8e55-4502-aa52-4dbe3d961697",
@@ -49,6 +57,14 @@
                     "name": "CloneAttack",
                     "type": "Button",
                     "id": "110a3d37-1f2b-4fa9-88e9-633a3b4b6cc0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "AccelerateTime",
+                    "type": "Button",
+                    "id": "3d3eee31-586a-4663-9a0c-f51874ca4d36",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -173,6 +189,28 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "CloneAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "55db3498-0e4f-4aa7-a7bd-baab16563086",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AccelerateTime",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "41870569-0e59-4fba-a17b-a8b4cf9f4e1d",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "SlowdownBomb",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
