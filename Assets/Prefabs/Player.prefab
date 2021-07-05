@@ -117,6 +117,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e92d6be83a7f64a934828fa76e3037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1286338251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1286338252}
+  m_Layer: 6
+  m_Name: CloneAttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1286338252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286338251}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1946038608}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1827694558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827694559}
+  m_Layer: 6
+  m_Name: SlowdownAttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1827694559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827694558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1946038608}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1946038607
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +207,8 @@ Transform:
   - {fileID: 951783764}
   - {fileID: 1366899491636179502}
   - {fileID: 8325152246396352169}
+  - {fileID: 1286338252}
+  - {fileID: 1827694559}
   m_Father: {fileID: 743481762573770567}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -531,6 +593,23 @@ MonoBehaviour:
   extendAttackRange: 0.3
   extendAttackLength: 5
   extendAttackDuration: 1.5
+  cloneAttackDamage: 1
+  clone: {fileID: 4233971961728613408, guid: 2ea76692e8c647f449f1d256a1bb3fc3, type: 3}
+  cloneAttackPoint: {fileID: 1286338252}
+  cloneAttackRange: 2
+  cloneAttackDuration: 2
+  slowdownAttackDamage: 1
+  slowdownAttackProjectile: {fileID: 5123637968733234474, guid: b1134cb1510b23e4582b3aac9aa12835, type: 3}
+  slowdownAttackPoint: {fileID: 1827694559}
+  slowdownAttackRadius: 5
+  slowdownAttackSlowdownAmount: 0
+  slowdownThrowRange: 5
+  slowdownAttackDuration: 3
+  slowdownForcefieldDuration: 10
+  slowdownForcefield: {fileID: 5123637968733234474, guid: b4c3febf53a71264a99f4ec174f44cfa, type: 3}
+  playerAcceleration: 1.8
+  globalAcceleration: 1.5
+  enemyAcceleration: 0
 --- !u!50 &743481762573770565
 Rigidbody2D:
   serializedVersion: 4
@@ -566,7 +645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _recordingInterval: 0.25
   _mode: 1
-  _globalClockKey: Global
+  _globalClockKey: Player
   _rewindable: 1
   _recordingDuration: 300
 --- !u!1 &743481762875714948
