@@ -7,14 +7,14 @@ public class ExtendAttackProjectile : MonoBehaviour
     private float speed = 0.0f;
     private bool returning = false;
 
-    [HideInInspector]
-    public LayerMask enemyLayer;
-    public Transform originPoint;
-    public float range;
-    public float length;
-    public float duration;
-    public int damage;
-    public PlayerMovement _playerMovement;
+    
+    [HideInInspector] public LayerMask enemyLayer;
+    [HideInInspector] public Transform originPoint;
+    [HideInInspector] public float range;
+    [HideInInspector] public float length;
+    [HideInInspector] public float duration;
+    [HideInInspector] public int damage;
+    [HideInInspector] public PlayerMovement _playerMovement;
 
     // Update is called once per frame
     void Update()

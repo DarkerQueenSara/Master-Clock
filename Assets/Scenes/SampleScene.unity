@@ -719,7 +719,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204131314}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.1298175, y: 6.74, z: -10}
+  m_LocalPosition: {x: 3.8443515, y: 6.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1015767300}
@@ -733,17 +733,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1889781338, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: _globalClockKey
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 1.57
       objectReference: {fileID: 0}
     - target: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 5.19
       objectReference: {fileID: 0}
     - target: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -786,6 +790,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 490468911}
     - target: {fileID: 2221770179136373508, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: maxTime
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221770179136373508, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: timeText
       value: 
       objectReference: {fileID: 663811072}
@@ -793,6 +801,74 @@ PrefabInstance:
       propertyPath: timerBar
       value: 
       objectReference: {fileID: 749860289}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: clone
+      value: 
+      objectReference: {fileID: 4233971961728613408, guid: 2ea76692e8c647f449f1d256a1bb3fc3, type: 3}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: cloneAttackPoint
+      value: 
+      objectReference: {fileID: 1286338252}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: cloneAttackRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: cloneAttackDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: slodownForcefield
+      value: 
+      objectReference: {fileID: 5123637968733234474, guid: b4c3febf53a71264a99f4ec174f44cfa, type: 3}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: globalAcceleration
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: playerAcceleration
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: slowdownForcefield
+      value: 
+      objectReference: {fileID: 5123637968733234474, guid: b4c3febf53a71264a99f4ec174f44cfa, type: 3}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: slowdownThrowRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: cloneAttackDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: slowdownAttackPoint
+      value: 
+      objectReference: {fileID: 1827694559}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: slowdownAttackDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: slowdownAttackRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: slowdownAttackDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: slowdownAttackProjectile
+      value: 
+      objectReference: {fileID: 5123637968733234474, guid: b1134cb1510b23e4582b3aac9aa12835, type: 3}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: slowdownForcefieldDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: slowdownAttackSlowdownAmount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
 --- !u!4 &272355503 stripped
@@ -955,7 +1031,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1298175, y: 6.74, z: -10}
+  m_LocalPosition: {x: 3.8443515, y: 6.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -11471,6 +11547,8 @@ GameObject:
   - component: {fileID: 1551983277}
   - component: {fileID: 1551983276}
   - component: {fileID: 1551983279}
+  - component: {fileID: 1551983280}
+  - component: {fileID: 1551983281}
   m_Layer: 0
   m_Name: Timekeeper
   m_TagString: Untagged
@@ -11540,6 +11618,40 @@ MonoBehaviour:
   _parentKey: Root
   _parentBlend: 0
   _key: Global
+--- !u!114 &1551983280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551983275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0144e3ad8a88947298e2dca62625e6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _localTimeScale: 1
+  _paused: 0
+  _parentKey: Global
+  _parentBlend: 0
+  _key: Player
+--- !u!114 &1551983281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551983275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0144e3ad8a88947298e2dca62625e6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _localTimeScale: 1
+  _paused: 0
+  _parentKey: Global
+  _parentBlend: 0
+  _key: Enemy
 --- !u!1 &1559890143
 GameObject:
   m_ObjectHideFlags: 0
@@ -11711,6 +11823,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
   m_PrefabInstance: {fileID: 272355502}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1827694558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827694559}
+  m_Layer: 6
+  m_Name: SlowdownAttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1827694559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827694558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 272355503}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1915120077
 GameObject:
   m_ObjectHideFlags: 0
@@ -12099,6 +12241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room
       objectReference: {fileID: 0}
+    - target: {fileID: 5028678435449058742, guid: 4ba885bef0e82b04d9c14e66f1b8310a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5028678435449058743, guid: 4ba885bef0e82b04d9c14e66f1b8310a, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -12126,7 +12272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5722337068044117840, guid: 1780b1cd093014143a12bce9f3cef0d0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5722337068044117842, guid: 1780b1cd093014143a12bce9f3cef0d0, type: 3}
       propertyPath: m_RootOrder

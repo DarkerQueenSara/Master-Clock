@@ -51,6 +51,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""SlowdownBomb"",
+                    ""type"": ""Button"",
+                    ""id"": ""fd571df9-a0f4-49ae-b443-805f76f4b45d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""SpinAttack"",
                     ""type"": ""Button"",
                     ""id"": ""841f0241-8e55-4502-aa52-4dbe3d961697"",
@@ -62,6 +70,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": ""CloneAttack"",
                     ""type"": ""Button"",
                     ""id"": ""110a3d37-1f2b-4fa9-88e9-633a3b4b6cc0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""AccelerateTime"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d3eee31-586a-4663-9a0c-f51874ca4d36"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -188,6 +204,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""CloneAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55db3498-0e4f-4aa7-a7bd-baab16563086"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AccelerateTime"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""41870569-0e59-4fba-a17b-a8b4cf9f4e1d"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SlowdownBomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -228,8 +266,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Extended_Attack = m_Player.FindAction("Extended_Attack", throwIfNotFound: true);
+        m_Player_SlowdownBomb = m_Player.FindAction("SlowdownBomb", throwIfNotFound: true);
         m_Player_SpinAttack = m_Player.FindAction("SpinAttack", throwIfNotFound: true);
         m_Player_CloneAttack = m_Player.FindAction("CloneAttack", throwIfNotFound: true);
+        m_Player_AccelerateTime = m_Player.FindAction("AccelerateTime", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -283,8 +323,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Extended_Attack;
+    private readonly InputAction m_Player_SlowdownBomb;
     private readonly InputAction m_Player_SpinAttack;
     private readonly InputAction m_Player_CloneAttack;
+    private readonly InputAction m_Player_AccelerateTime;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -293,8 +335,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Extended_Attack => m_Wrapper.m_Player_Extended_Attack;
+        public InputAction @SlowdownBomb => m_Wrapper.m_Player_SlowdownBomb;
         public InputAction @SpinAttack => m_Wrapper.m_Player_SpinAttack;
         public InputAction @CloneAttack => m_Wrapper.m_Player_CloneAttack;
+        public InputAction @AccelerateTime => m_Wrapper.m_Player_AccelerateTime;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -316,12 +360,18 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Extended_Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExtended_Attack;
                 @Extended_Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExtended_Attack;
                 @Extended_Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExtended_Attack;
+                @SlowdownBomb.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlowdownBomb;
+                @SlowdownBomb.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlowdownBomb;
+                @SlowdownBomb.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSlowdownBomb;
                 @SpinAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinAttack;
                 @SpinAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinAttack;
                 @SpinAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpinAttack;
                 @CloneAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCloneAttack;
                 @CloneAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCloneAttack;
                 @CloneAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCloneAttack;
+                @AccelerateTime.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAccelerateTime;
+                @AccelerateTime.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAccelerateTime;
+                @AccelerateTime.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAccelerateTime;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -338,12 +388,18 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Extended_Attack.started += instance.OnExtended_Attack;
                 @Extended_Attack.performed += instance.OnExtended_Attack;
                 @Extended_Attack.canceled += instance.OnExtended_Attack;
+                @SlowdownBomb.started += instance.OnSlowdownBomb;
+                @SlowdownBomb.performed += instance.OnSlowdownBomb;
+                @SlowdownBomb.canceled += instance.OnSlowdownBomb;
                 @SpinAttack.started += instance.OnSpinAttack;
                 @SpinAttack.performed += instance.OnSpinAttack;
                 @SpinAttack.canceled += instance.OnSpinAttack;
                 @CloneAttack.started += instance.OnCloneAttack;
                 @CloneAttack.performed += instance.OnCloneAttack;
                 @CloneAttack.canceled += instance.OnCloneAttack;
+                @AccelerateTime.started += instance.OnAccelerateTime;
+                @AccelerateTime.performed += instance.OnAccelerateTime;
+                @AccelerateTime.canceled += instance.OnAccelerateTime;
             }
         }
     }
@@ -372,7 +428,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnExtended_Attack(InputAction.CallbackContext context);
+        void OnSlowdownBomb(InputAction.CallbackContext context);
         void OnSpinAttack(InputAction.CallbackContext context);
         void OnCloneAttack(InputAction.CallbackContext context);
+        void OnAccelerateTime(InputAction.CallbackContext context);
     }
 }

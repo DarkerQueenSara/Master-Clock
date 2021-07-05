@@ -7,7 +7,9 @@ public class PlayerControls : MonoBehaviour
 {
     private bool _jump = false;
     private bool _attack = false;
+    private bool _accelerate = false;
     private bool _extendedAttack = false;
+    private bool _slowdownAttack = false;
     private bool _spinAttack = false;
     private bool _cloneAttack = false;
 
@@ -24,14 +26,21 @@ public class PlayerControls : MonoBehaviour
         _inputMaster.Player.Move.canceled += _ => { _directionInput = Vector2.zero; };
         _inputMaster.Player.Jump.performed += ctx => { _jump = true; };
         _inputMaster.Player.Jump.canceled += _ => { _jump = false; };
+
+        _inputMaster.Player.AccelerateTime.performed += ctx => { _accelerate = true; };
+        _inputMaster.Player.AccelerateTime.canceled += _ => { _accelerate = false; _playerCombat.Deaccelerate(); };
+
         _inputMaster.Player.Attack.performed += ctx => { _attack = true; };
         _inputMaster.Player.Attack.canceled += _ => { _attack = false; };
 
         _inputMaster.Player.Extended_Attack.performed += ctx => { _extendedAttack = true; };
         _inputMaster.Player.Extended_Attack.canceled += _ => { _extendedAttack = false; };
 
+        _inputMaster.Player.SlowdownBomb.performed += ctx => { _slowdownAttack = true; };
+        _inputMaster.Player.SlowdownBomb.canceled += _ => { _slowdownAttack = false; };
+
         _inputMaster.Player.SpinAttack.performed += ctx => { _spinAttack = true; };
-        _inputMaster.Player.SpinAttack.canceled += _ => { _spinAttack = false; };
+        _inputMaster.Player.SpinAttack.canceled += _ => { _spinAttack = false;};
 
         _inputMaster.Player.CloneAttack.performed += ctx => { _cloneAttack = true; };
         _inputMaster.Player.CloneAttack.canceled += _ => { _cloneAttack = false; };
@@ -55,21 +64,34 @@ public class PlayerControls : MonoBehaviour
 
     private void Update()
     {
+        if (_accelerate)
+        {
+            _playerCombat.Accelerate();
+        }
+
         if (_attack)
         {
+            _attack = false;
             _playerCombat.SlashAttack();
         }
         else if (_extendedAttack)
         {
+            _extendedAttack = false;
             _playerCombat.ExtendAttack();
         }
         else if (_spinAttack)
         {
+            _spinAttack = false;
             _playerCombat.SpinAttack();
         }
         else if (_cloneAttack)
         {
+            _cloneAttack = false;
             _playerCombat.CloneAttack();
+        }else if (_slowdownAttack)
+        {
+            _slowdownAttack = false;
+            _playerCombat.slowdownAttack();
         }
     }
 
