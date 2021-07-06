@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ac8323538d31f43842d7e42de1e74c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clockwise: 0
+  clockwise: 1
   angularSpeed: 1
   circleRad: -4
   fixedPoint: {fileID: 4231882953375015588}
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ac8323538d31f43842d7e42de1e74c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clockwise: 0
+  clockwise: 1
   angularSpeed: 1
   circleRad: 4
   fixedPoint: {fileID: 4231882953375015588}
