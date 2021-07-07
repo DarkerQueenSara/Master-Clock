@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class HorizontalMovingPlatform : MonoBehaviour
 {
-    
     public float moveSpeed;
     public float range;
 
     public bool startLeft;
 
     private bool _goingRight;
-    private float _startX;    
+    private float _startX;
 
     // Start is called before the first frame update
     void Start()
@@ -27,10 +26,11 @@ public class HorizontalMovingPlatform : MonoBehaviour
     void Update()
     {
         float currentX = transform.position.x;
-        if (currentX >= _startX +  range || currentX <= _startX - range)
+        if ((currentX >= _startX + range && _goingRight) || (currentX <= _startX - range && !_goingRight))
         {
             _goingRight = !_goingRight;
         }
+
         Vector3 dir = _goingRight ? Vector3.right : Vector3.left;
         transform.position += dir * moveSpeed * Time.deltaTime;
     }
