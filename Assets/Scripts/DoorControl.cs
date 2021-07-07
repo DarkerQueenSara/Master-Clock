@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorControl : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     
     public bool unlocked;
     private bool opening = false;
@@ -28,6 +28,7 @@ public class DoorControl : MonoBehaviour
 
     public void Start()
     {
+        player = PlayerEntity.instance.gameObject;
         originalPosition = this.transform.position;
 
         if (unlocked)
