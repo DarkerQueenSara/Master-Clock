@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92acd898409712a4c91ac4d787d6d2e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlocked: 1
+  unlocked: 0
   distToUnlock: 3
   timeToReachTarget: 0.1
   distanceTravelUp: 4

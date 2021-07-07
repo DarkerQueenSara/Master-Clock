@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clockwise: 1
-  angularSpeed: 1
+  angularSpeed: 2
   circleRad: -4
   fixedPoint: {fileID: 4231882953375015588}
 --- !u!1 &4231882953037654687
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clockwise: 1
-  angularSpeed: 1
+  angularSpeed: 2
   circleRad: 4
   fixedPoint: {fileID: 4231882953375015588}
 --- !u!1 &4231882953375015587
