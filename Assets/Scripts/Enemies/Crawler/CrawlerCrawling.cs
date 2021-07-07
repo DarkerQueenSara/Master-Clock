@@ -77,9 +77,22 @@ public class CrawlerCrawling : CrawlerState
             Vector2 rbPos = new Vector2(target.rb.position.x, target.rb.position.y);
             Vector2 normal = (rbPos - closestPoint).normalized;
             bool wall = Vector2.Angle(normal, Vector2.up) > 80;
-
+            bool upsideDown = Vector2.Angle(normal, Vector2.up) > 170;
             //se for parede
-            if (wall)
+
+            if (upsideDown)
+            {
+                if (_direction.x > 0)
+                {
+                    transform.Rotate(Vector3.forward, 180);
+                }
+                else
+                {
+                    transform.Rotate(Vector3.forward, -180);
+                }
+            }
+            
+            if (wall && !upsideDown)
             {
                 if (_direction.x > 0)
                 {

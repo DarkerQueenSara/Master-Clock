@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 223517680321716135}
   - component: {fileID: 223517680321716134}
   - component: {fileID: -5859092003977342022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gunner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
