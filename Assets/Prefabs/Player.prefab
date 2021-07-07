@@ -511,14 +511,16 @@ MonoBehaviour:
   timeRunning: 1
   damagers:
     serializedVersion: 2
-    m_Bits: 768
-  maxHealth: 3
+    m_Bits: 4864
+  maxHealth: 100
   currentHealth: 0
   maxTime: 300
   currentTime: 0
   lifeBar: {fileID: 0}
   timerBar: {fileID: 0}
   timeText: {fileID: 0}
+  clock: {fileID: 0}
+  playerClock: {fileID: 0}
 --- !u!114 &743481762573770564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +555,7 @@ MonoBehaviour:
   jumpCollider: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 5120
   groundCheck: {fileID: 743481763082496701}
   ceilingCheck: {fileID: 743481763236519224}
   _facingRight: 1
@@ -576,9 +578,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efc5c1e0d2d3df4f8731eb26b5a6220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyLayer:
+  hitLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8448
   slashAttackDamage: 1
   slashAttackPoint: {fileID: 951783764}
   slashAttackRange: 1
@@ -596,7 +598,7 @@ MonoBehaviour:
   cloneAttackDamage: 1
   clone: {fileID: 4233971961728613408, guid: 2ea76692e8c647f449f1d256a1bb3fc3, type: 3}
   cloneAttackPoint: {fileID: 1286338252}
-  cloneAttackRange: 2
+  cloneAttackRange: 3
   cloneAttackDuration: 2
   slowdownAttackDamage: 1
   slowdownAttackProjectile: {fileID: 5123637968733234474, guid: b1134cb1510b23e4582b3aac9aa12835, type: 3}
