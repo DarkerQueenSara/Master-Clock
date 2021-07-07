@@ -37,4 +37,4 @@ MonoBehaviour:
   m_CanChangeZPosition: 0
   m_FloodFillContiguousOnly: 1
   m_Anchor: {x: 0.5, y: 0.5, z: 0.5}
-  m_Prefab: {fileID: 1504650928059610235, guid: efeb92d980abf96498f792c90b26bc4c, type: 3}
+  m_Prefab: {fileID: 223517680321716130, guid: 5673f3ca78a4bdd4994e09b2db89584e, type: 3}
