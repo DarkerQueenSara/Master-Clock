@@ -106,8 +106,8 @@ MonoBehaviour:
   playerAttacks:
     serializedVersion: 2
     m_Bits: 0
-  currentHealth: 3
-  maxHealth: 3
+  currentHealth: 1
+  maxHealth: 1
   contactDamage: 0
   startPosition: {x: 0, y: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
