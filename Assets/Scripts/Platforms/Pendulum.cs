@@ -6,7 +6,7 @@ public class Pendulum : MonoBehaviour
     public float maxRotation;
 
     public bool startingLeft;
-    
+
     private bool _swingingRight;
 
     public Transform ball;
@@ -21,7 +21,7 @@ public class Pendulum : MonoBehaviour
 
     public void Update()
     {
-        if ((360 % transform.rotation.eulerAngles.z) > maxRotation)
+        if (Mathf.Abs(Mathf.DeltaAngle(transform.rotation.eulerAngles.z, 0)) >= maxRotation)
         {
             _swingingRight = !_swingingRight;
         }
