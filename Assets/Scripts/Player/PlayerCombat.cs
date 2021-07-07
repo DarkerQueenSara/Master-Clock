@@ -15,7 +15,8 @@ public class PlayerCombat : MonoBehaviour
 
     private PlayerMovement _playerMovement;
 
-    public LayerMask enemyLayer;
+    public LayerMask hitLayers;
+
 
     private float timeUntilNextAttack = 0.0f;
 
@@ -120,14 +121,21 @@ public class PlayerCombat : MonoBehaviour
         // TODO: Play attack animation
         _animator.SetTrigger("SlashAttack");
 
-        // Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(slashAttackPoint.position, slashAttackRange, enemyLayer);
+        // Detect enemies and doors in range of attack
+        Collider2D[] hits = Physics2D.OverlapCircleAll(slashAttackPoint.position, slashAttackRange, hitLayers);
 
-        // Damage enemies
-        foreach (Collider2D enemy in hitEnemies)
+        // Damage enemies and unlock doors
+        foreach (Collider2D hit in hits)
         {
             //Debug.Log("Hit enemy!");
-            enemy.GetComponent<EnemyBase>().Hit(slashAttackDamage);
+            if (hit.gameObject.layer == 8) // Hit enemy
+                hit.GetComponent<EnemyBase>().Hit(slashAttackDamage);
+            else
+            { // Hit door
+                DoorControl doorControl = hit.GetComponent<DoorControl>();
+                if(doorControl.normalAttackUnlocks)
+                    hit.GetComponent<DoorControl>().UnlockDoor();
+            }
         }
 
         timeUntilNextAttack = slashAttackDuration;
@@ -149,7 +157,7 @@ public class PlayerCombat : MonoBehaviour
 
 
         ExtendAttackProjectile projectileScript = projectile.GetComponent<ExtendAttackProjectile>();
-        projectileScript.enemyLayer = enemyLayer;
+        projectileScript.hitLayers = hitLayers;
         projectileScript.originPoint = extendAttackPoint;
         projectileScript.damage = extendAttackDamage;
         projectileScript.range = extendAttackRange;
@@ -182,7 +190,7 @@ public class PlayerCombat : MonoBehaviour
 
 
         SlowdownAttackProjectile projectileScript = projectile.GetComponent<SlowdownAttackProjectile>();
-        projectileScript.enemyLayer = enemyLayer;
+        projectileScript.hitLayers = hitLayers;
         projectileScript.originPoint = slowdownAttackPoint;
         projectileScript.damage = slowdownAttackDamage;
         projectileScript.radius = slowdownAttackRadius;
@@ -213,16 +221,26 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("Spinnin!");
         //_animator.SetTrigger("SpinAttack");
 
-        // Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(spinAttackPoint.position, spinAttackRange, 0.0f, enemyLayer);
 
-        // Damage enemies
-        foreach (Collider2D enemy in hitEnemies)
+        // Detect enemies and doors in range of attack
+        Collider2D[] hits = Physics2D.OverlapBoxAll(spinAttackPoint.position, spinAttackRange, 0.0f, hitLayers);
+
+        // Damage enemies and unlock doors
+        foreach (Collider2D hit in hits)
         {
             //Debug.Log("Hit enemy!");
-            enemy.GetComponent<EnemyBase>().Hit(spinAttackDamage);
+            if (hit.gameObject.layer == 8) // Hit enemy
+                hit.GetComponent<EnemyBase>().Hit(spinAttackDamage);
+            else
+            { // Hit door
+                DoorControl doorControl = hit.GetComponent<DoorControl>();
+                if (doorControl.spinAttackUnlocks)
+                    hit.GetComponent<DoorControl>().UnlockDoor();
+            }
+
             Debug.Log("HIT ENEMY WHILE SPINNIN!");
         }
+
 
         timeUntilNextAttack = spinAttackDuration;
     }
@@ -277,11 +295,11 @@ public class PlayerCombat : MonoBehaviour
 
 
         CloneAttack cloneScript = cloneInstance.GetComponent<CloneAttack>();
-        cloneScript.enemyLayer = enemyLayer;
-        cloneScript.originPoint = extendAttackPoint;
-        cloneScript.damage = extendAttackDamage;
-        cloneScript.range = extendAttackRange;
-        cloneScript.duration = extendAttackDuration;
+        cloneScript.hitLayers = hitLayers;
+        cloneScript.originPoint = cloneAttackPoint;
+        cloneScript.damage = cloneAttackDamage;
+        cloneScript.range = cloneAttackRange;
+        cloneScript.duration = cloneAttackDuration;
         cloneScript._playerMovement = _playerMovement;
 
         cloneScript.RigToExplode();

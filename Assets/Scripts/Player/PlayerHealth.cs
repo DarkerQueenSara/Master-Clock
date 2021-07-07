@@ -21,9 +21,9 @@ public class PlayerHealth : MonoBehaviour
 
     public LayerMask damagers;
 
-    public int maxHealth;
+    public float maxHealth;
     //[HideInInspector]
-    public int currentHealth;
+    public float currentHealth;
 
     //in seconds
     public float maxTime;
@@ -36,8 +36,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Text timeText;
 
     // Chronos
-    private Clock clock;
-    private Clock playerClock;
+    [HideInInspector] public Clock clock;
+    [HideInInspector] public Clock playerClock;
 
     private bool rewinding;
 
@@ -119,14 +119,36 @@ public class PlayerHealth : MonoBehaviour
     {
         if (damagers.HasLayer(collider.layer))
         {
-            Hit(1);
+            if (collider.layer == 12)
+            { // For the damage platforms hurt only if not in speed up mode
+                if (playerClock.localTimeScale == 1.0f && clock.localTimeScale == 1.0f) // If player not rewinding and not speeding up
+                {
+                    Hit(1.0f);
+                }
+            }
+            else
+            {
+                Hit(10.0f);
+            }
         }
     }
 
-    private void Hit(int damage)
+    public void OnCollisionStay2D(Collision2D collision)
     {
-        if (!IsAlive || clock.localTimeScale <= 0) return;
-        currentHealth = Mathf.Max(currentHealth - damage, 0);
+        if (collision.gameObject.layer == 12)
+        {
+            // For the damage platforms hurt only if not in speed up mode
+            if (playerClock.localTimeScale == 1.0f && clock.localTimeScale == 1.0f) // If player not rewinding and not speeding up
+            {
+                Hit(1.0f);
+            }
+        }
+    }
+
+    private void Hit(float damage)
+    {
+        if (!IsAlive || clock.localTimeScale <= 0 || playerClock.localTimeScale <= 0) return;
+        currentHealth = Mathf.Max(currentHealth - damage, 0.0f);
 
         // UI
         this.lifeBar.value = currentHealth;

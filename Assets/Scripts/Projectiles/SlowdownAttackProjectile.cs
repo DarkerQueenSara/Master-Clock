@@ -8,7 +8,7 @@ public class SlowdownAttackProjectile : MonoBehaviour
     private float speed = 0.0f;
     private bool returning = false;
 
-    [HideInInspector] public LayerMask enemyLayer;
+    [HideInInspector] public LayerMask hitLayers;
     [HideInInspector] public Transform originPoint;
     [HideInInspector] public float radius;
     [HideInInspector] public float range;
@@ -53,14 +53,21 @@ public class SlowdownAttackProjectile : MonoBehaviour
         forcefieldInstance.GetComponent<AreaClock2D>().localTimeScale = slowdownAmount;
         Destroy(forcefieldInstance, forcefieldDuration);
 
-        // Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, radius, enemyLayer);
+        // Detect enemies and doors in range of attack
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, hitLayers);
 
-        // Damage enemies
-        foreach (Collider2D enemy in hitEnemies)
+        // Damage enemies and unlock doors
+        foreach (Collider2D hit in hits)
         {
             //Debug.Log("Hit enemy!");
-            enemy.GetComponent<EnemyBase>().Hit(damage);
+            if (hit.gameObject.layer == 8) // Hit enemy
+                hit.GetComponent<EnemyBase>().Hit(damage);
+            else
+            { // Hit door
+                DoorControl doorControl = hit.GetComponent<DoorControl>();
+                if (doorControl.slowdownBombAttackUnlocks)
+                    hit.GetComponent<DoorControl>().UnlockDoor();
+            }
         }
 
         Destroy(this.gameObject);

@@ -511,14 +511,16 @@ MonoBehaviour:
   timeRunning: 1
   damagers:
     serializedVersion: 2
-    m_Bits: 768
-  maxHealth: 3
+    m_Bits: 4864
+  maxHealth: 100
   currentHealth: 0
   maxTime: 300
   currentTime: 0
   lifeBar: {fileID: 0}
   timerBar: {fileID: 0}
   timeText: {fileID: 0}
+  clock: {fileID: 0}
+  playerClock: {fileID: 0}
 --- !u!114 &743481762573770564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +555,7 @@ MonoBehaviour:
   jumpCollider: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 5120
   groundCheck: {fileID: 743481763082496701}
   ceilingCheck: {fileID: 743481763236519224}
   _facingRight: 1
