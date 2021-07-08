@@ -15,7 +15,7 @@ public class PlatformSpawner : MonoBehaviour
         _spawnCooldown -= Time.deltaTime;
         if (_spawnCooldown <= 0)
         {
-            Instantiate(platformPrefab, transform.parent.gameObject.transform);
+            Instantiate(platformPrefab, transform.position, Quaternion.identity, transform.parent.gameObject.transform);
             _spawnCooldown = spawnRate;
         }
     }
