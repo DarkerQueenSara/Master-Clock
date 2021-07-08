@@ -94,7 +94,7 @@ public class CrawlerCrawling : CrawlerState
             
             if (wall && !upsideDown)
             {
-                if (_direction.x > 0)
+                if (closestPoint.x > rbPos.x)
                 {
                     transform.Rotate(Vector3.forward, 90);
                 }
