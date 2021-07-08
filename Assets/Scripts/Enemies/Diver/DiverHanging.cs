@@ -9,6 +9,13 @@ public class DiverHanging : DiverState
         DiverHanging state = DiverState.Create<DiverHanging>(target);
         return state;
     }
+
+    public override void StateStart()
+    {
+        base.StateStart();
+        _animator.SetBool("Idle", true);
+        _animator.SetBool("Returning", false);
+    }
     
     public override void StateUpdate()
     {

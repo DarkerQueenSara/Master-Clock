@@ -19,6 +19,8 @@ public class DiverDiving : DiverState
         base.StateStart();
         _hit = false;
         _diveCoordinates = PlayerEntity.instance.transform.position.x;
+        _animator.SetBool("Diving", true);
+        _animator.SetBool("Idle", false);
     }
 
     public override void StateFixedUpdate()

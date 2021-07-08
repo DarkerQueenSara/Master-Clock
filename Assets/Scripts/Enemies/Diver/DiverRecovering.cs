@@ -18,6 +18,8 @@ public class DiverRecovering : DiverState
     {
         base.StateStart();
         _hit = false;
+        _animator.SetBool("Diving", false);
+        _animator.SetBool("Returning", true);
     }
 
     public override void StateFixedUpdate()

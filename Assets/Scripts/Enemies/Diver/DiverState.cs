@@ -11,7 +11,7 @@ public class DiverState : EnemyState<Diver>
     {
         var state = EnemyState<Diver>.Create<T>(target);
         state._renderer = target.GetComponent<SpriteRenderer>();
-        state._animator = target.GetComponent<Animator>();
+        state._animator = target.GetComponentInChildren<Animator>();
         return state;
     }
 }
