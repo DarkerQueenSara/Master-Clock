@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
                 standCollider.enabled = false;
             }
         }
-        else if(!Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround)) // If we stopped wanting to slide and we can stand up
+        else if (!Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround)) // If we stopped wanting to slide and we can stand up
         {
             _sliding = false;
 
@@ -144,6 +144,16 @@ public class PlayerMovement : MonoBehaviour
                 _body.AddForce(new Vector2(0f, jumpForce));
             }
         }
+
+        if (!_grounded && !_sliding)
+        {
+            _animator.SetFloat("Verticle_Speed", _body.velocity.y);
+        }
+        else
+        {
+            _animator.SetFloat("Verticle_Speed", 0.0f);
+        }
+        
     }
 
     public void StopPlayer()

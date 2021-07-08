@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 18988f5a005a1e04b8f7e1d785522073
+guid: 53f276f0eb748d945b795734b4c02eaf
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -100,10 +100,10 @@ TextureImporter:
       name: slide_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 0
-        width: 757
-        height: 527
+        x: 218
+        y: 1
+        width: 527
+        height: 480
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,10 +121,10 @@ TextureImporter:
       name: slide_1
       rect:
         serializedVersion: 2
-        x: 989
-        y: 7
-        width: 769
-        height: 289
+        x: 1190
+        y: 2
+        width: 741
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

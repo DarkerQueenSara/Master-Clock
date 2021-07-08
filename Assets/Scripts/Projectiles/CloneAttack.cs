@@ -52,6 +52,11 @@ public class CloneAttack : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void SetSprite(Sprite sprite)
+    {
+        this.gameObject.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
+    }
+
     private void OnDestroy()
     {
         

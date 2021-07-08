@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: 18988f5a005a1e04b8f7e1d785522073
+guid: 69ce3c2c784575644aa5abac0004dab4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4857335772653305134
-    second: slide_0
+      213: 2845636146702351539
+    second: jump_and_land_0
   - first:
-      213: -329969244792713109
-    second: slide_1
+      213: 3411917039193848718
+    second: jump_and_land_1
+  - first:
+      213: -4119752880049851982
+    second: jump_and_land_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -81,29 +84,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slide_0
+      name: jump_and_land_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 0
-        width: 757
-        height: 527
+        x: 8
+        y: 2
+        width: 517
+        height: 641
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +102,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2d3cc36629b86340800000000000000
-      internalID: 4857335772653305134
+      spriteID: 3bc7434affabd7720800000000000000
+      internalID: 2845636146702351539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_1
+      name: jump_and_land_1
       rect:
         serializedVersion: 2
-        x: 989
-        y: 7
-        width: 769
-        height: 289
+        x: 1046
+        y: 0
+        width: 589
+        height: 659
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +123,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b60935958b6bb6bf0800000000000000
-      internalID: -329969244792713109
+      spriteID: e8b70445870995f20800000000000000
+      internalID: 3411917039193848718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_and_land_2
+      rect:
+        serializedVersion: 2
+        x: 2026
+        y: 0
+        width: 559
+        height: 659
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b17c3e3592b3d6c0800000000000000
+      internalID: -4119752880049851982
       vertices: []
       indices: 
       edges: []

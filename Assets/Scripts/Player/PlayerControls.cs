@@ -78,6 +78,9 @@ public class PlayerControls : MonoBehaviour
 
     private void Update()
     {
+        if (_directionInput.y < 0 && _slide_unlocked)
+            return;
+        
         if (_accelerate && _accelerate_unlocked)
         {
             _playerCombat.Accelerate();

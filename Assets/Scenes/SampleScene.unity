@@ -684,10 +684,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1675198391}
     - target: {fileID: 743481762573770564, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
-      propertyPath: _slide_unlocked
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 743481762573770564, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: _extendedAttack_ui
       value: 
       objectReference: {fileID: 1120355192}
@@ -695,9 +691,9 @@ PrefabInstance:
       propertyPath: _slowdownAttack_ui
       value: 
       objectReference: {fileID: 1633178004}
-    - target: {fileID: 743481762573770566, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
-      propertyPath: groundedRadius
-      value: 0.4
+    - target: {fileID: 743481762573770564, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: _cloneAttack_unlocked
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: m_RootOrder

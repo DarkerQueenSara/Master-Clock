@@ -301,6 +301,7 @@ public class PlayerCombat : MonoBehaviour
         cloneScript.range = cloneAttackRange;
         cloneScript.duration = cloneAttackDuration;
         cloneScript._playerMovement = _playerMovement;
+        //cloneScript.SetSprite(gameObject.GetComponentInChildren<SpriteRenderer>().sprite);
 
         cloneScript.RigToExplode();
         timeUntilNextCloneAttack = cloneAttackDuration;

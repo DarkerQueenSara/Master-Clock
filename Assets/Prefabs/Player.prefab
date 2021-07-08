@@ -578,7 +578,7 @@ MonoBehaviour:
   jumpForce: 1400
   runSpeed: 50
   movementSmoothing: 0.05
-  groundedRadius: 0.2
+  groundedRadius: 0.4
   ceilingRadius: 0.2
   standCollider: {fileID: 743481762921728092}
   slideCollider: {fileID: 596471719}
@@ -915,8 +915,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3798503319936204719}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 0.0168, z: 0}
-  m_LocalScale: {x: 0.32651752, y: 0.32651752, z: 0.32651752}
+  m_LocalPosition: {x: 0.159, y: 0.013, z: 0}
+  m_LocalScale: {x: 0.27876487, y: 0.27876487, z: 0.27876487}
   m_Children: []
   m_Father: {fileID: 743481762573770567}
   m_RootOrder: 0
@@ -961,8 +961,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8276514422256456541, guid: aea1cf7a5b7ae9f4e845e6c3c0017e2f, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -1882347247711912902, guid: f9f5d46f08ebeea4cb5e2b5b87f19c17, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
