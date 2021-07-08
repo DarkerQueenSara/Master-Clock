@@ -7,12 +7,15 @@ public class PowerupDrop : MonoBehaviour
     [Header("Health")]
     public bool give_health;
     public float health_amount;
+    public bool increase_max_health;
+    public float max_health_increase_amount;
 
     [Header("Time")]
     public bool give_time;
     public int time_amount;
 
     [Header("Powerups")]
+    public bool give_slide;
     public bool give_extended;
     public bool give_clone;
     public bool give_slowdown;
