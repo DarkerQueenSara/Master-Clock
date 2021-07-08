@@ -14,17 +14,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Attack",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "eb09674e-4df6-445e-8519-946699145433",
+                    "id": "0c63b83b-25b9-4532-91f8-62b89f4a547b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "Jump",
+                    "name": "Attack",
                     "type": "Button",
-                    "id": "0c63b83b-25b9-4532-91f8-62b89f4a547b",
+                    "id": "eb09674e-4df6-445e-8519-946699145433",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -71,17 +71,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "9fa80d9e-f145-4df9-a959-c507f8a67a8e",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "ba30561c-58f5-42bb-96d2-c61991e84590",
@@ -211,6 +200,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "SlowdownBomb",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9fa80d9e-f145-4df9-a959-c507f8a67a8e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -25,6 +25,7 @@ public class DoorControl : MonoBehaviour
     public bool extendedAttackUnlocks;
     public bool cloneAttackUnlocks;
     public bool slowdownBombAttackUnlocks;
+    public bool accelerateUnlocks;
 
     public void Start()
     {

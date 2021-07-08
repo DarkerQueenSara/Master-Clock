@@ -76,7 +76,7 @@ public class ExtendAttackProjectile : MonoBehaviour
             { // Hit door
                 DoorControl doorControl = hit.GetComponent<DoorControl>();
                 if (doorControl.extendedAttackUnlocks)
-                    hit.GetComponent<DoorControl>().UnlockDoor();
+                    doorControl.UnlockDoor();
             }
         }
 

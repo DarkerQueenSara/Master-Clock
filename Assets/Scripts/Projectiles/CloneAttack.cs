@@ -45,7 +45,7 @@ public class CloneAttack : MonoBehaviour
             { // Hit door
                 DoorControl doorControl = hit.GetComponent<DoorControl>();
                 if (doorControl.cloneAttackUnlocks)
-                    hit.GetComponent<DoorControl>().UnlockDoor();
+                    doorControl.UnlockDoor();
             }
         }
 

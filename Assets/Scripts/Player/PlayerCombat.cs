@@ -93,7 +93,7 @@ public class PlayerCombat : MonoBehaviour
         {
             timeUntilNextCloneAttack = Mathf.Max(0.0f, timeUntilNextAttack - Time.deltaTime);
         }
-        
+
         if (playerClock.localTimeScale < 0.0f)
         { // Rewinding to clone
             currentTime += playerClock.deltaTime;
@@ -133,8 +133,8 @@ public class PlayerCombat : MonoBehaviour
             else
             { // Hit door
                 DoorControl doorControl = hit.GetComponent<DoorControl>();
-                if(doorControl.normalAttackUnlocks)
-                    hit.GetComponent<DoorControl>().UnlockDoor();
+                if (doorControl.normalAttackUnlocks)
+                    doorControl.UnlockDoor();
             }
         }
 
@@ -235,7 +235,7 @@ public class PlayerCombat : MonoBehaviour
             { // Hit door
                 DoorControl doorControl = hit.GetComponent<DoorControl>();
                 if (doorControl.spinAttackUnlocks)
-                    hit.GetComponent<DoorControl>().UnlockDoor();
+                    doorControl.UnlockDoor();
             }
 
             Debug.Log("HIT ENEMY WHILE SPINNIN!");
@@ -248,7 +248,7 @@ public class PlayerCombat : MonoBehaviour
     public void Accelerate()
     {
         Debug.Log("Zoom zoom");
-        if(playerClock.localTimeScale <= 0.0f || globalClock.localTimeScale <= 0.0f)
+        if (playerClock.localTimeScale <= 0.0f || globalClock.localTimeScale <= 0.0f)
         { // If rewinding, accelerate won't do anything
             return;
         }

@@ -117,6 +117,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void CollisionDetected(GameObject collider)
     {
+        // On rewind ignore collisions
+        if (clock.localTimeScale <= 0.0f || playerClock.localTimeScale <= 0.0f)
+            return;
+
         if (damagers.HasLayer(collider.layer))
         {
             if (collider.layer == 12)
@@ -131,6 +135,20 @@ public class PlayerHealth : MonoBehaviour
                 Hit(10.0f);
             }
         }
+        else if(collider.layer == 13)
+        { // Door collision
+            if (playerClock.localTimeScale > 1.0f)
+            { // If accelerating and colliding with door
+                DoorControl doorControl = collider.GetComponent<DoorControl>();
+                if (doorControl.accelerateUnlocks)
+                    doorControl.UnlockDoor();
+
+            }
+        }
+        else if (collider.layer == 14)
+        { // Powerup collision
+            PickupPowerup(collider.GetComponent<PowerupDrop>());
+        }
     }
 
     public void OnCollisionStay2D(Collision2D collision)
@@ -143,6 +161,41 @@ public class PlayerHealth : MonoBehaviour
                 Hit(1.0f);
             }
         }
+    }
+
+    private void PickupPowerup(PowerupDrop drop)
+    {
+        // Heath
+        if (drop.give_health)
+        {
+            currentHealth = Mathf.Min(currentHealth + drop.health_amount, maxHealth);
+            this.lifeBar.value = currentHealth;
+        }
+
+        // Time
+        /*
+        if (drop.give_time)
+        {
+            clock. += drop.time_amount;
+        }
+        */
+
+        // Powerup
+        PlayerControls player_controls = this.gameObject.GetComponent<PlayerControls>();
+        if (drop.give_extended)
+            player_controls.UnlockPowerup("extended_attack");
+        if (drop.give_clone)
+            player_controls.UnlockPowerup("clone_attack");
+        if (drop.give_slowdown)
+            player_controls.UnlockPowerup("slowdown_bomb_attack");
+        if (drop.give_accelerate)
+            player_controls.UnlockPowerup("accelerate_attack");
+        if (drop.give_spin)
+            player_controls.UnlockPowerup("spin_attack");
+
+
+        // Destroy drop
+        Destroy(drop.gameObject, 0.0f);
     }
 
     private void Hit(float damage)
