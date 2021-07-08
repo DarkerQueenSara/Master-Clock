@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         /* SLIDE */
-        if (slide) // If clicked to slide and we have some speed (we can't slide if we're standing still)
+        if (slide && _body.velocity != Vector2.zero) // If clicked to slide and we have some speed (we can't slide if we're standing still)
         {
             if (_grounded)
             {
