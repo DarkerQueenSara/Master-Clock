@@ -139,6 +139,7 @@ public class PlayerMovement : MonoBehaviour
             if (!_sliding)
             {
                 // Add a vertical force to the player.
+                _body.velocity = new Vector2(_body.velocity.x, 0.0f);
                 _grounded = false;
                 _body.AddForce(new Vector2(0f, jumpForce));
             }
