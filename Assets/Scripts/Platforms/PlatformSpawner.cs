@@ -9,6 +9,7 @@ public class PlatformSpawner : MonoBehaviour
     public float spawnRate;
     private float _spawnCooldown;
 
+    
 
     private void Update()
     {

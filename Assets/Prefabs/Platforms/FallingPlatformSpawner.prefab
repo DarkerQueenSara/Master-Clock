@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformPrefab: {fileID: 2503069038262626333, guid: 3ca681b5ba48a91479717cef555ba422, type: 3}
-  spawnRate: 2
+  spawnRate: 1
 --- !u!1 &8497973382025983565
 GameObject:
   m_ObjectHideFlags: 0
