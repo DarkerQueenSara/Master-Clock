@@ -556,7 +556,7 @@ MonoBehaviour:
   _slowdownAttack_unlocked: 0
   _spinAttack_unlocked: 0
   _cloneAttack_unlocked: 0
-  _slide_unlocked: 1
+  _slide_unlocked: 0
   _accelerate_ui: {fileID: 0}
   _extendedAttack_ui: {fileID: 0}
   _slowdownAttack_ui: {fileID: 0}
