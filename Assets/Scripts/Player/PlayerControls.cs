@@ -18,12 +18,14 @@ public class PlayerControls : MonoBehaviour
     public bool _slowdownAttack_unlocked = false;
     public bool _spinAttack_unlocked = false;
     public bool _cloneAttack_unlocked = false;
+    public bool _slide_unlocked = false;
 
     public GameObject _accelerate_ui;
     public GameObject _extendedAttack_ui;
     public GameObject _slowdownAttack_ui;
     public GameObject _spinAttack_ui;
     public GameObject _cloneAttack_ui;
+    public GameObject _slide_ui;
 
     private InputMaster _inputMaster;
     private Vector2 _directionInput;
@@ -109,7 +111,7 @@ public class PlayerControls : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _playerMovement.Move(_directionInput.x, _jump, _directionInput.y < 0);
+        _playerMovement.Move(_directionInput.x, _jump, _directionInput.y < 0 && _slide_unlocked);
     }
 
 
@@ -141,6 +143,12 @@ public class PlayerControls : MonoBehaviour
                 _accelerate_unlocked = true;
                 if (_accelerate_ui != null)
                     _accelerate_ui.SetActive(true);
+                break;
+
+            case "slide":
+                _slide_unlocked = true;
+                if (_slide_ui != null)
+                    _slide_ui.SetActive(true);
                 break;
             default:
                 break;

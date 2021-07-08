@@ -95,7 +95,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (rewinding)
         {
-            clock.localTimeScale = Mathf.Max(-3f, clock.localTimeScale - 0.01f);
+            clock.localTimeScale = Mathf.Max(-30f, clock.localTimeScale - 0.05f);
         }
         else
         {
@@ -172,6 +172,15 @@ public class PlayerHealth : MonoBehaviour
             this.lifeBar.value = currentHealth;
         }
 
+        if (drop.increase_max_health)
+        {
+            maxHealth += drop.max_health_increase_amount;
+
+            RectTransform rt = lifeBar.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(maxHealth, 25);
+
+        }
+
         // Time
         /*
         if (drop.give_time)
@@ -192,6 +201,8 @@ public class PlayerHealth : MonoBehaviour
             player_controls.UnlockPowerup("accelerate_attack");
         if (drop.give_spin)
             player_controls.UnlockPowerup("spin_attack");
+        if (drop.give_slide)
+            player_controls.UnlockPowerup("slide");
 
 
         // Destroy drop
