@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingPlatform : NonStaticPlatform
+public class FallingPlatform : PhysicsPlatform
 {
     
     // Start is called before the first frame update
@@ -16,5 +17,10 @@ public class FallingPlatform : NonStaticPlatform
     {
         Vector2 targetVelocity = Vector3.down * moveSpeed * time.fixedDeltaTime ;
         body.velocity = Vector2.SmoothDamp(body.velocity, targetVelocity, ref velocity, movementSmoothing);
+    }
+
+    private void OnDisable()
+    {
+        Destroy(gameObject);
     }
 }

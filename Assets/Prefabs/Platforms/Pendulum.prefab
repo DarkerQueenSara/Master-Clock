@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 7276916437134290774}
   m_Father: {fileID: 3137215258313019242}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3137215256934725898
 SpriteRenderer:
@@ -117,7 +117,7 @@ Transform:
   m_Children:
   - {fileID: 2560476146039883770}
   m_Father: {fileID: 3137215258313019242}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3137215256937751931
 SpriteRenderer:
@@ -255,8 +255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64dc0f7d1cc382840acd2e231c38a175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  movementSmoothing: 0.05
 --- !u!1 &3137215258313019240
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,9 +266,11 @@ GameObject:
   - component: {fileID: 3137215258313019242}
   - component: {fileID: 3137215258313019243}
   - component: {fileID: 3137215258313019253}
-  m_Layer: 0
+  - component: {fileID: 7066182427659467846}
+  - component: {fileID: 2886319504461601264}
+  m_Layer: 15
   m_Name: Pendulum
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,9 +286,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2562836471070445117}
   - {fileID: 3137215256934725899}
   - {fileID: 3137215256937751928}
-  - {fileID: 2562836471070445117}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -357,8 +357,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swingSpeed: 20
   maxRotation: 80
+  angleDelta: 0
   startingLeft: 1
   ball: {fileID: 3137215256937751928}
+--- !u!50 &7066182427659467846
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137215258313019240}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 7
+--- !u!61 &2886319504461601264
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137215258313019240}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &6123273322910849572
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +418,7 @@ GameObject:
   - component: {fileID: 2562836471070445117}
   - component: {fileID: 2741498096943531041}
   m_Layer: 0
-  m_Name: ball_pendulum
+  m_Name: JointSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,7 +436,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 3137215258313019242}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2741498096943531041
 SpriteRenderer:
@@ -452,7 +500,7 @@ GameObject:
   - component: {fileID: 2560476146039883770}
   - component: {fileID: 8179623459325497420}
   m_Layer: 0
-  m_Name: ball_pendulum
+  m_Name: BallSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -534,7 +582,7 @@ GameObject:
   - component: {fileID: 7276916437134290774}
   - component: {fileID: 7516064308783307562}
   m_Layer: 0
-  m_Name: body_pendulum
+  m_Name: ArmSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

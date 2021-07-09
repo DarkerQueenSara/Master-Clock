@@ -13,6 +13,7 @@ public class Room : MonoBehaviour
 
     //private Collider2D _confiner;
     [SerializeField] private List<GameObject> _enemies;
+    [SerializeField] private List<GameObject> _platforms;
     private List<GameObject> _playerColliders;
     private bool _inRoom;
 
@@ -25,24 +26,41 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
         if (_playerColliders.Contains(other.gameObject) && !other.isTrigger)
         {
             CancelInvoke(nameof(LeaveRoom));
-            
+
             //nao meter isto numa variavel, quebra o jogo
             virtualCam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = GetComponent<PolygonCollider2D>();
             background.sprite = roomBg;
-            if (!_inRoom) foreach (var e in _enemies)
+            if (!_inRoom)
             {
-                e.SetActive(true);
+                foreach (var e in _enemies)
+                {
+                    e.SetActive(true);
+                }
             }
+
+            if (!_inRoom)
+            {
+                foreach (var p in _platforms)
+                {
+                    p.SetActive(true);
+                }
+            }
+
             _inRoom = true;
         }
-        
+
         if (!_enemies.Contains(other.gameObject) && enemyLayer.HasLayer(other.gameObject.layer))
         {
             _enemies.Add(other.gameObject);
+            if (!_inRoom) other.gameObject.SetActive(false);
+        }
+        
+        if (!_platforms.Contains(other.gameObject) && other.gameObject.CompareTag("Platform"))
+        {
+            _platforms.Add(other.gameObject);
             if (!_inRoom) other.gameObject.SetActive(false);
         }
     }
@@ -51,8 +69,7 @@ public class Room : MonoBehaviour
     {
         if (_playerColliders.Contains(other.gameObject) && !other.isTrigger)
         {
-            Invoke(nameof(LeaveRoom), 0.5f);
-            
+            Invoke(nameof(LeaveRoom), 0.1f);
         }
     }
 
@@ -61,7 +78,11 @@ public class Room : MonoBehaviour
         _inRoom = false;
         foreach (var e in _enemies)
         {
-            if (e!= null) e.SetActive(false);
+            if (e != null) e.SetActive(false);
+        }
+        foreach (var p in _platforms)
+        {
+            if (p != null) p.SetActive(false);
         }
     }
 }

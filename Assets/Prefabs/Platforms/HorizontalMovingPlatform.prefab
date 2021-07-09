@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2217418845637069776}
   - component: {fileID: 2853869444269189223}
   m_Layer: 0
-  m_Name: platform_present
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,10 +96,9 @@ GameObject:
   - component: {fileID: 4738549873349734767}
   - component: {fileID: 4738549873349734766}
   - component: {fileID: 4738549873349734672}
-  - component: {fileID: 7545740130459165960}
   m_Layer: 10
   m_Name: HorizontalMovingPlatform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,17 +257,3 @@ MonoBehaviour:
   moveSpeed: 3
   range: 5
   startLeft: 1
---- !u!114 &7545740130459165960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4738549873349734765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64dc0f7d1cc382840acd2e231c38a175, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0
-  movementSmoothing: 0.05

@@ -7,6 +7,7 @@ TagManager:
   - Clone
   - Enemy
   - RewindVolume
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - DamagingGround
   - Door
   - Powerup
-  - 
+  - Platform
   - 
   - 
   - 
