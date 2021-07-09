@@ -307,7 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAttacks:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   currentHealth: 1
   maxHealth: 1
   contactDamage: 0

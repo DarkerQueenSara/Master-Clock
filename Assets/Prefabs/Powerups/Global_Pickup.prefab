@@ -146,10 +146,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   give_health: 1
   health_amount: 100
+  increase_max_health: 0
+  max_health_increase_amount: 0
   give_time: 0
   time_amount: 0
+  give_slide: 0
   give_extended: 1
   give_clone: 1
   give_slowdown: 1
   give_spin: 1
   give_accelerate: 1
+  timeToReachTarget: 1.1
+  distanceUp: 0.3
+  rotationPerFrame: 0

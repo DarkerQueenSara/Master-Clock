@@ -26,13 +26,15 @@ public class Room : MonoBehaviour
         
         if (_playerColliders.Contains(other.gameObject) && !other.isTrigger)
         {
-            _inRoom = true;
+            CancelInvoke(nameof(LeaveRoom));
+            
             //nao meter isto numa variavel, quebra o jogo
             virtualCam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = GetComponent<PolygonCollider2D>();
-            foreach (var e in _enemies)
+            if (!_inRoom) foreach (var e in _enemies)
             {
                 e.SetActive(true);
             }
+            _inRoom = true;
         }
         
         if (!_enemies.Contains(other.gameObject) && enemyLayer.HasLayer(other.gameObject.layer))
@@ -46,11 +48,17 @@ public class Room : MonoBehaviour
     {
         if (_playerColliders.Contains(other.gameObject) && !other.isTrigger)
         {
-            _inRoom = false;
-            foreach (var e in _enemies)
-            {
-                e.SetActive(false);
-            }
+            Invoke(nameof(LeaveRoom), 0.5f);
+            
+        }
+    }
+
+    private void LeaveRoom()
+    {
+        _inRoom = false;
+        foreach (var e in _enemies)
+        {
+            e.SetActive(false);
         }
     }
 }

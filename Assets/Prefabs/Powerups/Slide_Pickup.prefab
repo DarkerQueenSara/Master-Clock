@@ -241,4 +241,4 @@ MonoBehaviour:
   give_accelerate: 0
   timeToReachTarget: 1.1
   distanceUp: 0.3
-  rotationPerFrame: 0.25
+  rotationPerFrame: 0
