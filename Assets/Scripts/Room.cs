@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public SpriteRenderer background;
     public GameObject virtualCam;
 
+    public Sprite roomBg;
     public LayerMask enemyLayer;
 
     //private Collider2D _confiner;
@@ -30,6 +32,7 @@ public class Room : MonoBehaviour
             
             //nao meter isto numa variavel, quebra o jogo
             virtualCam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = GetComponent<PolygonCollider2D>();
+            background.sprite = roomBg;
             if (!_inRoom) foreach (var e in _enemies)
             {
                 e.SetActive(true);
