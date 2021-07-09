@@ -17,6 +17,7 @@ public class FlyHoming : FlyState
         var currentPos = target.rb.position;
         var direction = (Vector2) PlayerEntity.instance.transform.position - currentPos;
        // transform.position += (Vector3) direction.normalized * target.flySpeed * Time.deltaTime;
+       if (CheckIfFlip()) Flip();
        target.rb.position += direction.normalized * target.flySpeed * Time.fixedDeltaTime;
     }
 
@@ -26,5 +27,13 @@ public class FlyHoming : FlyState
         {
             Destroy(gameObject);
         }
+    }
+    
+    private bool CheckIfFlip()
+    {
+        GameObject player = PlayerEntity.instance.gameObject;
+        if (target.facingRight && player.transform.position.x < transform.position.x) return true;
+        if (!target.facingRight && player.transform.position.x > transform.position.x) return true;
+        return false;
     }
 }

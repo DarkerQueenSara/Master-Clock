@@ -6,8 +6,11 @@ public class Fly : EnemyBase<Fly>
     public float flySpeed;
     [HideInInspector] public Rigidbody2D rb;
 
+    public bool facingRight;
+    
     public LayerMask playerMask;
 
+    
     protected override void Start()
     {
         base.Start();
