@@ -26,7 +26,7 @@ public class Pendulum : MonoBehaviour
         angleDelta = Mathf.Abs(Mathf.DeltaAngle(transform.rotation.eulerAngles.z, 0));
         if (angleDelta >= maxRotation)
         {
-            _swingingRight = !_swingingRight;
+            _swingingRight = ball.position.x < transform.position.x;
         }
 
         float angleDiff = swingSpeed * Time.deltaTime;
