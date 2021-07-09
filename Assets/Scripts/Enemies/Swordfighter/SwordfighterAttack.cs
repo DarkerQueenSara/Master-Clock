@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Extensions;
 using UnityEngine;
 
 public class SwordfighterAttack : SwordfighterState
@@ -13,11 +12,25 @@ public class SwordfighterAttack : SwordfighterState
     public override void StateStart()
     {
         base.StateStart();
-        //dar trigger da aniamção de ataque que devemos fazer como o player e 
-        //dar tie da hitbox à animação
+        
+        animator.SetTrigger("Attack");
         target.rb.velocity = Vector2.zero;
-        Debug.Log("Swordfighter attack");
-        target.capsuleSprite.color = Color.magenta;
+
+        // Detect enemies and doors in range of attack
+        Collider2D[] hits =
+            Physics2D.OverlapCircleAll(target.attackPoint.position, target.attackRange, target.playerMask);
+
+        // Damage enemies and unlock doors
+        foreach (Collider2D hit in hits)
+        {
+            //Debug.Log("Hit enemy!");
+            if (target.playerMask.HasLayer(hit.gameObject.layer)) // Hit enemy
+                PlayerEntity.instance.health.Hit(target.attackDamage);
+        }
+
+        //target.rb.velocity = Vector2.zero;
+        //Debug.Log("Swordfighter attack");
+        //target.capsuleSprite.color = Color.magenta;
         Invoke(nameof(GoToNewState), target.attackCooldown);
     }
 
@@ -25,12 +38,12 @@ public class SwordfighterAttack : SwordfighterState
     {
         if (CheckForPlayer())
         {
-            target.capsuleSprite.color = Color.yellow;
+            //target.capsuleSprite.color = Color.yellow;
             SetState(SwordfighterChase.Create(target));
         }
         else
         {
-            target.capsuleSprite.color = Color.yellow;
+            //target.capsuleSprite.color = Color.yellow;
             target.currentPatrolAnchor = transform.position;
             SetState(SwordfighterPatrol.Create(target));
         }

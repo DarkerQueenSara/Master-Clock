@@ -10,6 +10,11 @@ public class SwordfighterChase : SwordfighterState
         return state;
     }
 
+    public override void StateStart()
+    {
+        base.StateStart();
+    }
+
     // Update is called once per frame
     public override void StateUpdate()
     {

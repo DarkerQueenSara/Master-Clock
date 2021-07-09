@@ -261,7 +261,7 @@ public class PlayerHealth : MonoBehaviour
         Destroy(drop.gameObject, 0.0f);
     }
 
-    private void Hit(float damage)
+    public void Hit(float damage)
     {
         if (!IsAlive || clock.localTimeScale <= 0 || playerClock.localTimeScale <= 0) return;
         currentHealth = Mathf.Max(currentHealth - damage, 0.0f);

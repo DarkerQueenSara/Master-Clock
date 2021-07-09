@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class SwordfighterState : EnemyState<Swordfighter>
 {
-    protected SpriteRenderer _renderer;
-    protected Animator _animator;
+    protected Animator animator;
 
     protected static new T Create<T>(Swordfighter target) where T : SwordfighterState
     {
         var state = EnemyState<Swordfighter>.Create<T>(target);
-        state._renderer = target.GetComponent<SpriteRenderer>();
-        state._animator = target.GetComponent<Animator>();
+        state.animator = target.GetComponentInChildren<Animator>();
         return state;
     }
 

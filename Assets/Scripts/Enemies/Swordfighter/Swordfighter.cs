@@ -12,6 +12,9 @@ public class Swordfighter : EnemyBase<Swordfighter>
     public float movementSmoothing = 0.05f;
     public float holdPositionTime;
     public float horizontalRange;
+
+    public Transform attackPoint;
+    public int attackDamage;
     public float attackRange;
     public float attackCooldown;
     
@@ -23,7 +26,7 @@ public class Swordfighter : EnemyBase<Swordfighter>
     public Transform wallCheck;
     public Transform groundCheck;
 
-    [HideInInspector] public SpriteRenderer capsuleSprite;
+    //[HideInInspector] public SpriteRenderer capsuleSprite;
     
     public CapsuleCollider2D attackBox;
     [HideInInspector] public Rigidbody2D rb;
@@ -37,7 +40,7 @@ public class Swordfighter : EnemyBase<Swordfighter>
         if (!started)
         {
             rb = GetComponent<Rigidbody2D>();
-            capsuleSprite = GetComponent<SpriteRenderer>();
+            //capsuleSprite = GetComponent<SpriteRenderer>();
             state = SwordfighterIdle.Create(this);
             currentPatrolAnchor = transform.position;
             started = true;
