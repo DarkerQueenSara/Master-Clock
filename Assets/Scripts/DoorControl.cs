@@ -34,12 +34,12 @@ public class DoorControl : MonoBehaviour
 
         if (unlocked)
         {
-            this.GetComponent<SpriteRenderer>().color = Color.blue;
+            GetComponent<SpriteRenderer>().color = Color.blue;
         }
-        else
+       /* else
         {
             this.GetComponent<SpriteRenderer>().color = Color.red;
-        }
+        }*/
     }
 
     public void Update()
