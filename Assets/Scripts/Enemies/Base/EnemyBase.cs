@@ -17,7 +17,7 @@ public abstract class EnemyBase : MonoBehaviour
         get => currentHealth > 0;
     }
 
-    public LayerMask playerAttacks;
+    //public LayerMask playerAttacks;
 
     public int currentHealth;
     public int maxHealth;
@@ -74,11 +74,11 @@ public abstract class EnemyBase : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    /*private void OnCollisionEnter2D(Collision2D other)
     {
         if (!playerAttacks.HasLayer(other.gameObject.layer)) return;
         Hit(other.gameObject.GetComponent<PlayerAttack>().attackDamage);
-    }
+    }*/
     
 }
 

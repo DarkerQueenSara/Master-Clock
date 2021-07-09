@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 4231882953021815780}
   - component: {fileID: 4231882953021815779}
   - component: {fileID: 4231882953021815778}
-  - component: {fileID: 1500624035875400531}
   m_Layer: 10
   m_Name: Platform2
   m_TagString: Untagged
@@ -274,23 +273,6 @@ MonoBehaviour:
   angularSpeed: 2
   circleRad: -4
   fixedPoint: {fileID: 4231882953375015588}
---- !u!114 &1500624035875400531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4231882953021815776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6090da511f8374135a15dd8655adcd44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _recordingInterval: 0.5
-  _mode: 1
-  _globalClockKey: Enemy
-  _rewindable: 1
-  _recordingDuration: 300
 --- !u!1 &4231882953037654687
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +288,6 @@ GameObject:
   - component: {fileID: 4231882953037654675}
   - component: {fileID: 4231882953037654674}
   - component: {fileID: 4231882953037654673}
-  - component: {fileID: 8759817573622084016}
   m_Layer: 10
   m_Name: Platform1
   m_TagString: Untagged
@@ -483,23 +464,6 @@ MonoBehaviour:
   angularSpeed: 2
   circleRad: 4
   fixedPoint: {fileID: 4231882953375015588}
---- !u!114 &8759817573622084016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4231882953037654687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6090da511f8374135a15dd8655adcd44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _recordingInterval: 0.5
-  _mode: 1
-  _globalClockKey: Enemy
-  _rewindable: 1
-  _recordingDuration: 300
 --- !u!1 &4231882953375015587
 GameObject:
   m_ObjectHideFlags: 0

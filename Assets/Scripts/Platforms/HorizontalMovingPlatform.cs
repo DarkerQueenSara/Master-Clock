@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HorizontalMovingPlatform : NonStaticPlatform
+public class HorizontalMovingPlatform : MonoBehaviour
 {
+    public float moveSpeed;
     public float range;
 
     public bool startLeft;
@@ -15,7 +16,6 @@ public class HorizontalMovingPlatform : NonStaticPlatform
     // Start is called before the first frame update
     void Start()
     {
-        base.Start();
         _goingRight = startLeft;
         _startX = transform.position.x;
         Vector3 dir = startLeft ? Vector3.left : Vector3.right;
@@ -23,7 +23,7 @@ public class HorizontalMovingPlatform : NonStaticPlatform
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         float currentX = transform.position.x;
         if ((currentX >= _startX + range && _goingRight) || (currentX <= _startX - range && !_goingRight))
@@ -32,6 +32,7 @@ public class HorizontalMovingPlatform : NonStaticPlatform
         }
 
         Vector3 dir = _goingRight ? Vector3.right : Vector3.left;
-        Vector2 targetVelocity = dir * moveSpeed * time.fixedDeltaTime ;
-        body.velocity = Vector2.SmoothDamp(body.velocity, targetVelocity, ref velocity, movementSmoothing);    }
+        transform.position += dir * Time.deltaTime * moveSpeed;
+    }
+
 }
