@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4016042071903312944}
   - component: {fileID: 4016042071903312946}
   - component: {fileID: 4016042071903312947}
-  - component: {fileID: -3062198817034651602}
   m_Layer: 8
   m_Name: Fly
   m_TagString: Enemy
@@ -98,9 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897853681604cb649af274acc2958caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAttacks:
-    serializedVersion: 2
-    m_Bits: 128
   currentHealth: 1
   maxHealth: 1
   contactDamage: 0
@@ -110,7 +106,7 @@ MonoBehaviour:
   pickUps:
   - {fileID: 4426976451143395763, guid: 431b94e61417a3240a20a4d95d2c76f9, type: 3}
   explosionPrefab: {fileID: 0}
-  flySpeed: 5
+  flySpeed: 2
   rb: {fileID: 0}
   playerMask:
     serializedVersion: 2
@@ -135,7 +131,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!58 &4016042071903312947
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -152,20 +148,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-3062198817034651602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4016042071903312951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6090da511f8374135a15dd8655adcd44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _recordingInterval: 0.5
-  _mode: 1
-  _globalClockKey: Enemy
-  _rewindable: 1
-  _recordingDuration: 300

@@ -218,7 +218,6 @@ GameObject:
   - component: {fileID: 7952640560461202502}
   - component: {fileID: 121103569}
   - component: {fileID: 121103568}
-  - component: {fileID: -3537573635171152609}
   m_Layer: 8
   m_Name: Hive
   m_TagString: Enemy
@@ -305,9 +304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b3aefca2644444586d3525906fd6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAttacks:
-    serializedVersion: 2
-    m_Bits: 128
   currentHealth: 1
   maxHealth: 1
   contactDamage: 0
@@ -317,7 +313,7 @@ MonoBehaviour:
   pickUps:
   - {fileID: 4426976451143395763, guid: 431b94e61417a3240a20a4d95d2c76f9, type: 3}
   explosionPrefab: {fileID: 0}
-  cooldown: 5
+  cooldown: 7.5
   spawnPoints:
   - {fileID: 7952640558908343392}
   - {fileID: 7952640558933607375}
@@ -370,20 +366,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!114 &-3537573635171152609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7952640560461202523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6090da511f8374135a15dd8655adcd44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _recordingInterval: 0.5
-  _mode: 1
-  _globalClockKey: Enemy
-  _rewindable: 0
-  _recordingDuration: 300

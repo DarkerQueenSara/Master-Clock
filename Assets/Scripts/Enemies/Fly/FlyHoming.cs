@@ -16,7 +16,8 @@ public class FlyHoming : FlyState
     {
         var currentPos = target.rb.position;
         var direction = (Vector2) PlayerEntity.instance.transform.position - currentPos;
-        transform.position += (Vector3) direction.normalized * target.flySpeed * Time.deltaTime;
+       // transform.position += (Vector3) direction.normalized * target.flySpeed * Time.deltaTime;
+       target.rb.position += direction.normalized * target.flySpeed * Time.fixedDeltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

@@ -187,7 +187,6 @@ GameObject:
   - component: {fileID: 223517680321716132}
   - component: {fileID: 223517680321716135}
   - component: {fileID: 223517680321716134}
-  - component: {fileID: -5859092003977342022}
   m_Layer: 8
   m_Name: Gunner
   m_TagString: Enemy
@@ -276,9 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac1795b7a2bd8943afe9b14d12b1646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAttacks:
-    serializedVersion: 2
-    m_Bits: 128
   currentHealth: 1
   maxHealth: 1
   contactDamage: 0
@@ -378,23 +374,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.2}
   m_EdgeRadius: 0
---- !u!114 &-5859092003977342022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223517680321716130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6090da511f8374135a15dd8655adcd44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _recordingInterval: 0.5
-  _mode: 1
-  _globalClockKey: Enemy
-  _rewindable: 1
-  _recordingDuration: 300
 --- !u!1 &223517680525415799
 GameObject:
   m_ObjectHideFlags: 0
