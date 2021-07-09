@@ -539,6 +539,7 @@ MonoBehaviour:
   timeText: {fileID: 0}
   clock: {fileID: 0}
   playerClock: {fileID: 0}
+  numberOfResets: 0
 --- !u!114 &743481762573770564
 MonoBehaviour:
   m_ObjectHideFlags: 0

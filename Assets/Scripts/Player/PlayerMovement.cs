@@ -82,10 +82,8 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        move *= runSpeed * Time.deltaTime;
-
-
-        /* SLIDE */
+        /* SLIDE OLD */
+        /*
         if (slide && _body.velocity != Vector2.zero) // If clicked to slide and we have some speed (we can't slide if we're standing still)
         {
             if (_grounded)
@@ -107,11 +105,40 @@ public class PlayerMovement : MonoBehaviour
 
             standCollider.enabled = true;
         }
+        */
+
+        /* SLIDE NEW */
+        if (slide && jump && _grounded && _time.timeScale > 0)
+        {
+            // Add velocity in the right direction
+            move = _facingRight ? 1 : -1;
+            move *= runSpeed * Time.deltaTime;
+            Vector3 targetVelocity = new Vector2(move * 10f, _body.velocity.y);
+            _body.velocity = Vector2.SmoothDamp(_body.velocity, targetVelocity, ref _velocity, movementSmoothing);
+
+            _sliding = true;
+
+            // Swap Colliders
+            slideCollider.enabled = true;
+
+            standCollider.enabled = false;
+        }
+        else if (_sliding && !Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround))
+        {
+            _sliding = false;
+
+            // Swap Colliders
+            slideCollider.enabled = false;
+
+            standCollider.enabled = true;
+        }
 
         _animator.SetBool("Sliding", _sliding);
 
 
         /* MOVE */
+        move *= runSpeed * Time.deltaTime;
+
         if (!_sliding && _time.timeScale > 0) // Move only when time is going forward and not sliding
         {
             // Set animation to move
@@ -157,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             _animator.SetFloat("Verticle_Speed", 0.0f);
-        }        
+        }
     }
 
     public void StopPlayer()
