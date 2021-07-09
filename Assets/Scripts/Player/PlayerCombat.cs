@@ -118,7 +118,6 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
-        // TODO: Play attack animation
         _animator.SetTrigger("SlashAttack");
 
         // Detect enemies and doors in range of attack
@@ -169,6 +168,7 @@ public class PlayerCombat : MonoBehaviour
 
         // PREVENT PLAYER FROM MOVING WHEN USING THIS ATTACK UNTIL IT IS DONE
         _playerMovement.moveBlocked = true;
+        _animator.SetBool("MovementBlocked", true);
         _playerMovement.StopPlayer();
 
         timeUntilNextAttack = extendAttackDuration;
@@ -217,9 +217,7 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
-        // TODO: Play attack animation
-        Debug.Log("Spinnin!");
-        //_animator.SetTrigger("SpinAttack");
+        _animator.SetTrigger("SpinAttack");
 
 
         // Detect enemies and doors in range of attack

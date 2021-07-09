@@ -55,7 +55,6 @@ MonoBehaviour:
   damage: 0
   _playerMovement: {fileID: 0}
   playerRewinding: 0
-  sprite: {fileID: 4233971961923103632}
 --- !u!1 &4233971961923103637
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +148,7 @@ Animator:
   m_GameObject: {fileID: 4233971961923103637}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ee8cf63b9ff0f8149bc3d05bbdb63e58, type: 2}
+  m_Controller: {fileID: 9100000, guid: ef398d3b003470f409894c538bb0f4be, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

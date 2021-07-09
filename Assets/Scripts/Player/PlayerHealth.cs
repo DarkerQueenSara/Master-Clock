@@ -41,12 +41,19 @@ public class PlayerHealth : MonoBehaviour
 
     private bool rewinding;
 
+    private PlayerMovement _playerMovement;
+    private Animator _animator;
+
+    [HideInInspector] public int numberOfResets = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         // Get the global clock
         clock = Timekeeper.instance.Clock("Global");
         playerClock = Timekeeper.instance.Clock("Player");
+        _animator = transform.GetChild(0).GetComponent<Animator>();
+        _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
 
         ResetCycle();
     }
@@ -75,8 +82,12 @@ public class PlayerHealth : MonoBehaviour
                 if (!rewinding)
                 {
                     playerClock.localTimeScale = 1.0f; // In case player was rewinding or something reset their local time
-                    GameObject cloneInstance = GameObject.FindGameObjectWithTag("Clone");
+                    GameObject cloneInstance = GameObject.FindGameObjectWithTag("Clone"); // Destroy all clones that might be in the scene
                     Destroy(cloneInstance, 0.0f);
+
+                    _playerMovement.moveBlocked = true;
+                    _animator.SetBool("MovementBlocked", true);
+                    _playerMovement.StopPlayer();
 
                     clock.localTimeScale = 0f;
                     rewinding = true;
@@ -111,6 +122,18 @@ public class PlayerHealth : MonoBehaviour
 
             this.timerBar.maxValue = maxTime;
             this.timerBar.value = maxTime;
+
+            _playerMovement.moveBlocked = false;
+
+            // Re-enable all dead enemies
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); 
+            foreach(GameObject enemy in enemies)
+            {
+                enemy.SetActive(true);
+            }
+
+            // Increment number of resets
+            numberOfResets++;
         }
 
     }

@@ -74,8 +74,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(float move, bool jump, bool slide)
     {
+        Debug.Log(moveBlocked);
+        _animator.SetBool("MovementBlocked", moveBlocked);
+
         if (moveBlocked)
+        {
             return;
+        }
 
         move *= runSpeed * Time.deltaTime;
 
@@ -145,15 +150,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!_grounded && !_sliding)
+        if (!_grounded && !_sliding && !moveBlocked)
         {
             _animator.SetFloat("Verticle_Speed", _body.velocity.y);
         }
         else
         {
             _animator.SetFloat("Verticle_Speed", 0.0f);
-        }
-        
+        }        
     }
 
     public void StopPlayer()
