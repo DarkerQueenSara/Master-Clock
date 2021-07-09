@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 2886135977655913206}
   - component: {fileID: 2886135977655913204}
   - component: {fileID: 3044691117938586894}
+  - component: {fileID: 5615654615236471240}
   m_Layer: 6
   m_Name: EnemyClone
   m_TagString: Enemy
@@ -237,6 +238,46 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.08774, y: 1.7348223}
   m_EdgeRadius: 0
+--- !u!114 &5615654615236471240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2886135977655913208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d53bafca4a886945a17b50f017ac812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slashAttackDamage: 0
+  slashAttackPoint: {fileID: 0}
+  slashAttackRange: 0
+  slashAttackDuration: 0
+  spinAttackDamage: 0
+  spinAttackPoint: {fileID: 0}
+  spinAttackRange: {x: 0, y: 0}
+  spinAttackDuration: 0
+  extendAttackDamage: 0
+  extendAttackProjectile: {fileID: 0}
+  extendAttackPoint: {fileID: 0}
+  extendAttackRange: 0
+  extendAttackLength: 0
+  extendAttackDuration: 0
+  cloneAttackDamage: 0
+  clone: {fileID: 0}
+  cloneAttackPoint: {fileID: 0}
+  cloneAttackRange: 0
+  cloneAttackDuration: 0
+  slowdownAttackDamage: 0
+  slowdownAttackProjectile: {fileID: 0}
+  slowdownAttackPoint: {fileID: 0}
+  slowdownAttackRadius: 0
+  slowdownAttackSlowdownAmount: 0
+  slowdownThrowRange: 0
+  slowdownAttackDuration: 0
+  slowdownForcefieldDuration: 0
+  slowdownForcefield: {fileID: 0}
 --- !u!1 &2886135978024974389
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +454,22 @@ PrefabInstance:
     - target: {fileID: 1622611949846470174, guid: 9266931a03f3a9a489149001ef931c0b, type: 3}
       propertyPath: m_Name
       value: Sprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 2464122501611708317, guid: 9266931a03f3a9a489149001ef931c0b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4129194b724e0a047a3a7aed1dc8d629, type: 2}
+    - target: {fileID: 3254564416061632307, guid: 9266931a03f3a9a489149001ef931c0b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 3254564416061632307, guid: 9266931a03f3a9a489149001ef931c0b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.21039516
+      objectReference: {fileID: 0}
+    - target: {fileID: 3254564416061632307, guid: 9266931a03f3a9a489149001ef931c0b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5050428
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9266931a03f3a9a489149001ef931c0b, type: 3}

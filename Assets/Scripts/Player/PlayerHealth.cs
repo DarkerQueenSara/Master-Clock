@@ -49,6 +49,8 @@ public class PlayerHealth : MonoBehaviour
 
     private Volume rewindVolume;
 
+    private Vector3 initialPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +65,7 @@ public class PlayerHealth : MonoBehaviour
         {
             rewindVolume = rewindVolumeObj.GetComponent<Volume>();
         }
+        initialPosition = gameObject.transform.position;
 
         ResetCycle();
     }
@@ -106,7 +109,7 @@ public class PlayerHealth : MonoBehaviour
                         rewindVolume.enabled = true;
                     }
 
-                    gameObject.GetComponentInChildren<Collider2D>().enabled = false;
+                    //gameObject.GetComponentInChildren<Collider2D>().enabled = false;
                 }
             }
             else
@@ -123,6 +126,7 @@ public class PlayerHealth : MonoBehaviour
         if (rewinding)
         {
             clock.localTimeScale = Mathf.Max(-30f, clock.localTimeScale - 0.025f);
+            //clock.localTimeScale = -30.0f;
         }
         else
         {
@@ -156,7 +160,9 @@ public class PlayerHealth : MonoBehaviour
                 rewindVolume.enabled = false;
             }
 
-            gameObject.GetComponentInChildren<Collider2D>().enabled = true;
+            gameObject.transform.position = initialPosition;
+
+            //gameObject.GetComponentInChildren<Collider2D>().enabled = true;
         }
 
     }
