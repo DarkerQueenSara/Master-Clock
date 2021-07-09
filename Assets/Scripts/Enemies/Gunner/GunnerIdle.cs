@@ -17,6 +17,9 @@ public class GunnerIdle : GunnerState
         base.StateStart();
         _cooldownLeft = target.holdPositionTime;
         target.rb.velocity = Vector2.zero;
+        animator.SetBool("Stopped", true);
+        animator.SetBool("Patrolling", false);
+        animator.SetBool("Chasing", false);
     }
 
     public override void StateUpdate()

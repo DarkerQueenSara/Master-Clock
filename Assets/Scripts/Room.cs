@@ -37,7 +37,7 @@ public class Room : MonoBehaviour
             {
                 foreach (var e in _enemies)
                 {
-                    e.SetActive(true);
+                    if (e!= null) e.SetActive(true);
                 }
             }
 
@@ -45,7 +45,7 @@ public class Room : MonoBehaviour
             {
                 foreach (var p in _platforms)
                 {
-                    p.SetActive(true);
+                    if (p!= null) p.SetActive(true);
                 }
             }
 

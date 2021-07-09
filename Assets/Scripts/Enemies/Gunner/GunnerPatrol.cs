@@ -18,6 +18,9 @@ public class GunnerPatrol: GunnerState
         _patrolLeftPoint = (Vector2) target.currentPatrolAnchor + Vector2.left * target.horizontalRange;
         _patrolRightPoint = (Vector2) target.currentPatrolAnchor + Vector2.right * target.horizontalRange;
         Flip();
+        animator.SetBool("Stopped", false);
+        animator.SetBool("Patrolling", true);
+        animator.SetBool("Chasing", false);
     }
 
     public override void StateFixedUpdate()

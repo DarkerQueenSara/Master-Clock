@@ -6,14 +6,12 @@ using UnityEngine;
 
 public class GunnerState : EnemyState<Gunner>
 {
-    protected SpriteRenderer _renderer;
-    protected Animator _animator;
+    protected Animator animator;
 
     protected static new T Create<T>(Gunner target) where T : GunnerState
     {
         var state = EnemyState<Gunner>.Create<T>(target);
-        state._renderer = target.GetComponent<SpriteRenderer>();
-        state._animator = target.GetComponent<Animator>();
+        state.animator = target.GetComponentInChildren<Animator>();
         return state;
     }
 

@@ -19,14 +19,18 @@ public class GunnerAttack : GunnerState
         _bulletCooldown = target.fireRate;
         target.rb.velocity = Vector2.zero;
         target.capsuleSprite.color = Color.magenta;
+        animator.SetBool("Stopped", true);
+        animator.SetBool("Patrolling", false);
+        animator.SetBool("Chasing", false);
     }
 
     public override void StateUpdate()
     {
         Vector3 playerPos = PlayerEntity.instance.gameObject.transform.position;
         Vector3 ourPos = target.bulletSpawn.transform.position;
-        Vector3 direction = (playerPos - ourPos);
-
+        //Vector3 direction = (playerPos - ourPos);
+        Vector3 direction = (ourPos - playerPos);
+        
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         target.armJoint.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
 
@@ -35,7 +39,8 @@ public class GunnerAttack : GunnerState
         {
             var bullet = Instantiate(target.bulletPrefab, target.bulletSpawn.position, Quaternion.identity)
                 .GetComponent<Bullet>();
-            bullet.Init(direction.normalized);
+            Vector3 bulletDirection = direction.normalized * -1;
+            bullet.Init(bulletDirection);
             _shotsFired++;
             _bulletCooldown = target.fireRate;
         }

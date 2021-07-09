@@ -12,6 +12,14 @@ public class GunnerChase : GunnerState
         return state;
     }
 
+    public override void StateStart()
+    {
+        base.StateStart();
+        animator.SetBool("Stopped", false);
+        animator.SetBool("Patrolling", false);
+        animator.SetBool("Chasing", true);
+    }
+    
     // Update is called once per frame
     public override void StateUpdate()
     {
