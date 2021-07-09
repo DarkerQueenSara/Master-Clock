@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using Chronos;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -132,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
             standCollider.enabled = true;
         }
 
-        Debug.Log(_sliding);
         _animator.SetBool("Sliding", _sliding);
 
 

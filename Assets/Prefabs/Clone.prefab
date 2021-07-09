@@ -55,6 +55,8 @@ MonoBehaviour:
   damage: 0
   _playerMovement: {fileID: 0}
   playerRewinding: 0
+  _playerHealth: {fileID: 0}
+  explosionParticles: {fileID: 3405980072381551451, guid: 5ec7f073516097a429e07aba6cbf1b7a, type: 3}
 --- !u!1 &4233971961923103637
 GameObject:
   m_ObjectHideFlags: 0

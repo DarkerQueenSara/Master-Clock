@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Clone
   - Enemy
+  - RewindVolume
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,7 @@ using Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 using Chronos;
+using UnityEngine.Rendering;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
     [HideInInspector] public float currentTime;
 
     // UI
-    [SerializeField] private Slider lifeBar;
+    [SerializeField] public Slider lifeBar;
 
     [SerializeField] private Slider timerBar;
     [SerializeField] private Text timeText;
@@ -46,6 +47,8 @@ public class PlayerHealth : MonoBehaviour
 
     [HideInInspector] public int numberOfResets = 0;
 
+    private Volume rewindVolume;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +57,12 @@ public class PlayerHealth : MonoBehaviour
         playerClock = Timekeeper.instance.Clock("Player");
         _animator = transform.GetChild(0).GetComponent<Animator>();
         _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
+
+        GameObject rewindVolumeObj = GameObject.FindGameObjectWithTag("RewindVolume");
+        if(rewindVolumeObj != null)
+        {
+            rewindVolume = rewindVolumeObj.GetComponent<Volume>();
+        }
 
         ResetCycle();
     }
@@ -91,6 +100,11 @@ public class PlayerHealth : MonoBehaviour
 
                     clock.localTimeScale = 0f;
                     rewinding = true;
+
+                    if(rewindVolume != null)
+                    {
+                        rewindVolume.enabled = true;
+                    }
                 }
             }
             else
@@ -106,7 +120,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (rewinding)
         {
-            clock.localTimeScale = Mathf.Max(-30f, clock.localTimeScale - 0.05f);
+            clock.localTimeScale = Mathf.Max(-30f, clock.localTimeScale - 0.025f);
         }
         else
         {
@@ -134,6 +148,11 @@ public class PlayerHealth : MonoBehaviour
 
             // Increment number of resets
             numberOfResets++;
+
+            if (rewindVolume != null)
+            {
+                rewindVolume.enabled = false;
+            }
         }
 
     }

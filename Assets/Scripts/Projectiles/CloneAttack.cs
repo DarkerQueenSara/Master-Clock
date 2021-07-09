@@ -14,11 +14,16 @@ public class CloneAttack : MonoBehaviour
     [HideInInspector] public int damage;
     [HideInInspector] public PlayerMovement _playerMovement;
     [HideInInspector] public bool playerRewinding;
+    private float lifeBeforeRewind;
+    [HideInInspector] public PlayerHealth _playerHealth;
+
+    public ParticleSystem explosionParticles;
 
 
     public void RigToExplode()
     {
         Invoke("DetonateClone", this.duration);
+        lifeBeforeRewind = _playerHealth.currentHealth;
         //Destroy(this.gameObject, this.duration);
     }
 
@@ -31,6 +36,9 @@ public class CloneAttack : MonoBehaviour
 
         // Play Explosion Animation
         Debug.Log("KABOOM");
+        ParticleSystem explosion = Instantiate(explosionParticles, transform.position, transform.rotation);
+        Destroy(explosion, 2.5f); // Note the particle itself should have a script to callback when it ends to destroy but time
+        explosion.Play();
 
         // Detect enemies and doors in range of attack
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, range, hitLayers);
@@ -52,13 +60,17 @@ public class CloneAttack : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    private void OnDestroy()
+    {
+        if (playerRewinding)
+        { // Rewind player HP
+            _playerHealth.currentHealth = Mathf.Max(_playerHealth.currentHealth, lifeBeforeRewind);
+            _playerHealth.lifeBar.value = _playerHealth.currentHealth;
+        }
+    }
+
     public void SetSprite(Sprite sprite)
     {
         this.gameObject.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
-    }
-
-    private void OnDestroy()
-    {
-        
     }
 }

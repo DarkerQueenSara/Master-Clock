@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -55,6 +56,7 @@ public class PlayerCombat : MonoBehaviour
     public float cloneAttackDuration;
     private float currentTime = 0.0f;
     private float timeUntilNextCloneAttack = 0.0f;
+    private PlayerHealth _playerHealth;
 
     [Header("Slowdown")]
     public int slowdownAttackDamage;
@@ -72,15 +74,24 @@ public class PlayerCombat : MonoBehaviour
     public float globalAcceleration;
     public float enemyAcceleration;
 
+    private Volume rewindVolume;
+
     private void Start()
     {
         _animator = transform.GetChild(0).GetComponent<Animator>();
         _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
+        _playerHealth = this.gameObject.GetComponent<PlayerHealth>();
         _time = GetComponent<Timeline>();
 
         playerClock = Timekeeper.instance.Clock("Player");
         globalClock = Timekeeper.instance.Clock("Global");
         enemyClock = Timekeeper.instance.Clock("Enemy");
+
+        GameObject rewindVolumeObj = GameObject.FindGameObjectWithTag("RewindVolume");
+        if (rewindVolumeObj != null)
+        {
+            rewindVolume = rewindVolumeObj.GetComponent<Volume>();
+        }
     }
 
     public void Update()
@@ -108,6 +119,14 @@ public class PlayerCombat : MonoBehaviour
         else
         { // Count time since clone was spawned
             currentTime += playerClock.deltaTime;
+
+            if(globalClock.localTimeScale > 0.0f)
+            {
+                if (rewindVolume != null)
+                {
+                    rewindVolume.enabled = false;
+                }
+            }
         }
     }
 
@@ -277,6 +296,11 @@ public class PlayerCombat : MonoBehaviour
             playerClock.localTimeScale = -1.0f;
             cloneInstance.GetComponent<CloneAttack>().playerRewinding = true;
 
+            if (rewindVolume != null)
+            {
+                rewindVolume.enabled = true;
+            }
+
             return;
         }
         else if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0 || timeUntilNextCloneAttack > 0.0f)
@@ -299,6 +323,7 @@ public class PlayerCombat : MonoBehaviour
         cloneScript.range = cloneAttackRange;
         cloneScript.duration = cloneAttackDuration;
         cloneScript._playerMovement = _playerMovement;
+        cloneScript._playerHealth = _playerHealth;
         //cloneScript.SetSprite(gameObject.GetComponentInChildren<SpriteRenderer>().sprite);
 
         cloneScript.RigToExplode();

@@ -579,7 +579,7 @@ MonoBehaviour:
   jumpForce: 1400
   runSpeed: 50
   movementSmoothing: 0.05
-  groundedRadius: 0.3325
+  groundedRadius: 0.32
   ceilingRadius: 0.2
   standCollider: {fileID: 743481762921728092}
   slideCollider: {fileID: 596471719}
@@ -618,12 +618,12 @@ MonoBehaviour:
   slashAttackDuration: 0.5
   spinAttackDamage: 1
   spinAttackPoint: {fileID: 8325152246396352169}
-  spinAttackRange: {x: 3, y: 2}
+  spinAttackRange: {x: 1.79, y: 2}
   spinAttackDuration: 1
   extendAttackDamage: 1
   extendAttackProjectile: {fileID: 5123637968733234474, guid: 88a442c97851d54468721758615777d4, type: 3}
   extendAttackPoint: {fileID: 1366899491636179502}
-  extendAttackRange: 0.3
+  extendAttackRange: 0.2
   extendAttackLength: 5
   extendAttackDuration: 1.5
   cloneAttackDamage: 1
@@ -631,14 +631,14 @@ MonoBehaviour:
   cloneAttackPoint: {fileID: 1286338252}
   cloneAttackRange: 3
   cloneAttackDuration: 2
-  slowdownAttackDamage: 1
+  slowdownAttackDamage: 2
   slowdownAttackProjectile: {fileID: 5123637968733234474, guid: b1134cb1510b23e4582b3aac9aa12835, type: 3}
   slowdownAttackPoint: {fileID: 1827694559}
   slowdownAttackRadius: 5
   slowdownAttackSlowdownAmount: 0
   slowdownThrowRange: 5
   slowdownAttackDuration: 3
-  slowdownForcefieldDuration: 10
+  slowdownForcefieldDuration: 3
   slowdownForcefield: {fileID: 5123637968733234474, guid: b4c3febf53a71264a99f4ec174f44cfa, type: 3}
   playerAcceleration: 1.8
   globalAcceleration: 1.5
