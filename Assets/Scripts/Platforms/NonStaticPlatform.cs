@@ -30,7 +30,7 @@ public class NonStaticPlatform : MonoBehaviour
         _playerRb = _player.GetComponent<Rigidbody2D>();
         _defaultMoveSpeed = moveSpeed;
         time = GetComponent<Timeline>();
-        body = time.rigidbody2D;
+        if (time) body = time.rigidbody2D;
     }
 
     public void OnTriggerEnter2D(Collider2D other)

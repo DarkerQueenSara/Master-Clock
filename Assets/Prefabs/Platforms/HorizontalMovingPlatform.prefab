@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 4738549873349734767}
   - component: {fileID: 4738549873349734766}
   - component: {fileID: 4738549873349734672}
-  - component: {fileID: 1491611984963808545}
   - component: {fileID: 7545740130459165960}
   m_Layer: 10
   m_Name: HorizontalMovingPlatform
@@ -259,23 +258,6 @@ MonoBehaviour:
   moveSpeed: 3
   range: 5
   startLeft: 1
---- !u!114 &1491611984963808545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4738549873349734765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6090da511f8374135a15dd8655adcd44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _recordingInterval: 0.5
-  _mode: 1
-  _globalClockKey: Enemy
-  _rewindable: 1
-  _recordingDuration: 300
 --- !u!114 &7545740130459165960
 MonoBehaviour:
   m_ObjectHideFlags: 0

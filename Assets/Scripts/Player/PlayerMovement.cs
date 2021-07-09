@@ -132,7 +132,6 @@ public class PlayerMovement : MonoBehaviour
             standCollider.enabled = true;
         }
 
-        Debug.Log(_sliding);
         _animator.SetBool("Sliding", _sliding);
 
 
