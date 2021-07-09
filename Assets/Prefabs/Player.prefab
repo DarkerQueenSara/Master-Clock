@@ -579,7 +579,7 @@ MonoBehaviour:
   jumpForce: 1400
   runSpeed: 50
   movementSmoothing: 0.05
-  groundedRadius: 0.32
+  groundedRadius: 0.3
   ceilingRadius: 0.2
   standCollider: {fileID: 743481762921728092}
   slideCollider: {fileID: 596471719}

@@ -105,6 +105,8 @@ public class PlayerHealth : MonoBehaviour
                     {
                         rewindVolume.enabled = true;
                     }
+
+                    gameObject.GetComponentInChildren<Collider2D>().enabled = false;
                 }
             }
             else
@@ -153,6 +155,8 @@ public class PlayerHealth : MonoBehaviour
             {
                 rewindVolume.enabled = false;
             }
+
+            gameObject.GetComponentInChildren<Collider2D>().enabled = true;
         }
 
     }
