@@ -4,6 +4,8 @@ public class Pendulum : MonoBehaviour
 {
     public float swingSpeed;
     public float maxRotation;
+    
+    public float angleDelta;
 
     public bool startingLeft;
 
@@ -21,7 +23,8 @@ public class Pendulum : MonoBehaviour
 
     public void Update()
     {
-        if (Mathf.Abs(Mathf.DeltaAngle(transform.rotation.eulerAngles.z, 0)) >= maxRotation)
+        angleDelta = Mathf.Abs(Mathf.DeltaAngle(transform.rotation.eulerAngles.z, 0));
+        if (angleDelta >= maxRotation)
         {
             _swingingRight = !_swingingRight;
         }
