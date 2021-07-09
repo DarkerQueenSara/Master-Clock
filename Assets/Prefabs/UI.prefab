@@ -1895,8 +1895,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 7.5}
-  m_SizeDelta: {x: 25, y: 15}
+  m_AnchoredPosition: {x: 0, y: 3.2673}
+  m_SizeDelta: {x: 25, y: 23.4654}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6845873471557502836
 CanvasRenderer:
@@ -1928,7 +1928,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 10
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -1939,7 +1939,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: S
+  m_Text: "S + \nSPC"
 --- !u!1 &7029966650872072826
 GameObject:
   m_ObjectHideFlags: 0

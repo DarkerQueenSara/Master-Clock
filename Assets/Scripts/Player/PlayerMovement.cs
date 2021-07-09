@@ -74,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(float move, bool jump, bool slide)
     {
-        Debug.Log(moveBlocked);
         _animator.SetBool("MovementBlocked", moveBlocked);
 
         if (moveBlocked)
@@ -123,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
             standCollider.enabled = false;
         }
-        else if (_sliding && !Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround))
+        else if (!slide && _sliding && !Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround))
         {
             _sliding = false;
 
@@ -133,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
             standCollider.enabled = true;
         }
 
+        Debug.Log(_sliding);
         _animator.SetBool("Sliding", _sliding);
 
 
