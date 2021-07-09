@@ -58,7 +58,7 @@ public class Room : MonoBehaviour
         _inRoom = false;
         foreach (var e in _enemies)
         {
-            e.SetActive(false);
+            if (e!= null) e.SetActive(false);
         }
     }
 }

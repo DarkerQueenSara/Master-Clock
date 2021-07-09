@@ -210,7 +210,8 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
   randomDropChance: 0.5
-  pickUps: []
+  pickUps:
+  - {fileID: 4426976451143395763, guid: 431b94e61417a3240a20a4d95d2c76f9, type: 3}
   explosionPrefab: {fileID: 0}
   diveRange: 1
   diveSpeed: 3

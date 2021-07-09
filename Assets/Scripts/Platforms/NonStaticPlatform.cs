@@ -19,7 +19,9 @@ public class NonStaticPlatform : MonoBehaviour
     protected Timeline time;
     protected RigidbodyTimeline2D body;
     protected Vector2 velocity;
-
+    
+    private bool _onPlat;
+    
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -35,8 +37,7 @@ public class NonStaticPlatform : MonoBehaviour
     {
         if (_playerColliders.Contains(other.gameObject))
         {
-            _player.transform.parent = transform;
-            //moveSpeed = _defaultMoveSpeed + (_defaultMoveSpeed * _playerRb.mass);
+            _player.transform.SetParent(gameObject.transform,true);
         }   
     }
 
@@ -45,7 +46,7 @@ public class NonStaticPlatform : MonoBehaviour
         if (_playerColliders.Contains(other.gameObject))
         {
             _player.transform.parent = null;
-            moveSpeed = _defaultMoveSpeed;
         } 
     }
+    
 }
