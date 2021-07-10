@@ -199,7 +199,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void ExtendAttack()
     {
-        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0)
+        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0 || _playerMovement._sliding)
         {
             return;
         }
@@ -234,7 +234,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void slowdownAttack()
     {
-        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0)
+        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0 || _playerMovement._sliding)
         {
             return;
         }
@@ -271,7 +271,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void SpinAttack()
     {
-        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0)
+        if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0 || _playerMovement._sliding)
         {
             return;
         }
@@ -337,7 +337,7 @@ public class PlayerCombat : MonoBehaviour
 
             return;
         }
-        else if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0 || timeUntilNextCloneAttack > 0.0f)
+        else if (timeUntilNextAttack > 0.0f || _time.timeScale <= 0 || timeUntilNextCloneAttack > 0.0f || _playerMovement._sliding)
         {
             return;
         }

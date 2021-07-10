@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool _facingRight = true;
 
     [HideInInspector] public bool _grounded = true;
-    private bool _sliding = false;
+    [HideInInspector] public bool _sliding = false;
     private bool _crouching = false;
     [HideInInspector] public bool _spinAttacking = false;
 

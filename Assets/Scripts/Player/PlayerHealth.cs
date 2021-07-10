@@ -63,7 +63,8 @@ public class PlayerHealth : MonoBehaviour
         {
             rewindVolume = rewindVolumeObj.GetComponent<Volume>();
         }
-        initialPosition = gameObject.transform.position;
+        //initialPosition = gameObject.transform.position;
+        initialPosition = new Vector3(0.0f, 2.0f, 0.0f);
 
         ResetCycle();
     }
@@ -123,7 +124,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (rewinding)
         {
-            clock.localTimeScale = Mathf.Max(-30f, clock.localTimeScale - 0.025f);
+            clock.localTimeScale = Mathf.Max(-60f, clock.localTimeScale - 0.05f);
             //clock.localTimeScale = -30.0f;
         }
         else
@@ -131,6 +132,8 @@ public class PlayerHealth : MonoBehaviour
             clock.localTimeScale = 1f;
 
             Debug.Log("Cycle reset");
+            gameObject.transform.position = initialPosition;
+            
             currentHealth = maxHealth;
             currentTime = maxTime;
 
@@ -159,6 +162,7 @@ public class PlayerHealth : MonoBehaviour
 
             gameObject.transform.position = initialPosition;
 
+            GameObject.FindGameObjectWithTag("BossSpawner").GetComponent<CloneEnemySpawner>().DisableSpawner();
             //gameObject.GetComponentInChildren<Collider2D>().enabled = true;
         }
 

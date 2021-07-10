@@ -12,7 +12,7 @@ public class CloneEnemy : EnemyBase
 
     public LayerMask hitLayers;
 
-    private float timeUntilNextAttack = 0.0f;
+    private float timeUntilNextAttack = 1.0f;
 
     public float minDistForLongRangeAttacks = 3.0f;
 
@@ -30,6 +30,8 @@ public class CloneEnemy : EnemyBase
     private float timeUntilNextMoveTarget = 0.0f;
     public float minTimeBetweenNewMoveTargets = 3.0f;
     public float maxTimeBetweenNewMoveTargets = 5.0f;
+
+    private bool canMove;
 
     [Header("Events")] [Space] public UnityEvent OnLandEvent;
 
@@ -66,8 +68,6 @@ public class CloneEnemy : EnemyBase
     public Transform cloneAttackPoint;
     public float cloneAttackRange;
     public float cloneAttackDuration;
-    private float currentTime = 0.0f;
-    private float timeUntilNextCloneAttack = 0.0f;
 
     [Header("Slowdown")]
     public int slowdownAttackDamage;
@@ -97,25 +97,39 @@ public class CloneEnemy : EnemyBase
         if (timeUntilNextAttack > 0.0f)
         {
             timeUntilNextAttack = Mathf.Max(0.0f, timeUntilNextAttack - Time.deltaTime);
+        
+            
+            if(_body.velocity == Vector2.zero && canMove)
+            {
+                float randProb = Random.Range(0.0f, 1.0f);
+                if(randProb >= 0.75)
+                { // If we're not moving, pick a new attack with probability 0.25
+                    timeUntilNextAttack = 0.0f;
+                    PickAttack();
+                }
+            }
+            
         }
         else
         {
             PickAttack();
         }
         
-
+        
         /* MOVEMENT */
         if(timeUntilNextMoveTarget > 0.0f)
-        {
+        { 
             timeUntilNextMoveTarget = Mathf.Max(0.0f, timeUntilNextMoveTarget - Time.deltaTime);
         }
         else
         {
-            PickNewTargetPosition();
+            //PickNewTargetPosition();
+            targetPosition = new Vector3(player.transform.position.x, 0.0f, 0.0f);
+            FacePlayer();
             timeUntilNextMoveTarget = Random.Range(minTimeBetweenNewMoveTargets, maxTimeBetweenNewMoveTargets);
         }
-
-        if (Vector3.Distance(transform.position, targetPosition) >= 0.5f)
+        
+        if (Vector3.Distance(transform.position, targetPosition) >= 0.1f && canMove)
         {
             Move();
         }
@@ -123,7 +137,6 @@ public class CloneEnemy : EnemyBase
         {
             StopMoving();
         }
-
 
         if (_spinAttacking)
         { // Check spin attack collisions if we're spin attacking
@@ -140,7 +153,6 @@ public class CloneEnemy : EnemyBase
                 }
             }
         }
-
     }
 
     private void FixedUpdate()
@@ -172,9 +184,8 @@ public class CloneEnemy : EnemyBase
         if (distance > minDistForLongRangeAttacks)
         {
             // If player far away but in line - Extend attack
-            if (Mathf.Abs(playerPosition.y - transform.position.y) < 1.0f)
+            if (Mathf.Abs(playerPosition.y - transform.position.y) < 1.0f && CheckPlayerInFront())
             {
-                FacePlayer();
                 ExtendAttack();
             }
 
@@ -193,7 +204,7 @@ public class CloneEnemy : EnemyBase
         else
         {
             // If player in front and close - Normal attack
-            if (CheckPlayerInFront())
+            if (CheckPlayerInFront() && Mathf.Abs(player.transform.position.y - gameObject.transform.position.y) < 3.0f)
                 SlashAttack();
             else // Else, spin attack
                 SpinAttack();
@@ -219,7 +230,7 @@ public class CloneEnemy : EnemyBase
             }
         }
 
-        timeUntilNextAttack = Random.Range(slashAttackDuration, 4.0f);
+        timeUntilNextAttack = Random.Range(slashAttackDuration+1.0f, slashAttackDuration+3.0f);
     }
 
 
@@ -245,7 +256,15 @@ public class CloneEnemy : EnemyBase
 
         projectileScript.SetSpeed();
 
-        timeUntilNextAttack = Random.Range(extendAttackDuration, 4.0f);
+        timeUntilNextAttack = Random.Range(extendAttackDuration+1.0f, extendAttackDuration + 3.0f);
+        canMove = false;
+        StartCoroutine(ReEnableMoving());
+    }
+
+    IEnumerator ReEnableMoving()
+    {
+        yield return new WaitForSeconds(extendAttackDuration);
+        canMove = true;
     }
 
     public void SlowdownAttack()
@@ -275,9 +294,8 @@ public class CloneEnemy : EnemyBase
         projectileScript.SetParabolicVelocity();
         projectileScript.RigToExplode();
 
-        timeUntilNextAttack = Random.Range(slowdownAttackDuration, 4.0f);
+        timeUntilNextAttack = Random.Range(slowdownAttackDuration + 1.0f, slowdownAttackDuration + 3.0f);
     }
-
 
     public void SpinAttack()
     {
@@ -288,7 +306,7 @@ public class CloneEnemy : EnemyBase
         StartCoroutine(SpinAttacking());
 
 
-        timeUntilNextAttack = Random.Range(spinAttackDuration, 4.0f);
+        timeUntilNextAttack = Random.Range(spinAttackDuration + 1.0f, spinAttackDuration + 3.0f);
     }
 
     IEnumerator SpinAttacking()
@@ -313,7 +331,7 @@ public class CloneEnemy : EnemyBase
         cloneScript.duration = cloneAttackDuration;
 
         cloneScript.RigToExplode();
-        timeUntilNextAttack = Random.Range(2.0f, 4.0f);
+        timeUntilNextAttack = Random.Range(3.0f, 4.0f);
     }
 
 
@@ -380,10 +398,8 @@ public class CloneEnemy : EnemyBase
     private void Move()
     {
         float move = runSpeed * Time.deltaTime;
-        if (!CheckTargetPosToRight())
-        {
-            move *= -1.0f;
-        }
+        if (!CheckTargetPosToRight() && !_facingRight)
+            move = -move;
 
         // Set animation to move
         _animator.SetFloat("Speed", Mathf.Abs(move));
@@ -419,7 +435,7 @@ public class CloneEnemy : EnemyBase
 
     public void StopMoving()
     {
-        _body.velocity = Vector3.zero;
+        _body.velocity = new Vector2(0.0f, _body.velocity.y);
         _animator.SetFloat("Speed", 0.0f);
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - RewindVolume
   - Platform
+  - BossSpawner
   layers:
   - Default
   - TransparentFX

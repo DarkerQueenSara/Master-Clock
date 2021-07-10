@@ -261,17 +261,17 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 64
-  minDistForLongRangeAttacks: 2.5
+  minDistForLongRangeAttacks: 4
   jumpForce: 11000
-  runSpeed: 60
+  runSpeed: 70
   movementSmoothing: 0.05
   groundedRadius: 0.3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 5120
   groundCheck: {fileID: 2886135978216685324}
-  minTimeBetweenNewMoveTargets: 1
-  maxTimeBetweenNewMoveTargets: 3
+  minTimeBetweenNewMoveTargets: 2
+  maxTimeBetweenNewMoveTargets: 4
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
