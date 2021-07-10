@@ -194,7 +194,7 @@ MonoBehaviour:
   _mode: 1
   _globalClockKey: Enemy
   _rewindable: 1
-  _recordingDuration: 900
+  _recordingDuration: 600
 --- !u!1 &7060333225511300324
 GameObject:
   m_ObjectHideFlags: 0
