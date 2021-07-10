@@ -320,6 +320,9 @@ MonoBehaviour:
   loopsText: {fileID: 1142197544}
   percentageText: {fileID: 1036407334}
   playTimeText: {fileID: 565516097}
+  badEndingText: {fileID: 118348065}
+  goodEndingText: {fileID: 1878108911}
+  bestEndingText: {fileID: 1217880826}
 --- !u!1 &118348065
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &118348066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1203,7 +1206,7 @@ MonoBehaviour:
   forceRatioOnAwake: 1
   listenForWindowChanges: 1
   createCameraForLetterBoxRendering: 1
-  findCamerasAutomatically: 0
+  findCamerasAutomatically: 1
   letterBoxCameraColor: {r: 0, g: 0, b: 0, a: 1}
   cameras:
   - camera: {fileID: 741611911}

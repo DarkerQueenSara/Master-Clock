@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int lastLoops;
     [HideInInspector] public int lastPercentage;
     [HideInInspector] public float lastPlaytime;
-
+    [HideInInspector] public int lastEnding;
 
     private void Awake()
     {
@@ -35,4 +36,12 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    public void ResetGame()
+    {
+        lastLoops = 0;
+        lastEnding = 0;
+        lastPercentage = 0;
+        lastPlaytime = 0.0f;
+    }
+    
 }

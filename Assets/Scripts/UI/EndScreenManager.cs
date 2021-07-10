@@ -10,6 +10,8 @@ public class EndScreenManager : MonoBehaviour
     public Button playButton, exitButton, backButton;
 
     public TextMeshProUGUI loopsText, percentageText, playTimeText;
+   
+    public GameObject badEndingText, goodEndingText, bestEndingText;
 
     private GameManager _gameManager;
 
@@ -23,15 +25,28 @@ public class EndScreenManager : MonoBehaviour
         backButton.onClick.AddListener(HideStats);
         // _audioManager.Play("TitleScreen");
 
+        if (_gameManager.lastEnding == 0)
+        {
+            badEndingText.SetActive(true);
+        } else if (_gameManager.lastEnding == 1)
+        {
+            goodEndingText.SetActive(true);
+        } else if (_gameManager.lastEnding == 2)
+        {
+            bestEndingText.SetActive(true);
+        }
+        
         loopsText.text = "Loops: " + _gameManager.lastLoops;
         percentageText.text = "Item Collected: " + _gameManager.lastPercentage + "%";
         float minutes = Mathf.FloorToInt(_gameManager.lastPlaytime / 60);
         float seconds = Mathf.FloorToInt(_gameManager.lastPlaytime % 60);
         playTimeText.text = "Play Time: " + string.Format("{0:00}:{1:00}", minutes, seconds);
+        
     }
 
     private void StartGame()
     {
+        _gameManager.ResetGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
