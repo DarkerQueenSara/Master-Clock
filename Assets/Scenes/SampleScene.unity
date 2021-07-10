@@ -557,10 +557,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1889781338, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
-      propertyPath: _recordingDuration
-      value: 900
-      objectReference: {fileID: 0}
     - target: {fileID: 743481762573770564, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: _slide_ui
       value: 
@@ -585,10 +581,6 @@ PrefabInstance:
       propertyPath: _slowdownAttack_ui
       value: 
       objectReference: {fileID: 1633178004}
-    - target: {fileID: 743481762573770564, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
-      propertyPath: _spinAttack_unlocked
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -642,10 +634,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 490468911}
     - target: {fileID: 2221770179136373508, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
-      propertyPath: maxTime
-      value: 900
-      objectReference: {fileID: 0}
-    - target: {fileID: 2221770179136373508, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: timeText
       value: 
       objectReference: {fileID: 663811072}
@@ -653,10 +641,6 @@ PrefabInstance:
       propertyPath: timerBar
       value: 
       objectReference: {fileID: 749860289}
-    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
-      propertyPath: spinAttackDuration
-      value: 0.69
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
 --- !u!114 &490468911 stripped
