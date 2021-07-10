@@ -215,6 +215,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void PickupPowerup(PowerupDrop drop)
     {
+        if (!drop.enabled) return;
+        
         // Heath
         if (drop.give_health)
         {
