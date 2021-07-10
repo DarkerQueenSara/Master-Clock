@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+    [HideInInspector] public int lastLoops;
+    [HideInInspector] public int lastPercentage;
+    [HideInInspector] public float lastPlaytime;
+
+
     private void Awake()
     {
         // Needed if we want the audio manager to persist through scenes
