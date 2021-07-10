@@ -7,7 +7,6 @@ using UnityEngine.Rendering;
 
 public class PlayerCombat : MonoBehaviour
 {
-
     //0 = slash
     //public List<GameObject> hitboxes;
 
@@ -28,29 +27,25 @@ public class PlayerCombat : MonoBehaviour
     private Clock enemyClock;
 
 
-    [Header("Slash")]
-    public int slashAttackDamage;
+    [Header("Slash")] public int slashAttackDamage;
     public Transform slashAttackPoint;
     public float slashAttackRange;
     public float slashAttackDuration;
 
-    [Header("Spin")]
-    public int spinAttackDamage;
+    [Header("Spin")] public int spinAttackDamage;
     public Transform spinAttackPoint;
     public Vector2 spinAttackRange;
     public float spinAttackDuration;
     private bool _spinAttacking = false;
 
-    [Header("Extend")]
-    public int extendAttackDamage;
+    [Header("Extend")] public int extendAttackDamage;
     public GameObject extendAttackProjectile;
     public Transform extendAttackPoint;
     public float extendAttackRange;
     public float extendAttackLength;
     public float extendAttackDuration;
 
-    [Header("Clone")]
-    public int cloneAttackDamage;
+    [Header("Clone")] public int cloneAttackDamage;
     public GameObject clone;
     public Transform cloneAttackPoint;
     public float cloneAttackRange;
@@ -59,8 +54,7 @@ public class PlayerCombat : MonoBehaviour
     private float timeUntilNextCloneAttack = 0.0f;
     private PlayerHealth _playerHealth;
 
-    [Header("Slowdown")]
-    public int slowdownAttackDamage;
+    [Header("Slowdown")] public int slowdownAttackDamage;
     public GameObject slowdownAttackProjectile;
     public Transform slowdownAttackPoint;
     public float slowdownAttackRadius;
@@ -70,8 +64,7 @@ public class PlayerCombat : MonoBehaviour
     public float slowdownForcefieldDuration;
     public GameObject slowdownForcefield;
 
-    [Header("Accelerate")]
-    public float playerAcceleration;
+    [Header("Accelerate")] public float playerAcceleration;
     public float globalAcceleration;
     public float enemyAcceleration;
 
@@ -101,13 +94,15 @@ public class PlayerCombat : MonoBehaviour
         {
             timeUntilNextAttack = Mathf.Max(0.0f, timeUntilNextAttack - Time.deltaTime);
         }
+
         if (timeUntilNextCloneAttack > 0.0f)
         {
             timeUntilNextCloneAttack = Mathf.Max(0.0f, timeUntilNextAttack - Time.deltaTime);
         }
 
         if (playerClock.localTimeScale < 0.0f)
-        { // Rewinding to clone
+        {
+            // Rewinding to clone
             currentTime += playerClock.deltaTime;
 
             if (currentTime <= 0.0f)
@@ -118,11 +113,13 @@ public class PlayerCombat : MonoBehaviour
             }
         }
         else
-        { // Count time since clone was spawned
+        {
+            // Count time since clone was spawned
             currentTime += playerClock.deltaTime;
 
             if (_spinAttacking)
-            { // Check spin attack collisions if we're spin attacking
+            {
+                // Check spin attack collisions if we're spin attacking
                 // Detect enemies and doors in range of attack
                 Collider2D[] hits = Physics2D.OverlapBoxAll(spinAttackPoint.position, spinAttackRange, 0.0f, hitLayers);
 
@@ -133,7 +130,8 @@ public class PlayerCombat : MonoBehaviour
                     if (hit.gameObject.layer == 8) // Hit enemy
                         hit.GetComponent<EnemyBase>().Hit(spinAttackDamage);
                     else
-                    { // Hit door
+                    {
+                        // Hit door
                         DoorControl doorControl = hit.GetComponent<DoorControl>();
                         if (doorControl.spinAttackUnlocks)
                             doorControl.UnlockDoor();
@@ -141,7 +139,7 @@ public class PlayerCombat : MonoBehaviour
                 }
             }
 
-            if(globalClock.localTimeScale > 0.0f)
+            if (globalClock.localTimeScale > 0.0f)
             {
                 if (rewindVolume != null)
                 {
@@ -178,8 +176,11 @@ public class PlayerCombat : MonoBehaviour
             //Debug.Log("Hit enemy!");
             if (hit.gameObject.layer == 8) // Hit enemy
                 hit.GetComponent<EnemyBase>().Hit(slashAttackDamage);
+            else if (hit.gameObject.layer == 16)
+                hit.gameObject.GetComponent<CloneAttack>().DetonateClone();
             else
-            { // Hit door
+            {
+                // Hit door
                 DoorControl doorControl = hit.GetComponent<DoorControl>();
                 if (doorControl.normalAttackUnlocks)
                     doorControl.UnlockDoor();
@@ -242,7 +243,8 @@ public class PlayerCombat : MonoBehaviour
         //_animator.SetTrigger("SlashAttack");
 
         // Create the projectile that will act as the yoyo
-        GameObject projectile = Instantiate(slowdownAttackProjectile, slowdownAttackPoint.position, this.gameObject.transform.rotation);
+        GameObject projectile = Instantiate(slowdownAttackProjectile, slowdownAttackPoint.position,
+            this.gameObject.transform.rotation);
         //GameObject projectile = Instantiate(extendAttackProjectile, extendAttackPoint.position, Quaternion.identity);
 
 
@@ -287,7 +289,6 @@ public class PlayerCombat : MonoBehaviour
 
     IEnumerator SpinAttacking()
     {
-
         yield return new WaitForSeconds(spinAttackDuration);
         _playerMovement._spinAttacking = false;
         _spinAttacking = false;
@@ -297,7 +298,8 @@ public class PlayerCombat : MonoBehaviour
     {
         Debug.Log("Zoom zoom");
         if (playerClock.localTimeScale <= 0.0f || globalClock.localTimeScale <= 0.0f)
-        { // If rewinding, accelerate won't do anything
+        {
+            // If rewinding, accelerate won't do anything
             return;
         }
 
@@ -308,7 +310,8 @@ public class PlayerCombat : MonoBehaviour
     public void Deaccelerate()
     {
         if (playerClock.localTimeScale <= 0.0f || globalClock.localTimeScale <= 0.0f)
-        { // If rewinding, accelerate won't do anything
+        {
+            // If rewinding, accelerate won't do anything
             return;
         }
 
