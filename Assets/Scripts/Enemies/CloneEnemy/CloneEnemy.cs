@@ -9,8 +9,12 @@ public class CloneEnemy : EnemyBase
 
     public LayerMask hitLayers;
 
-    private bool _grounded;
     private float timeUntilNextAttack = 0.0f;
+
+    /* Movement */
+    public int jumpForce = 10000;
+    private Rigidbody2D _body;
+    private bool _grounded;
 
 
     [Header("Slash")]
@@ -58,6 +62,7 @@ public class CloneEnemy : EnemyBase
     void Start()
     {
         _animator = transform.GetChild(0).GetComponent<Animator>();
+        _body = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -94,11 +99,13 @@ public class CloneEnemy : EnemyBase
 
         // If player not in line but far away and in front - Bomb attack
 
-        // If player not in line  but far away and NOT in front - Clone attack (pick randonmly)
+        // If player not in line  but far away and NOT in front - Clone attack or SpinAttack (pick randonmly)
+        SpinAttack();
 
         // If player in front and close - Normal attack
-        SlashAttack();
-        // Else just move
+        //SlashAttack();
+        
+        // Else just pick a new target to move to
     }
 
     private void Move()
@@ -184,7 +191,7 @@ public class CloneEnemy : EnemyBase
 
     public void SpinAttack()
     {
-        //Jump();
+        Jump();
         _animator.SetTrigger("SpinAttack");
         _spinAttacking = true;
 
@@ -219,5 +226,14 @@ public class CloneEnemy : EnemyBase
         timeUntilNextAttack = Random.Range(2.0f, 4.0f);
     }
 
+
+    /* MOVEMENT */
+    public void Jump()
+    {
+        // Add a vertical force to the player.
+        _body.velocity = new Vector2(_body.velocity.x, 0.0f);
+        _grounded = false;
+        _body.AddForce(new Vector2(0f, jumpForce));
+    }
 
 }
