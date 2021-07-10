@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private bool _grounded = true;
     private bool _sliding = false;
     private bool _crouching = false;
+    [HideInInspector] public bool _spinAttacking = false;
+
 
     private Animator _animator;
 
@@ -183,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!_grounded && !_sliding && !moveBlocked)
+        if (!_grounded && !_sliding && !moveBlocked && !_spinAttacking)
         {
             _animator.SetFloat("Verticle_Speed", _body.velocity.y);
         }
@@ -197,6 +199,14 @@ public class PlayerMovement : MonoBehaviour
     {
         _body.velocity = Vector3.zero;
         _animator.SetFloat("Speed", 0.0f);
+    }
+
+    public void Jump()
+    {
+        // Add a vertical force to the player.
+        _body.velocity = new Vector2(_body.velocity.x, 0.0f);
+        _grounded = false;
+        _body.AddForce(new Vector2(0f, jumpForce));
     }
 
     private void Flip()

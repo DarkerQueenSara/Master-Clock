@@ -621,7 +621,7 @@ MonoBehaviour:
     m_Bits: 4864
   maxHealth: 100
   currentHealth: 0
-  maxTime: 300
+  maxTime: 900
   currentTime: 0
   lifeBar: {fileID: 0}
   timerBar: {fileID: 0}
@@ -680,6 +680,7 @@ MonoBehaviour:
   groundCheck: {fileID: 743481763082496701}
   ceilingCheck: {fileID: 743481763236519224}
   _facingRight: 1
+  _spinAttacking: 0
   moveBlocked: 0
   OnLandEvent:
     m_PersistentCalls:
@@ -709,7 +710,7 @@ MonoBehaviour:
   spinAttackDamage: 1
   spinAttackPoint: {fileID: 8325152246396352169}
   spinAttackRange: {x: 1.79, y: 2}
-  spinAttackDuration: 1
+  spinAttackDuration: 0.69
   extendAttackDamage: 1
   extendAttackProjectile: {fileID: 5123637968733234474, guid: 88a442c97851d54468721758615777d4, type: 3}
   extendAttackPoint: {fileID: 1366899491636179502}
@@ -770,7 +771,7 @@ MonoBehaviour:
   _mode: 1
   _globalClockKey: Player
   _rewindable: 1
-  _recordingDuration: 300
+  _recordingDuration: 900
 --- !u!1 &743481762875714948
 GameObject:
   m_ObjectHideFlags: 0
