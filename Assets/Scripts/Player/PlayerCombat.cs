@@ -236,9 +236,19 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
+        _playerMovement.Jump();
         _animator.SetTrigger("SpinAttack");
+        _playerMovement._spinAttacking = true;
 
 
+        StartCoroutine(SpinAttacking());
+
+
+        timeUntilNextAttack = spinAttackDuration;
+    }
+
+    IEnumerator SpinAttacking()
+    {
         // Detect enemies and doors in range of attack
         Collider2D[] hits = Physics2D.OverlapBoxAll(spinAttackPoint.position, spinAttackRange, 0.0f, hitLayers);
 
@@ -254,12 +264,10 @@ public class PlayerCombat : MonoBehaviour
                 if (doorControl.spinAttackUnlocks)
                     doorControl.UnlockDoor();
             }
-
-            Debug.Log("HIT ENEMY WHILE SPINNIN!");
         }
 
-
-        timeUntilNextAttack = spinAttackDuration;
+        yield return new WaitForSeconds(spinAttackDuration);
+        _playerMovement._spinAttacking = false;
     }
 
     public void Accelerate()

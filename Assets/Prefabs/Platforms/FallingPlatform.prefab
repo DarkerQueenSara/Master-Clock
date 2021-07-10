@@ -174,11 +174,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6090da511f8374135a15dd8655adcd44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recordingInterval: 0.5
+  _recordingInterval: 0.25
   _mode: 1
   _globalClockKey: Enemy
   _rewindable: 1
-  _recordingDuration: 300
+  _recordingDuration: 900
 --- !u!114 &3528795625932709682
 MonoBehaviour:
   m_ObjectHideFlags: 0
