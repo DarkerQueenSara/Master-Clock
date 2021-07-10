@@ -104,10 +104,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 1
   maxHealth: 1
-  contactDamage: 10
+  contactDamage: 40
   startPosition: {x: 0, y: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
-  randomDropChance: 0.5
+  randomDropChance: 1
   pickUps:
   - {fileID: 4426976451143395763, guid: 431b94e61417a3240a20a4d95d2c76f9, type: 3}
   explosionPrefab: {fileID: 8242543912748534232, guid: 7a35ea662298fbb4290245bd3c435979, type: 3}
@@ -117,7 +117,7 @@ MonoBehaviour:
   holdPositionTime: 3
   horizontalRange: 4
   attackPoint: {fileID: 1504650928912166671}
-  attackDamage: 5
+  attackDamage: 60
   attackRange: 1
   attackCooldown: 3
   facingRight: 0

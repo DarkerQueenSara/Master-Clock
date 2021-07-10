@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 1
   maxHealth: 1
-  contactDamage: 2
+  contactDamage: 10
   startPosition: {x: 0, y: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
   randomDropChance: 0.5

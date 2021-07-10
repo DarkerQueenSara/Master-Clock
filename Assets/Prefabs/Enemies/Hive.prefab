@@ -306,14 +306,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 1
   maxHealth: 1
-  contactDamage: 5
+  contactDamage: 25
   startPosition: {x: 0, y: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
-  randomDropChance: 0.5
+  randomDropChance: 0.7
   pickUps:
   - {fileID: 4426976451143395763, guid: 431b94e61417a3240a20a4d95d2c76f9, type: 3}
   explosionPrefab: {fileID: 8242543912748534232, guid: 7a35ea662298fbb4290245bd3c435979, type: 3}
-  cooldown: 7.5
+  cooldown: 3
   spawnPoints:
   - {fileID: 7952640558908343392}
   - {fileID: 7952640558933607375}
