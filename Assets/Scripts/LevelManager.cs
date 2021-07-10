@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
         _gameManager.lastPercentage = Mathf.CeilToInt(collectedItems / 12 * 100);
         _gameManager.lastPlaytime = _playTime;
         int x = 0;
-        if (loops == 0)
+        if (loops - 1 == 0)
         {
             x = collectedItems == 12 ? 2 : 1;
         }
