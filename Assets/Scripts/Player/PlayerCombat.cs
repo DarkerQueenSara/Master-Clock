@@ -39,6 +39,7 @@ public class PlayerCombat : MonoBehaviour
     public Transform spinAttackPoint;
     public Vector2 spinAttackRange;
     public float spinAttackDuration;
+    private bool _spinAttacking = false;
 
     [Header("Extend")]
     public int extendAttackDamage;
@@ -120,6 +121,26 @@ public class PlayerCombat : MonoBehaviour
         { // Count time since clone was spawned
             currentTime += playerClock.deltaTime;
 
+            if (_spinAttacking)
+            { // Check spin attack collisions if we're spin attacking
+                // Detect enemies and doors in range of attack
+                Collider2D[] hits = Physics2D.OverlapBoxAll(spinAttackPoint.position, spinAttackRange, 0.0f, hitLayers);
+
+                // Damage enemies and unlock doors
+                foreach (Collider2D hit in hits)
+                {
+                    //Debug.Log("Hit enemy!");
+                    if (hit.gameObject.layer == 8) // Hit enemy
+                        hit.GetComponent<EnemyBase>().Hit(spinAttackDamage);
+                    else
+                    { // Hit door
+                        DoorControl doorControl = hit.GetComponent<DoorControl>();
+                        if (doorControl.spinAttackUnlocks)
+                            doorControl.UnlockDoor();
+                    }
+                }
+            }
+
             if(globalClock.localTimeScale > 0.0f)
             {
                 if (rewindVolume != null)
@@ -137,7 +158,16 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
-        _animator.SetTrigger("SlashAttack");
+        if (_playerMovement._grounded)
+        {
+            _animator.SetTrigger("SlashAttack");
+        }
+        else
+        {
+            _playerMovement._spinAttacking = true;
+            _animator.SetTrigger("SlashAttackAir");
+            StartCoroutine(SlashAttacking());
+        }
 
         // Detect enemies and doors in range of attack
         Collider2D[] hits = Physics2D.OverlapCircleAll(slashAttackPoint.position, slashAttackRange, hitLayers);
@@ -158,6 +188,13 @@ public class PlayerCombat : MonoBehaviour
 
         timeUntilNextAttack = slashAttackDuration;
     }
+
+    IEnumerator SlashAttacking()
+    {
+        yield return new WaitForSeconds(slashAttackDuration);
+        _playerMovement._spinAttacking = false;
+    }
+
 
     public void ExtendAttack()
     {
@@ -239,7 +276,7 @@ public class PlayerCombat : MonoBehaviour
         _playerMovement.Jump();
         _animator.SetTrigger("SpinAttack");
         _playerMovement._spinAttacking = true;
-
+        _spinAttacking = true;
 
         StartCoroutine(SpinAttacking());
 
@@ -249,25 +286,10 @@ public class PlayerCombat : MonoBehaviour
 
     IEnumerator SpinAttacking()
     {
-        // Detect enemies and doors in range of attack
-        Collider2D[] hits = Physics2D.OverlapBoxAll(spinAttackPoint.position, spinAttackRange, 0.0f, hitLayers);
-
-        // Damage enemies and unlock doors
-        foreach (Collider2D hit in hits)
-        {
-            //Debug.Log("Hit enemy!");
-            if (hit.gameObject.layer == 8) // Hit enemy
-                hit.GetComponent<EnemyBase>().Hit(spinAttackDamage);
-            else
-            { // Hit door
-                DoorControl doorControl = hit.GetComponent<DoorControl>();
-                if (doorControl.spinAttackUnlocks)
-                    doorControl.UnlockDoor();
-            }
-        }
 
         yield return new WaitForSeconds(spinAttackDuration);
         _playerMovement._spinAttacking = false;
+        _spinAttacking = false;
     }
 
     public void Accelerate()

@@ -572,8 +572,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 552381795
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: bcbffeb82f590034cb553245f50c682e, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -620,7 +620,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4864
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   maxTime: 900
   currentTime: 0
   lifeBar: {fileID: 0}
@@ -628,7 +628,6 @@ MonoBehaviour:
   timeText: {fileID: 0}
   clock: {fileID: 0}
   playerClock: {fileID: 0}
-  numberOfResets: 0
 --- !u!114 &743481762573770564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,6 +679,7 @@ MonoBehaviour:
   groundCheck: {fileID: 743481763082496701}
   ceilingCheck: {fileID: 743481763236519224}
   _facingRight: 1
+  _grounded: 1
   _spinAttacking: 0
   moveBlocked: 0
   OnLandEvent:
@@ -706,10 +706,10 @@ MonoBehaviour:
   slashAttackDamage: 1
   slashAttackPoint: {fileID: 951783764}
   slashAttackRange: 1
-  slashAttackDuration: 0.5
+  slashAttackDuration: 0.4
   spinAttackDamage: 1
   spinAttackPoint: {fileID: 8325152246396352169}
-  spinAttackRange: {x: 1.79, y: 2}
+  spinAttackRange: {x: 1.8, y: 2.3}
   spinAttackDuration: 0.69
   extendAttackDamage: 1
   extendAttackProjectile: {fileID: 5123637968733234474, guid: 88a442c97851d54468721758615777d4, type: 3}
@@ -1050,9 +1050,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 552381795
+  m_SortingLayer: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: -1882347247711912902, guid: f9f5d46f08ebeea4cb5e2b5b87f19c17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

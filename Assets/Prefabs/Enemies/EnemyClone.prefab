@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3505152911413208991}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: ExtendAttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2476133000143439077}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SlashAttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2476133000480088957}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: CloneAttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2476133001019748974}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SlowdownAttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2476133001338627297}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Attacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 2886135977655913204}
   - component: {fileID: 3044691117938586894}
   - component: {fileID: 5615654615236471240}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: EnemyClone
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -250,34 +250,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d53bafca4a886945a17b50f017ac812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slashAttackDamage: 0
-  slashAttackPoint: {fileID: 0}
-  slashAttackRange: 0
-  slashAttackDuration: 0
-  spinAttackDamage: 0
-  spinAttackPoint: {fileID: 0}
-  spinAttackRange: {x: 0, y: 0}
-  spinAttackDuration: 0
-  extendAttackDamage: 0
-  extendAttackProjectile: {fileID: 0}
-  extendAttackPoint: {fileID: 0}
-  extendAttackRange: 0
-  extendAttackLength: 0
-  extendAttackDuration: 0
-  cloneAttackDamage: 0
-  clone: {fileID: 0}
-  cloneAttackPoint: {fileID: 0}
-  cloneAttackRange: 0
-  cloneAttackDuration: 0
-  slowdownAttackDamage: 0
-  slowdownAttackProjectile: {fileID: 0}
-  slowdownAttackPoint: {fileID: 0}
-  slowdownAttackRadius: 0
+  currentHealth: 3
+  maxHealth: 3
+  contactDamage: 0
+  startPosition: {x: 0, y: 0}
+  startRotation: {x: 0, y: 0, z: 0, w: 0}
+  randomDropChance: 0
+  pickUps: []
+  explosionPrefab: {fileID: 0}
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  slashAttackDamage: 10
+  slashAttackPoint: {fileID: 2476133000143439077}
+  slashAttackRange: 1
+  slashAttackDuration: 0.4
+  spinAttackDamage: 10
+  spinAttackPoint: {fileID: 5896368615672308504}
+  spinAttackRange: {x: 1.8, y: 2.3}
+  spinAttackDuration: 0.69
+  extendAttackDamage: 10
+  extendAttackProjectile: {fileID: 5123637968733234474, guid: 19e4a89fd2908b5419d16008fb87b3a7, type: 3}
+  extendAttackPoint: {fileID: 3505152911413208991}
+  extendAttackRange: 0.2
+  extendAttackLength: 5
+  extendAttackDuration: 1.5
+  cloneAttackDamage: 10
+  clone: {fileID: 4233971961728613408, guid: 892c7b0fab628394aa42e0fcd5fd7ff4, type: 3}
+  cloneAttackPoint: {fileID: 2476133000480088957}
+  cloneAttackRange: 3
+  cloneAttackDuration: 2
+  slowdownAttackDamage: 10
+  slowdownAttackProjectile: {fileID: 5123637968733234474, guid: 2e2915c198e565348a4b0844d0b079ab, type: 3}
+  slowdownAttackPoint: {fileID: 2476133001019748974}
+  slowdownAttackRadius: 5
   slowdownAttackSlowdownAmount: 0
-  slowdownThrowRange: 0
-  slowdownAttackDuration: 0
-  slowdownForcefieldDuration: 0
-  slowdownForcefield: {fileID: 0}
+  slowdownThrowRange: 5
+  slowdownAttackDuration: 3
+  slowdownForcefieldDuration: 3
+  slowdownForcefield: {fileID: 5123637968733234474, guid: 577a590538d9dac4493e4e7c93385911, type: 3}
 --- !u!1 &2886135978024974389
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2886135978024974386}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Checks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2886135978033318025}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2886135978216685324}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +390,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5896368615672308504}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SpinAttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,10 +466,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sprite
       objectReference: {fileID: 0}
+    - target: {fileID: 1622611949846470174, guid: 9266931a03f3a9a489149001ef931c0b, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2464122501611708317, guid: 9266931a03f3a9a489149001ef931c0b, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 4129194b724e0a047a3a7aed1dc8d629, type: 2}
+      objectReference: {fileID: 9100000, guid: b0514f1145fe529489f3d36ecd568b2a, type: 2}
     - target: {fileID: 3254564416061632307, guid: 9266931a03f3a9a489149001ef931c0b, type: 3}
       propertyPath: m_Color.b
       value: 0.5660378
