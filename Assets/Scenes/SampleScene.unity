@@ -540,6 +540,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5690402227054482920, guid: adc886117a8dbf6449d98d26df944f89, type: 3}
   m_PrefabInstance: {fileID: 101099604484511076}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &198097978 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2476133000480088957, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+  m_PrefabInstance: {fileID: 165919680176062453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &204131314 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 646628327947921136, guid: 7721e573899376740897fcc8271b80f9, type: 3}
@@ -549,6 +554,11 @@ GameObject:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2579996446868112259, guid: adc886117a8dbf6449d98d26df944f89, type: 3}
   m_PrefabInstance: {fileID: 101099604484511076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &253716095 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2476133000143439077, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+  m_PrefabInstance: {fileID: 165919680176062453}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &272355502
 PrefabInstance:
@@ -581,6 +591,10 @@ PrefabInstance:
       propertyPath: _slowdownAttack_ui
       value: 
       objectReference: {fileID: 1633178004}
+    - target: {fileID: 743481762573770564, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: _spinAttack_unlocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -641,14 +655,6 @@ PrefabInstance:
       propertyPath: timerBar
       value: 
       objectReference: {fileID: 749860289}
-    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
-      propertyPath: spinAttackRange.x
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7219773221651807945, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
-      propertyPath: spinAttackRange.y
-      value: 2.3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
 --- !u!114 &490468911 stripped
@@ -10917,6 +10923,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5028678435449058740, guid: 4ba885bef0e82b04d9c14e66f1b8310a, type: 3}
   m_PrefabInstance: {fileID: 786565675}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1089808307 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5896368615672308504, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+  m_PrefabInstance: {fileID: 165919680176062453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1120355192 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 290801934242009608, guid: adc886117a8dbf6449d98d26df944f89, type: 3}
@@ -10926,6 +10937,11 @@ GameObject:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4103032147147995617, guid: adc886117a8dbf6449d98d26df944f89, type: 3}
   m_PrefabInstance: {fileID: 101099604484511076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1238999479 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3505152911413208991, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+  m_PrefabInstance: {fileID: 165919680176062453}
   m_PrefabAsset: {fileID: 0}
 --- !u!60 &1274662169 stripped
 PolygonCollider2D:
@@ -11189,6 +11205,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
   m_PrefabInstance: {fileID: 272355502}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1903531878 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2476133001019748974, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+  m_PrefabInstance: {fileID: 165919680176062453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1915120077
 GameObject:
   m_ObjectHideFlags: 0
@@ -11359,13 +11380,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2476133000729635741, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b0514f1145fe529489f3d36ecd568b2a, type: 2}
     - target: {fileID: 2886135977655913206, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2886135977655913206, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.46
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 2886135977655913206, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11406,6 +11431,122 @@ PrefabInstance:
     - target: {fileID: 2886135977655913208, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
       propertyPath: m_Name
       value: EnemyClone
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: clone
+      value: 
+      objectReference: {fileID: 4233971961728613408, guid: 892c7b0fab628394aa42e0fcd5fd7ff4, type: 3}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: spinAttackPoint
+      value: 
+      objectReference: {fileID: 1089808307}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: cloneAttackPoint
+      value: 
+      objectReference: {fileID: 198097978}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: cloneAttackRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: hitLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slashAttackPoint
+      value: 
+      objectReference: {fileID: 253716095}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slashAttackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: spinAttackDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: cloneAttackDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: extendAttackPoint
+      value: 
+      objectReference: {fileID: 1238999479}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: extendAttackRange
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slashAttackDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: spinAttackRange.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: spinAttackRange.y
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: extendAttackDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: extendAttackLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slowdownForcefield
+      value: 
+      objectReference: {fileID: 5123637968733234474, guid: 577a590538d9dac4493e4e7c93385911, type: 3}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slowdownThrowRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: spinAttackDuration
+      value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: cloneAttackDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slashAttackDuration
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slowdownAttackPoint
+      value: 
+      objectReference: {fileID: 1903531878}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: extendAttackDuration
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slowdownAttackDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slowdownAttackRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: extendAttackProjectile
+      value: 
+      objectReference: {fileID: 5123637968733234474, guid: 19e4a89fd2908b5419d16008fb87b3a7, type: 3}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slowdownAttackDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slowdownAttackProjectile
+      value: 
+      objectReference: {fileID: 5123637968733234474, guid: 2e2915c198e565348a4b0844d0b079ab, type: 3}
+    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
+      propertyPath: slowdownForcefieldDuration
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
