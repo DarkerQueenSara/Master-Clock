@@ -732,6 +732,14 @@ PrefabInstance:
       propertyPath: timerBar
       value: 
       objectReference: {fileID: 749860289}
+    - target: {fileID: 3203428262111257773, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: colliders.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203428262111257773, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: colliders.Array.data[3]
+      value: 
+      objectReference: {fileID: 133280643}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
 --- !u!114 &490468911 stripped

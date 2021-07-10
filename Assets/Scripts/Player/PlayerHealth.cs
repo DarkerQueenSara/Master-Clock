@@ -230,7 +230,7 @@ public class PlayerHealth : MonoBehaviour
             maxHealth += drop.max_health_increase_amount;
 
             RectTransform rt = lifeBar.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(maxHealth, 25);
+            rt.sizeDelta = new Vector2(maxHealth, 10);
 
         }
 

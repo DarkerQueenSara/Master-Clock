@@ -85,40 +85,44 @@ public class PlayerMovement : MonoBehaviour
         }
 
         /* SLIDE OR CROUCH */
-        if (slide && jump && _grounded && _time.timeScale > 0)
+        if (slide_unlocked)
         {
-            _sliding = true;
+            if (slide && jump && _grounded && _time.timeScale > 0)
+            {
+                _sliding = true;
 
-            // Swap Colliders
-            slideCollider.enabled = true;
+                // Swap Colliders
+                slideCollider.enabled = true;
 
-            standCollider.enabled = false;
+                standCollider.enabled = false;
+            }
+            else if (!slide && _sliding && !Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround))
+            {
+                _sliding = false;
+
+                // Swap Colliders
+                slideCollider.enabled = false;
+
+                standCollider.enabled = true;
+            }
+
+            if (_sliding)
+            { // Done here to ensure player doesn't lose velocity
+                // Add velocity in the right direction
+                move = _facingRight ? 1 : -1;
+                move *= runSpeed * Time.deltaTime;
+                Vector3 targetVelocity = new Vector2(move * 10f, _body.velocity.y);
+                _body.velocity = Vector2.SmoothDamp(_body.velocity, targetVelocity, ref _velocity, movementSmoothing);
+            }
+
+            _animator.SetBool("Sliding", _sliding);
         }
-        else if (!slide && _sliding && !Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround))
-        {
-            _sliding = false;
-
-            // Swap Colliders
-            slideCollider.enabled = false;
-
-            standCollider.enabled = true;
-        }
-
-        if (_sliding)
-        { // Done here to ensure player doesn't lose velocity
-            // Add velocity in the right direction
-            move = _facingRight ? 1 : -1;
-            move *= runSpeed * Time.deltaTime;
-            Vector3 targetVelocity = new Vector2(move * 10f, _body.velocity.y);
-            _body.velocity = Vector2.SmoothDamp(_body.velocity, targetVelocity, ref _velocity, movementSmoothing);
-        }
-
-        _animator.SetBool("Sliding", _sliding);
 
         if (slide && !_sliding && _grounded && _time.timeScale > 0)
         {
             _crouching = true;
             crouchCollider.enabled = true;
+            StopPlayer();
 
             if(_sliding)
                 slideCollider.enabled = false;
