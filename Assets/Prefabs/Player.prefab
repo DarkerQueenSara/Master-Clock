@@ -628,7 +628,6 @@ MonoBehaviour:
   timeText: {fileID: 0}
   clock: {fileID: 0}
   playerClock: {fileID: 0}
-  numberOfResets: 0
 --- !u!114 &743481762573770564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,6 +679,7 @@ MonoBehaviour:
   groundCheck: {fileID: 743481763082496701}
   ceilingCheck: {fileID: 743481763236519224}
   _facingRight: 1
+  _grounded: 1
   _spinAttacking: 0
   moveBlocked: 0
   OnLandEvent:
@@ -706,10 +706,10 @@ MonoBehaviour:
   slashAttackDamage: 1
   slashAttackPoint: {fileID: 951783764}
   slashAttackRange: 1
-  slashAttackDuration: 0.5
+  slashAttackDuration: 0.4
   spinAttackDamage: 1
   spinAttackPoint: {fileID: 8325152246396352169}
-  spinAttackRange: {x: 1.79, y: 2}
+  spinAttackRange: {x: 1.8, y: 2.3}
   spinAttackDuration: 0.69
   extendAttackDamage: 1
   extendAttackProjectile: {fileID: 5123637968733234474, guid: 88a442c97851d54468721758615777d4, type: 3}
