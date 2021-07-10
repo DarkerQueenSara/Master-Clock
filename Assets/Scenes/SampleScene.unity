@@ -581,10 +581,6 @@ PrefabInstance:
       propertyPath: _slowdownAttack_ui
       value: 
       objectReference: {fileID: 1633178004}
-    - target: {fileID: 743481762573770564, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
-      propertyPath: _spinAttack_unlocked
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -11361,7 +11357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2886135977655913206, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 2886135977655913206, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11402,10 +11398,6 @@ PrefabInstance:
     - target: {fileID: 2886135977655913208, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
       propertyPath: m_Name
       value: EnemyClone
-      objectReference: {fileID: 0}
-    - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
-      propertyPath: extendAttackDamage
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}

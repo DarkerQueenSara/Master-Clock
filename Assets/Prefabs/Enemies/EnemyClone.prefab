@@ -261,7 +261,20 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 64
+  minDistForLongRangeAttacks: 2.5
   jumpForce: 11000
+  runSpeed: 60
+  movementSmoothing: 0.05
+  groundedRadius: 0.3
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 5120
+  groundCheck: {fileID: 2886135978216685324}
+  minTimeBetweenNewMoveTargets: 1
+  maxTimeBetweenNewMoveTargets: 3
+  OnLandEvent:
+    m_PersistentCalls:
+      m_Calls: []
   slashAttackDamage: 10
   slashAttackPoint: {fileID: 2476133000143439077}
   slashAttackRange: 1
