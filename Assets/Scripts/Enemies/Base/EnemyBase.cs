@@ -65,7 +65,7 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void Die()
     {
         var spawnPos = transform.position;
-        if (explosionPrefab != null) Instantiate(explosionPrefab, spawnPos, Quaternion.identity);
+        if (explosionPrefab != null) Instantiate(explosionPrefab, spawnPos, transform.rotation);
         if (Random.Range(0.0f, 1.0f) <= randomDropChance)
         {
             Instantiate(pickUps[Random.Range(0, pickUps.Count)], spawnPos, Quaternion.identity);

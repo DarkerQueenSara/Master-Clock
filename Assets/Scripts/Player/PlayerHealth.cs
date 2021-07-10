@@ -184,7 +184,8 @@ public class PlayerHealth : MonoBehaviour
             }
             else
             {
-                Hit(10.0f);
+                //Hit(10.0f);
+                Hit(collider.gameObject.GetComponent<EnemyBase>().contactDamage);
             }
         }
         else if(collider.layer == 13)
