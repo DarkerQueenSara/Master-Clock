@@ -44,9 +44,7 @@ public class PlayerHealth : MonoBehaviour
 
     private PlayerMovement _playerMovement;
     private Animator _animator;
-
-    [HideInInspector] public int numberOfResets = 0;
-
+    
     private Volume rewindVolume;
 
     private Vector3 initialPosition;
@@ -152,8 +150,7 @@ public class PlayerHealth : MonoBehaviour
                 enemy.SetActive(true);
             }
 
-            // Increment number of resets
-            numberOfResets++;
+            LevelManager.Instance.loops++;
 
             if (rewindVolume != null)
             {
@@ -256,6 +253,10 @@ public class PlayerHealth : MonoBehaviour
         if (drop.give_slide)
             player_controls.UnlockPowerup("slide");
 
+        if (!drop.give_health)
+        {
+            LevelManager.Instance.collectedItems++;
+        }
 
         // Destroy drop
         Destroy(drop.gameObject, 0.0f);
