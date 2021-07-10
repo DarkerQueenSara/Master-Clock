@@ -28,6 +28,9 @@ public class DoorControl : MonoBehaviour
     public bool accelerateUnlocks;
 
     private AudioManager _audioManager;
+
+    private bool _open;
+    private bool _closed;
     
     public void Start()
     {
@@ -38,10 +41,13 @@ public class DoorControl : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = Color.blue;
         }
-       /* else
-        {
-            this.GetComponent<SpriteRenderer>().color = Color.red;
-        }*/
+
+        _open = false;
+        _closed = true;
+        /* else
+         {
+             this.GetComponent<SpriteRenderer>().color = Color.red;
+         }*/
     }
 
     public void Update()
@@ -70,7 +76,9 @@ public class DoorControl : MonoBehaviour
             t += Time.deltaTime / timeToReachTarget;
 
             this.transform.position = Vector3.Lerp(this.originalPosition, this.originalPosition + Vector3.up * distanceTravelUp, t);
-            _audioManager.Play("Open");
+            if (!_open) _audioManager.Play("Open");
+            _open = true;
+            _closed = false;
         }
     }
 
@@ -89,8 +97,9 @@ public class DoorControl : MonoBehaviour
             t += Time.deltaTime / timeToReachTarget;
 
             this.transform.position = Vector3.Lerp(this.originalPosition + Vector3.up * distanceTravelUp, this.originalPosition, t);
-            _audioManager.Play("Open");
-        }
+            if (!_closed) _audioManager.Play("Open");
+            _open = false;
+            _closed = true;        }
     }
 
     public void UnlockDoor()

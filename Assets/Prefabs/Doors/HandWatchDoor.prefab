@@ -169,8 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Open
-    clip: {fileID: 0}
-    volume: 0
+    clip: {fileID: 8300000, guid: 942a155ffd858bc4babdee71f4b6e7af, type: 3}
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
