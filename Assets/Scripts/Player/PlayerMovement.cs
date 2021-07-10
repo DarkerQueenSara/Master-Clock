@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Collider2D standCollider;
     public Collider2D slideCollider;
+    public Collider2D crouchCollider;
     public Collider2D jumpCollider;
 
     public LayerMask whatIsGround;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _grounded = true;
     private bool _sliding = false;
+    private bool _crouching = false;
 
     private Animator _animator;
 
@@ -73,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Move(float move, bool jump, bool slide)
+    public void Move(float move, bool jump, bool slide, bool slide_unlocked)
     {
         _animator.SetBool("MovementBlocked", moveBlocked);
 
@@ -82,40 +84,9 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        /* SLIDE OLD */
-        /*
-        if (slide && _body.velocity != Vector2.zero) // If clicked to slide and we have some speed (we can't slide if we're standing still)
-        {
-            if (_grounded)
-            {
-                _sliding = true;
-
-                // Swap Colliders
-                slideCollider.enabled = true;
-
-                standCollider.enabled = false;
-            }
-        }
-        else if (!Physics2D.OverlapCircle(ceilingCheck.position, ceilingRadius, whatIsGround)) // If we stopped wanting to slide and we can stand up
-        {
-            _sliding = false;
-
-            // Swap Colliders
-            slideCollider.enabled = false;
-
-            standCollider.enabled = true;
-        }
-        */
-
-        /* SLIDE NEW */
+        /* SLIDE OR CROUCH */
         if (slide && jump && _grounded && _time.timeScale > 0)
         {
-            // Add velocity in the right direction
-            move = _facingRight ? 1 : -1;
-            move *= runSpeed * Time.deltaTime;
-            Vector3 targetVelocity = new Vector2(move * 10f, _body.velocity.y);
-            _body.velocity = Vector2.SmoothDamp(_body.velocity, targetVelocity, ref _velocity, movementSmoothing);
-
             _sliding = true;
 
             // Swap Colliders
@@ -133,13 +104,44 @@ public class PlayerMovement : MonoBehaviour
             standCollider.enabled = true;
         }
 
+        if (_sliding)
+        { // Done here to ensure player doesn't lose velocity
+            // Add velocity in the right direction
+            move = _facingRight ? 1 : -1;
+            move *= runSpeed * Time.deltaTime;
+            Vector3 targetVelocity = new Vector2(move * 10f, _body.velocity.y);
+            _body.velocity = Vector2.SmoothDamp(_body.velocity, targetVelocity, ref _velocity, movementSmoothing);
+        }
+
         _animator.SetBool("Sliding", _sliding);
+
+        if (slide && !_sliding && _grounded && _time.timeScale > 0)
+        {
+            _crouching = true;
+            crouchCollider.enabled = true;
+
+            if(_sliding)
+                slideCollider.enabled = false;
+            else
+                standCollider.enabled = false;
+        }
+        else if (_crouching)
+        {
+            _crouching = false;
+            crouchCollider.enabled = false;
+
+            if (_sliding)
+                slideCollider.enabled = true;
+            else
+                standCollider.enabled = true;
+        }
+        _animator.SetBool("Crouching", _crouching);
 
 
         /* MOVE */
         move *= runSpeed * Time.deltaTime;
 
-        if (!_sliding && _time.timeScale > 0) // Move only when time is going forward and not sliding
+        if (!_sliding && !_crouching && _time.timeScale > 0) // Move only when time is going forward and not sliding
         {
             // Set animation to move
             _animator.SetFloat("Speed", Mathf.Abs(move));

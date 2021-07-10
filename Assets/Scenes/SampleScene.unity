@@ -449,6 +449,93 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &133280643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 133280647}
+  - component: {fileID: 133280644}
+  - component: {fileID: 133280646}
+  - component: {fileID: 133280645}
+  m_Layer: 6
+  m_Name: Crouching
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &133280644
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133280643}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 68e4cc7613d2ab04aa7b611a17abdc3b, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.028791606, y: 0.05689311}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.68525255, y: 1.1443486}
+  m_EdgeRadius: 0
+--- !u!114 &133280645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133280643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e92d6be83a7f64a934828fa76e3037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &133280646
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133280643}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.5}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!4 &133280647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133280643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.32, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1476476966}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &190536297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -581,6 +668,10 @@ PrefabInstance:
       propertyPath: _slowdownAttack_ui
       value: 
       objectReference: {fileID: 1633178004}
+    - target: {fileID: 743481762573770566, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+      propertyPath: crouchCollider
+      value: 
+      objectReference: {fileID: 133280644}
     - target: {fileID: 743481762573770567, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -633,10 +724,6 @@ PrefabInstance:
       propertyPath: lifeBar
       value: 
       objectReference: {fileID: 490468911}
-    - target: {fileID: 2221770179136373508, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
-      propertyPath: maxTime
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 2221770179136373508, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
       propertyPath: timeText
       value: 
@@ -11173,6 +11260,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5028678435449058740, guid: 4ba885bef0e82b04d9c14e66f1b8310a, type: 3}
   m_PrefabInstance: {fileID: 1426526562}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1476476966 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 743481761441799522, guid: 51b30a125960b744eb9edfdb820b2e3c, type: 3}
+  m_PrefabInstance: {fileID: 272355502}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1559890143
 GameObject:

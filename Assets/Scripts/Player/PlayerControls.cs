@@ -114,7 +114,7 @@ public class PlayerControls : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _playerMovement.Move(_directionInput.x, _jump, _directionInput.y < 0 && _slide_unlocked);
+        _playerMovement.Move(_directionInput.x, _jump, _directionInput.y < 0, _slide_unlocked);
     }
 
 
