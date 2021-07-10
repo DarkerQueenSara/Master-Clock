@@ -23,7 +23,8 @@ public class CloneAttack : MonoBehaviour
     public void RigToExplode()
     {
         Invoke("DetonateClone", this.duration);
-        lifeBeforeRewind = _playerHealth.currentHealth;
+        if(_playerHealth != null)
+            lifeBeforeRewind = _playerHealth.currentHealth;
         //Destroy(this.gameObject, this.duration);
     }
 
@@ -49,6 +50,11 @@ public class CloneAttack : MonoBehaviour
             //Debug.Log("Hit enemy!");
             if (hit.gameObject.layer == 8) // Hit enemy
                 hit.GetComponent<EnemyBase>().Hit(damage);
+            else if (hit.gameObject.layer == 6)
+            { // Hit player
+                hit.transform.parent.parent.GetComponent<PlayerHealth>().Hit(damage);
+                break;
+            }
             else
             { // Hit door
                 DoorControl doorControl = hit.GetComponent<DoorControl>();

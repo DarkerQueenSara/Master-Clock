@@ -15,6 +15,7 @@ public class CloneEnemy : EnemyBase
     public int jumpForce = 10000;
     private Rigidbody2D _body;
     private bool _grounded;
+    private bool _facingRight = true;
 
 
     [Header("Slash")]
@@ -86,8 +87,11 @@ public class CloneEnemy : EnemyBase
             // Damage enemies and unlock doors
             foreach (Collider2D hit in hits)
             {
-                if (hit.gameObject.layer == 6) // Hit player
-                    hit.GetComponent<PlayerHealth>().Hit(slashAttackDamage);
+                if (hit.gameObject.layer == 6)
+                { // Hit player
+                    hit.transform.parent.parent.GetComponent<PlayerHealth>().Hit(spinAttackDamage);
+                    break;
+                }
             }
         }
 
@@ -96,11 +100,14 @@ public class CloneEnemy : EnemyBase
     private void PickAttack()
     {
         // If player far away but in line - Extend attack
+        ExtendAttack();
 
         // If player not in line but far away and in front - Bomb attack
+        //SlowdownAttack();
 
         // If player not in line  but far away and NOT in front - Clone attack or SpinAttack (pick randonmly)
-        SpinAttack();
+        //SpinAttack();
+        //CloneAttack();
 
         // If player in front and close - Normal attack
         //SlashAttack();
@@ -153,13 +160,15 @@ public class CloneEnemy : EnemyBase
         projectileScript.range = extendAttackRange;
         projectileScript.length = extendAttackLength;
         projectileScript.duration = extendAttackDuration;
+        projectileScript._facingRight = _facingRight;
+
 
         projectileScript.SetSpeed();
 
         timeUntilNextAttack = Random.Range(extendAttackDuration, 4.0f);
     }
 
-    public void slowdownAttack()
+    public void SlowdownAttack()
     {
         // Play attack animation
         //_animator.SetTrigger("SlashAttack");
@@ -177,6 +186,7 @@ public class CloneEnemy : EnemyBase
         projectileScript.range = slowdownThrowRange;
         projectileScript.duration = slowdownAttackDuration;
         projectileScript.slowdownAmount = slowdownAttackSlowdownAmount;
+        projectileScript._facingRight = _facingRight;
 
         projectileScript.slowdownForcefield = slowdownForcefield;
         projectileScript.forcefieldDuration = slowdownForcefieldDuration;

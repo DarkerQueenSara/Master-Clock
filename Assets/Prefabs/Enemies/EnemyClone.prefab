@@ -270,7 +270,7 @@ MonoBehaviour:
   spinAttackPoint: {fileID: 5896368615672308504}
   spinAttackRange: {x: 1.8, y: 2.3}
   spinAttackDuration: 0.69
-  extendAttackDamage: 10
+  extendAttackDamage: 5
   extendAttackProjectile: {fileID: 5123637968733234474, guid: 19e4a89fd2908b5419d16008fb87b3a7, type: 3}
   extendAttackPoint: {fileID: 3505152911413208991}
   extendAttackRange: 0.2

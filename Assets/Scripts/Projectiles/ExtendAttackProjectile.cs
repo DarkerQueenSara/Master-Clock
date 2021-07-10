@@ -15,6 +15,7 @@ public class ExtendAttackProjectile : MonoBehaviour
     [HideInInspector] public float duration;
     [HideInInspector] public int damage;
     [HideInInspector] public PlayerMovement _playerMovement;
+    [HideInInspector] public bool _facingRight;
 
     // Update is called once per frame
     void Update()
@@ -25,7 +26,7 @@ public class ExtendAttackProjectile : MonoBehaviour
         {
             transform.position += new Vector3(speed * Time.deltaTime, 0.0f, 0.0f);
             
-            if (_playerMovement._facingRight)
+            if (_facingRight)
             {
                 if (transform.position.x >= originPoint.position.x + length)
                 {
@@ -44,11 +45,12 @@ public class ExtendAttackProjectile : MonoBehaviour
         {
             transform.position -= new Vector3(speed * Time.deltaTime, 0.0f, 0.0f);
 
-            if (_playerMovement._facingRight)
+            if (_facingRight)
             {
                 if (transform.position.x <= originPoint.position.x)
                 {
-                    _playerMovement.moveBlocked = false;
+                    if(_playerMovement != null)
+                        _playerMovement.moveBlocked = false;
                     Destroy(this.gameObject);
                 }
             }
@@ -56,7 +58,8 @@ public class ExtendAttackProjectile : MonoBehaviour
             {
                 if (transform.position.x >= originPoint.position.x)
                 {
-                    _playerMovement.moveBlocked = false;
+                    if(_playerMovement != null)
+                        _playerMovement.moveBlocked = false;
                     Destroy(this.gameObject);
                 }
             }
@@ -72,6 +75,11 @@ public class ExtendAttackProjectile : MonoBehaviour
             //Debug.Log("Hit enemy!");
             if (hit.gameObject.layer == 8) // Hit enemy
                 hit.GetComponent<EnemyBase>().Hit(damage);
+            else if (hit.gameObject.layer == 6)
+            { // Hit player
+                hit.transform.parent.parent.GetComponent<PlayerHealth>().Hit(damage);
+                break;
+            }
             else
             { // Hit door
                 DoorControl doorControl = hit.GetComponent<DoorControl>();
@@ -90,7 +98,7 @@ public class ExtendAttackProjectile : MonoBehaviour
         Debug.Log("Speed:" + speed);
         //Debug.Log("X: " + originPoint.position.x + length);
 
-        if (!_playerMovement._facingRight)
+        if (!_facingRight)
             speed = -speed;
     }
 }

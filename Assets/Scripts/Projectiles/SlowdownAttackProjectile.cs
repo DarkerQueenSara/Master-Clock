@@ -16,7 +16,8 @@ public class SlowdownAttackProjectile : MonoBehaviour
     [HideInInspector] public float forcefieldDuration;
     [HideInInspector] public int damage;
     [HideInInspector] public float slowdownAmount;
-    [HideInInspector] public PlayerMovement _playerMovement;
+    //[HideInInspector] public PlayerMovement _playerMovement;
+    [HideInInspector] public bool _facingRight;
     [HideInInspector] public GameObject slowdownForcefield;
 
     // Update is called once per frame
@@ -28,8 +29,8 @@ public class SlowdownAttackProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 6 || collision.gameObject.layer == 2)
-        { // Ignore collisions with player and ignoreraycast layers (rooms)
+        if(collision.gameObject.layer == 2 || (collision.gameObject.layer == 6 && hitLayers != (hitLayers | (1 << 6))) || (collision.gameObject.layer == 8 && hitLayers != (hitLayers | (1 << 8))) )
+        { // Ignore collisions with player (and player not in hit layers), enemy (and enemy not in hit layers) and ignoreraycast layers (rooms)
             return;
         }
 
@@ -62,7 +63,11 @@ public class SlowdownAttackProjectile : MonoBehaviour
             //Debug.Log("Hit enemy!");
             if (hit.gameObject.layer == 8) // Hit enemy
                 hit.GetComponent<EnemyBase>().Hit(damage);
-            else
+            else if (hit.gameObject.layer == 6)
+            { // Hit player
+                hit.transform.parent.parent.GetComponent<PlayerHealth>().Hit(damage);
+                break;
+            }else
             { // Hit door
                 DoorControl doorControl = hit.GetComponent<DoorControl>();
                 if (doorControl.slowdownBombAttackUnlocks)
@@ -76,7 +81,7 @@ public class SlowdownAttackProjectile : MonoBehaviour
 
     public void SetParabolicVelocity()
     {
-        var dir = _playerMovement._facingRight ? new Vector3(range, 0.0f, 0.0f) : new Vector3(-range, 0.0f, 0.0f); // Target Direction
+        var dir = _facingRight ? new Vector3(range, 0.0f, 0.0f) : new Vector3(-range, 0.0f, 0.0f); // Target Direction
 
         dir.y = 0; // We only need horizontal direction
 

@@ -219,6 +219,7 @@ public class PlayerCombat : MonoBehaviour
         projectileScript.length = extendAttackLength;
         projectileScript.duration = extendAttackDuration;
         projectileScript._playerMovement = _playerMovement;
+        projectileScript._facingRight = _playerMovement._facingRight;
 
         projectileScript.SetSpeed();
 
@@ -253,7 +254,7 @@ public class PlayerCombat : MonoBehaviour
         projectileScript.range = slowdownThrowRange;
         projectileScript.duration = slowdownAttackDuration;
         projectileScript.slowdownAmount = slowdownAttackSlowdownAmount;
-        projectileScript._playerMovement = _playerMovement;
+        projectileScript._facingRight = _playerMovement._facingRight;
 
         projectileScript.slowdownForcefield = slowdownForcefield;
         projectileScript.forcefieldDuration = slowdownForcefieldDuration;

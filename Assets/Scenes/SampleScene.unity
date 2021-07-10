@@ -11355,10 +11355,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2886135977655913204, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2886135977655913206, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -11408,8 +11404,8 @@ PrefabInstance:
       value: EnemyClone
       objectReference: {fileID: 0}
     - target: {fileID: 5615654615236471240, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
-      propertyPath: jumpForce
-      value: 11000
+      propertyPath: extendAttackDamage
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f337d622dd7d7e4da0e592a6a8e04fa, type: 3}
