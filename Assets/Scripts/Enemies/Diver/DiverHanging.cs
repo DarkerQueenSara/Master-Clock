@@ -13,8 +13,8 @@ public class DiverHanging : DiverState
     public override void StateStart()
     {
         base.StateStart();
-        _animator.SetBool("Idle", true);
-        _animator.SetBool("Returning", false);
+        animator.SetBool("Idle", true);
+        animator.SetBool("Returning", false);
     }
     
     public override void StateUpdate()

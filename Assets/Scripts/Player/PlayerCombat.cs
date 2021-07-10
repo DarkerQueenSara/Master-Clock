@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
 
     // Animator
     private Animator _animator;
+    private AudioManager _audioManager;
 
     private PlayerMovement _playerMovement;
 
@@ -76,6 +77,8 @@ public class PlayerCombat : MonoBehaviour
         _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
         _playerHealth = this.gameObject.GetComponent<PlayerHealth>();
         _time = GetComponent<Timeline>();
+
+        _audioManager = GetComponent<AudioManager>();
 
         playerClock = Timekeeper.instance.Clock("Player");
         globalClock = Timekeeper.instance.Clock("Global");
@@ -159,6 +162,7 @@ public class PlayerCombat : MonoBehaviour
         if (_playerMovement._grounded)
         {
             _animator.SetTrigger("SlashAttack");
+            _audioManager.Play("Slash");
         }
         else
         {
@@ -192,6 +196,7 @@ public class PlayerCombat : MonoBehaviour
 
     IEnumerator SlashAttacking()
     {
+        _audioManager.Play("Slash");
         yield return new WaitForSeconds(slashAttackDuration);
         _playerMovement._spinAttacking = false;
     }
@@ -205,7 +210,7 @@ public class PlayerCombat : MonoBehaviour
         }
 
         // Play attack animation
-        //_animator.SetTrigger("SlashAttack");
+        //animator.SetTrigger("SlashAttack");
 
         // Create the projectile that will act as the yoyo
         GameObject projectile = Instantiate(extendAttackProjectile, extendAttackPoint);
@@ -240,7 +245,7 @@ public class PlayerCombat : MonoBehaviour
         }
 
         // Play attack animation
-        //_animator.SetTrigger("SlashAttack");
+        //animator.SetTrigger("SlashAttack");
 
         // Create the projectile that will act as the yoyo
         GameObject projectile = Instantiate(slowdownAttackProjectile, slowdownAttackPoint.position,
@@ -289,7 +294,9 @@ public class PlayerCombat : MonoBehaviour
 
     IEnumerator SpinAttacking()
     {
+        _audioManager.Play("Spin");
         yield return new WaitForSeconds(spinAttackDuration);
+        _audioManager.Stop("Spin");
         _playerMovement._spinAttacking = false;
         _spinAttacking = false;
     }
@@ -305,6 +312,7 @@ public class PlayerCombat : MonoBehaviour
 
         globalClock.localTimeScale = playerAcceleration;
         playerClock.localTimeScale = globalAcceleration;
+        _audioManager.Play("Speed");
     }
 
     public void Deaccelerate()
@@ -343,7 +351,7 @@ public class PlayerCombat : MonoBehaviour
         }
 
         // Play attack animation
-        //_animator.SetTrigger("SlashAttack");
+        //animator.SetTrigger("SlashAttack");
 
         // Create the projectile that will act as the yoyo
         cloneInstance = Instantiate(clone, cloneAttackPoint.position, this.gameObject.transform.rotation);

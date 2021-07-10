@@ -15,7 +15,7 @@ public class HorizontalMovingPlatform : NonStaticPlatform
 
     private bool _started;
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         base.Start();
         _goingRight = startLeft;

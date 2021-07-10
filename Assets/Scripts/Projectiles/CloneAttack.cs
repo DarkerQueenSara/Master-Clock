@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,13 @@ public class CloneAttack : MonoBehaviour
     [HideInInspector] public PlayerHealth _playerHealth;
 
     public ParticleSystem explosionParticles;
+    private AudioManager _audioManager;
 
+    public void Start()
+    {
+        _audioManager = GetComponent<AudioManager>();
+        _audioManager.Play("Spawn");
+    }
 
     public void RigToExplode()
     {
@@ -37,6 +44,8 @@ public class CloneAttack : MonoBehaviour
 
         // Play Explosion Animation
         //Debug.Log("KABOOM");
+        
+        _audioManager.Play("Explosion");
         ParticleSystem explosion = Instantiate(explosionParticles, transform.position, transform.rotation);
         Destroy(explosion, 2.5f); // Note the particle itself should have a script to callback when it ends to destroy but time
         explosion.Play();

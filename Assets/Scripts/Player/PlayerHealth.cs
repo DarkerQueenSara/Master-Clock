@@ -51,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
     private bool rewinding;
 
     private PlayerMovement _playerMovement;
+    private AudioManager _audioManager;
     private Animator _animator;
 
     private Volume rewindVolume;
@@ -65,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
         playerClock = Timekeeper.instance.Clock("Player");
         _animator = transform.GetChild(0).GetComponent<Animator>();
         _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
-
+        _audioManager = GetComponent<AudioManager>();
         GameObject rewindVolumeObj = GameObject.FindGameObjectWithTag("RewindVolume");
         if (rewindVolumeObj != null)
         {
@@ -307,6 +308,12 @@ public class PlayerHealth : MonoBehaviour
         if (!drop.give_health)
         {
             LevelManager.Instance.collectedItems++;
+            _audioManager.Play("CollectUpgrade");
+        }
+        else
+        {
+            _audioManager.Play("CollectHealth");
+
         }
 
         // Destroy drop
@@ -317,11 +324,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!IsAlive || clock.localTimeScale <= 0 || playerClock.localTimeScale <= 0) return;
         currentHealth = Mathf.Max(currentHealth - damage, 0.0f);
-
+        
+        _audioManager.Play("Hit");
         // UI
         this.lifeBar.value = currentHealth;
 
-        //meter aqui que o player tem stun e inviciblity frames depois de um hit
         //if (!IsAlive) ResetCycle();
     }
 

@@ -27,11 +27,13 @@ public class DoorControl : MonoBehaviour
     public bool slowdownBombAttackUnlocks;
     public bool accelerateUnlocks;
 
+    private AudioManager _audioManager;
+    
     public void Start()
     {
         player = PlayerEntity.instance.gameObject;
         originalPosition = this.transform.position;
-
+        _audioManager = GetComponent<AudioManager>();
         if (unlocked)
         {
             GetComponent<SpriteRenderer>().color = Color.blue;
@@ -68,6 +70,7 @@ public class DoorControl : MonoBehaviour
             t += Time.deltaTime / timeToReachTarget;
 
             this.transform.position = Vector3.Lerp(this.originalPosition, this.originalPosition + Vector3.up * distanceTravelUp, t);
+            _audioManager.Play("Open");
         }
     }
 
@@ -86,6 +89,7 @@ public class DoorControl : MonoBehaviour
             t += Time.deltaTime / timeToReachTarget;
 
             this.transform.position = Vector3.Lerp(this.originalPosition + Vector3.up * distanceTravelUp, this.originalPosition, t);
+            _audioManager.Play("Open");
         }
     }
 

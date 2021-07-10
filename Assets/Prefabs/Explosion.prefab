@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8242543912748534234}
   - component: {fileID: 8242543912748534235}
   - component: {fileID: 1284114616220920154}
+  - component: {fileID: -2860754298807168360}
+  - component: {fileID: -1490805993660228783}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -116,3 +118,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToDestroy: 2
+--- !u!114 &-2860754298807168360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8242543912748534232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f3021410de84c46870b132e1bdb942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Explosion
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+--- !u!114 &-1490805993660228783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8242543912748534232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abf7cacfc9b51e4392c1d3b1c17df62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: Explosion

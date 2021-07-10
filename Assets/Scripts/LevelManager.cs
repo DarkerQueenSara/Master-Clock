@@ -15,36 +15,33 @@ public class LevelManager : MonoBehaviour
     private float _playTime;
 
     private GameManager _gameManager;
-
+    private AudioManager _audioManager;
+     
     private void Awake()
     {
         // Needed if we want the audio manager to persist through scenes
         if (Instance == null)
         {
             Instance = this;
-            //_audioManager = AudioManager.Instance;
         }
         else
         {
             Destroy(gameObject);
-            return;
         }
-
-        //DontDestroyOnLoad(gameObject);
     }
 
     #endregion
 
-    // Start is called before the first frame update
     private void Start()
     {
         _playTime -= Time.time;
         loops = 0;
         collectedItems = 0;
         _gameManager = GameManager.Instance;
+        _audioManager = GetComponent<AudioManager>();
+        _audioManager.Play("LevelMusic");
     }
-
-    // Update is called once per frame
+    
     public void EndGame()
     {
         _playTime += Time.time;

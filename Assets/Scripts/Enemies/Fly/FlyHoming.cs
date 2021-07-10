@@ -12,6 +12,12 @@ public class FlyHoming : FlyState
         return state;
     }
 
+    public override void StateStart()
+    {
+        base.StateStart();
+        audioManager.Play("Buzzing");
+    }
+    
     public override void StateFixedUpdate()
     {
         var currentPos = target.rb.position;

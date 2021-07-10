@@ -15,7 +15,7 @@ public class CircularMovingPlatform : NonStaticPlatform
     private float _currentAngle;
 
     private bool _started;
-    private void Start()
+    public override void Start()
     {
         base.Start();
         if (!clockwise) angularSpeed *= -1;

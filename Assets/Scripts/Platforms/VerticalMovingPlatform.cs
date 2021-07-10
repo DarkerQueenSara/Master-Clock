@@ -15,7 +15,7 @@ public class VerticalMovingPlatform : PhysicsPlatform
 
     private bool _started;
     // Start is called before the first frame update
-    private void Start()
+    public override void Start()
     {
         base.Start();
         _goingDown = startUp;

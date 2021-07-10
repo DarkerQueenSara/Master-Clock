@@ -226,7 +226,7 @@ public class CloneEnemy : EnemyBase
     public void ExtendAttack()
     {
         // Play attack animation
-        //_animator.SetTrigger("SlashAttack");
+        //animator.SetTrigger("SlashAttack");
 
         // Create the projectile that will act as the yoyo
         GameObject projectile = Instantiate(extendAttackProjectile, extendAttackPoint);
@@ -251,7 +251,7 @@ public class CloneEnemy : EnemyBase
     public void SlowdownAttack()
     {
         // Play attack animation
-        //_animator.SetTrigger("SlashAttack");
+        //animator.SetTrigger("SlashAttack");
 
         // Create the projectile that will act as the yoyo
         GameObject projectile = Instantiate(slowdownAttackProjectile, slowdownAttackPoint.position, this.gameObject.transform.rotation);

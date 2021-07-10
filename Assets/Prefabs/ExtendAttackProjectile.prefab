@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5439714426914215547}
   - component: {fileID: 6831371801710814131}
   - component: {fileID: 519979757368111494}
+  - component: {fileID: 3955073121348453027}
   m_Layer: 0
   m_Name: ExtendAttackProjectile
   m_TagString: Untagged
@@ -104,3 +105,23 @@ MonoBehaviour:
   duration: 0
   damage: 0
   _playerMovement: {fileID: 0}
+  _facingRight: 0
+--- !u!114 &3955073121348453027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123637968733234474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f3021410de84c46870b132e1bdb942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Spawn
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

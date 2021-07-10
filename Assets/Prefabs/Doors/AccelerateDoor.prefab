@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2033685577302433018}
   - component: {fileID: 2033685577302433021}
   - component: {fileID: 1879104473518124839}
+  - component: {fileID: -3945425530616549490}
   m_Layer: 13
   m_Name: AccelerateDoor
   m_TagString: Untagged
@@ -154,3 +155,22 @@ MonoBehaviour:
   cloneAttackUnlocks: 0
   slowdownBombAttackUnlocks: 0
   accelerateUnlocks: 1
+--- !u!114 &-3945425530616549490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033685577302433023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f3021410de84c46870b132e1bdb942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Open
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
