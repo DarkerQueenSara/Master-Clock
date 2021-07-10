@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using Chronos;
 using UnityEngine.Rendering;
 using UnityUtilities;
+using Random = UnityEngine.Random;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
 
     public float invincibilityTime = 1.2f;
     public float flashSpeed = 0.2f;
-    
+
     private bool _isInvulnerable, _isInDamagingTiles;
 
     //in seconds
@@ -266,7 +267,10 @@ public class PlayerHealth : MonoBehaviour
         // Heath
         if (drop.give_health)
         {
-            currentHealth = Mathf.Min(currentHealth + drop.health_amount, maxHealth);
+            float chanceOfMoreHealth = Random.Range(0, 1);
+            float healthToGain = chanceOfMoreHealth > 0.6 ? drop.health_amount * 3 :
+                chanceOfMoreHealth < 0.3 ? drop.health_amount : drop.health_amount * 2;
+            currentHealth = Mathf.Min(currentHealth + healthToGain, maxHealth);
             this.lifeBar.value = currentHealth;
         }
 
