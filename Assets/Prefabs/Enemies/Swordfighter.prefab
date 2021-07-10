@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1504650928059610180}
   - component: {fileID: 1504650928059610181}
   - component: {fileID: 1504650928059610234}
+  - component: {fileID: 7482513884844081453}
   m_Layer: 8
   m_Name: Swordfighter
   m_TagString: Enemy
@@ -104,10 +105,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 1
   maxHealth: 1
-  contactDamage: 10
+  contactDamage: 40
   startPosition: {x: 0, y: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
-  randomDropChance: 0.5
+  randomDropChance: 1
   pickUps:
   - {fileID: 4426976451143395763, guid: 431b94e61417a3240a20a4d95d2c76f9, type: 3}
   explosionPrefab: {fileID: 8242543912748534232, guid: 7a35ea662298fbb4290245bd3c435979, type: 3}
@@ -117,7 +118,7 @@ MonoBehaviour:
   holdPositionTime: 3
   horizontalRange: 4
   attackPoint: {fileID: 1504650928912166671}
-  attackDamage: 5
+  attackDamage: 60
   attackRange: 1
   attackCooldown: 3
   facingRight: 0
@@ -196,6 +197,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.2}
   m_EdgeRadius: 0
+--- !u!114 &7482513884844081453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504650928059610235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f3021410de84c46870b132e1bdb942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Attack
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &1504650928912166668
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +335,7 @@ GameObject:
   - component: {fileID: 254552986211579576}
   - component: {fileID: 7566697252696155744}
   m_Layer: 0
-  m_Name: enemyperson1
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

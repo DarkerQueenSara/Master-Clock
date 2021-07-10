@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1805385634747164471}
   - component: {fileID: 1805385634747164464}
   - component: {fileID: 2244188421317055722}
+  - component: {fileID: -4777564656997435432}
   m_Layer: 13
   m_Name: SlowBombDoor
   m_TagString: Untagged

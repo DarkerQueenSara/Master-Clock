@@ -16,6 +16,7 @@ public class CrawlerCrawling : CrawlerState
     {
         base.StateStart();
         _colliderSize = target.boxCollider.bounds.extents.y;
+        audioManager.Play("Crawling");
     }
 
     public override void StateUpdate()

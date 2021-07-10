@@ -19,8 +19,9 @@ public class DiverDiving : DiverState
         base.StateStart();
         _hit = false;
         _diveCoordinates = PlayerEntity.instance.transform.position.x;
-        _animator.SetBool("Diving", true);
-        _animator.SetBool("Idle", false);
+        animator.SetBool("Diving", true);
+        animator.SetBool("Idle", false);
+        audioManager.Play("Diving");
     }
 
     public override void StateFixedUpdate()
@@ -33,6 +34,7 @@ public class DiverDiving : DiverState
         }
         else
         {
+            audioManager.Stop("Diving");
             SetState(DiverRecovering.Create(target));
         }
     }

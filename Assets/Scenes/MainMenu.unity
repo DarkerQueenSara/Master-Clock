@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 474734422}
   - component: {fileID: 474734421}
   - component: {fileID: 474734425}
+  - component: {fileID: 474734426}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -242,6 +243,25 @@ MonoBehaviour:
   playButton: {fileID: 2064337517}
   storyButton: {fileID: 1937437129}
   backButton: {fileID: 640340633}
+--- !u!114 &474734426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474734420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f3021410de84c46870b132e1bdb942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: TitleMusic
+    clip: {fileID: 8300000, guid: 19910912f35f1724cb526b8dc739e91c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!1 &640340631
 GameObject:
   m_ObjectHideFlags: 0

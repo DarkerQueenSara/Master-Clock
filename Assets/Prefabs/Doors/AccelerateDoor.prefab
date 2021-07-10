@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 2033685577302433018}
   - component: {fileID: 2033685577302433021}
   - component: {fileID: 1879104473518124839}
+  - component: {fileID: -3945425530616549490}
   m_Layer: 13
   m_Name: AccelerateDoor
   m_TagString: Untagged

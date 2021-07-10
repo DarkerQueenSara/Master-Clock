@@ -14,6 +14,7 @@ public class SwordfighterAttack : SwordfighterState
         base.StateStart();
         
         animator.SetTrigger("Attack");
+        audioManager.Play("Attack");
         target.rb.velocity = Vector2.zero;
 
         // Detect enemies and doors in range of attack

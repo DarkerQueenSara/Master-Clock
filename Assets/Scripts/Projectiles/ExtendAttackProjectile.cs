@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,14 @@ public class ExtendAttackProjectile : MonoBehaviour
     [HideInInspector] public int damage;
     [HideInInspector] public PlayerMovement _playerMovement;
     [HideInInspector] public bool _facingRight;
+
+    private AudioManager _audioManager;
+
+    public void Start()
+    {
+        _audioManager = GetComponent<AudioManager>();
+        _audioManager.Play("Spawn");
+    }
 
     // Update is called once per frame
     void Update()
