@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2854439303838154135}
   - component: {fileID: 3405980072381551451}
   - component: {fileID: 3035371656483128712}
+  - component: {fileID: 5818298121244483412}
   m_Layer: 0
   m_Name: CloneExplosionParticles
   m_TagString: Untagged
@@ -4862,3 +4863,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5818298121244483412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7419984707742293977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f2756ab90d5474b878442937313c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDestroy: 2

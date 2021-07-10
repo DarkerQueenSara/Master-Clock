@@ -28,7 +28,7 @@ public class CloneAttack : MonoBehaviour
         //Destroy(this.gameObject, this.duration);
     }
 
-    private void DetonateClone()
+    public void DetonateClone()
     {
         if (playerRewinding)
         { // If player is rewinding, don't destroy the clone
@@ -36,7 +36,7 @@ public class CloneAttack : MonoBehaviour
         }
 
         // Play Explosion Animation
-        Debug.Log("KABOOM");
+        //Debug.Log("KABOOM");
         ParticleSystem explosion = Instantiate(explosionParticles, transform.position, transform.rotation);
         Destroy(explosion, 2.5f); // Note the particle itself should have a script to callback when it ends to destroy but time
         explosion.Play();
@@ -47,6 +47,7 @@ public class CloneAttack : MonoBehaviour
         // Damage enemies and unlock doors
         foreach (Collider2D hit in hits)
         {
+            if (hit.gameObject == gameObject) continue;
             //Debug.Log("Hit enemy!");
             if (hit.gameObject.layer == 8) // Hit enemy
                 hit.GetComponent<EnemyBase>().Hit(damage);
