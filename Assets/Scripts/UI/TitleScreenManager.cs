@@ -9,16 +9,16 @@ public class TitleScreenManager : MonoBehaviour
     public Button playButton, storyButton, backButton;
 
     private GameManager _gameManager;
-    //private AudioManager _audioManager;
+    private AudioManager _audioManager;
     
     private void Start()
     {
-        //_audioManager = AudioManager.Instance;
+        _audioManager = GetComponent<AudioManager>();
         _gameManager = GameManager.Instance;
         playButton.onClick.AddListener(StartGame);
         storyButton.onClick.AddListener(ShowStory);
         backButton.onClick.AddListener(HideStory);
-       // _audioManager.Play("TitleScreen");
+       _audioManager.Play("TitleMusic");
     }
     
     private void StartGame()

@@ -15,15 +15,15 @@ public class EndScreenManager : MonoBehaviour
 
     private GameManager _gameManager;
 
-    //private AudioManager _audioManager;
+    private AudioManager _audioManager;
     private void Start()
     {
-        //_audioManager = GetComponent<AudioManager>();
+        _audioManager = GetComponent<AudioManager>();
         _gameManager = GameManager.Instance;
         playButton.onClick.AddListener(StartGame);
         exitButton.onClick.AddListener(ExitGame);
         backButton.onClick.AddListener(HideStats);
-        // _audioManager.Play("TitleScreen");
+        _audioManager.Play("EndMusic");
 
         if (_gameManager.lastEnding == 0)
         {
