@@ -263,7 +263,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void PickupPowerup(PowerupDrop drop)
+    public void PickupPowerup(PowerupDrop drop)
     {
         if (!drop.enabled) return;
 
