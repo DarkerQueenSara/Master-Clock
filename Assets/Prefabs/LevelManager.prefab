@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5503807868662440553}
   - component: {fileID: 5503807868662440552}
+  - component: {fileID: 949381616}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -45,3 +46,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loops: 0
   collectedItems: 0
+--- !u!114 &949381616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5503807868662440559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f3021410de84c46870b132e1bdb942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: LevelMusic
+    clip: {fileID: 8300000, guid: 2024b4aa751e9014f858d03bfedfb1a0, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
