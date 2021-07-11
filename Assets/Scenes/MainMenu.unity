@@ -258,7 +258,7 @@ MonoBehaviour:
   sounds:
   - name: TitleMusic
     clip: {fileID: 8300000, guid: 19910912f35f1724cb526b8dc739e91c, type: 3}
-    volume: 0.3
+    volume: 0.2
     pitch: 1
     loop: 1
     source: {fileID: 0}

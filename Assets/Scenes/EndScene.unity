@@ -339,7 +339,7 @@ MonoBehaviour:
   sounds:
   - name: EndMusic
     clip: {fileID: 8300000, guid: 8d4aa8505a9047140beecadade7f497e, type: 3}
-    volume: 0.3
+    volume: 0.2
     pitch: 1
     loop: 1
     source: {fileID: 0}
