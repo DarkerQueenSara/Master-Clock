@@ -45,7 +45,6 @@ public class CloneAttack : MonoBehaviour
         // Play Explosion Animation
         //Debug.Log("KABOOM");
         
-        _audioManager.Play("Explosion");
         ParticleSystem explosion = Instantiate(explosionParticles, transform.position, transform.rotation);
         Destroy(explosion, 2.5f); // Note the particle itself should have a script to callback when it ends to destroy but time
         explosion.Play();
