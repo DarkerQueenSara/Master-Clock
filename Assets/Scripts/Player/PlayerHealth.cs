@@ -218,11 +218,11 @@ public class PlayerHealth : MonoBehaviour
                     doorControl.UnlockDoor();
             }
         }
-        else if (collider.layer == 14)
+        /*else if (collider.layer == 14)
         {
             // Powerup collision
             PickupPowerup(collider.GetComponent<PowerupDrop>());
-        }
+        }*/
     }
 
     public void TurnOffInvulnerability()

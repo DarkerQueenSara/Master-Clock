@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,6 +53,15 @@ public class PowerupDrop : MonoBehaviour
         {
             t = 0;
             goingUp = !goingUp;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        PlayerEntity p = PlayerEntity.instance;
+        if (p.colliders.Contains(other.gameObject))
+        {
+            p.health.PickupPowerup(this);
         }
     }
 }

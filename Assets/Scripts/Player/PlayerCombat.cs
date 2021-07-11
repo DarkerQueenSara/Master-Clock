@@ -303,7 +303,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void Accelerate()
     {
-        Debug.Log("Zoom zoom");
+        //Debug.Log("Zoom zoom");
         if (playerClock.localTimeScale <= 0.0f || globalClock.localTimeScale <= 0.0f)
         {
             // If rewinding, accelerate won't do anything
