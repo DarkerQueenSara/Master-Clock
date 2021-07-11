@@ -185,8 +185,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Spawn
-    clip: {fileID: 0}
-    volume: 0
+    clip: {fileID: 8300000, guid: e7bec6cb624e1d44f81d94dc27daa3cb, type: 3}
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
