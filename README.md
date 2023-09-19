@@ -19,6 +19,7 @@ Master Clock is a Metroidvania, where players must explore the Master Clock in 1
 The game has 3 different endings, depending on how many loops it takes you and how many upgrades you collect.
 
 Programming: Carlos Marques and Diogo Silva
+
 Art: Julia Pinheiro and Tomás Martins.
 
 The game can be played at https://catralitos.itch.io/master-clock.
